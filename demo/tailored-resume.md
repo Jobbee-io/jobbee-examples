@@ -6,7 +6,7 @@ priya.anand@example.com · (555) 020-1177 · Toronto, ON · linkedin.com/in/exam
 
 Canadian citizen — TN-1 eligible (no lottery); also Global Talent visa eligible (UK)
 
-> *ILLUSTRATIVE OUTPUT — generated for this example, not a live product run. Tailored from `examples/priya-anand/resumes/base/MASTER_BASE_RESUME.md` against the Thornfield Pay posting.*
+> *ILLUSTRATIVE OUTPUT — generated for this example, not a live product run. Tailored from `examples/priya-anand/Base Resume.md` against the Thornfield Pay posting.*
 
 ---
 

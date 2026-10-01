@@ -10,11 +10,11 @@
 
 ## What raised the score — from her files, quoted
 
-**TN-1 eligibility ↔ sponsorship offered.** The JD says *"We sponsor TN-1 and H-1B."* Her `job_applicant.md` states under Visa / Work Authorization: *"US work authorization: TN-1 eligible (Canadian citizen; employer support letter required, renewable in 3-year increments, no lottery/cap)."* A job that sponsors is a different job for a TN-eligible candidate — this fact pair alone is why the Phase-0 gate never paused on her file.
+**TN-1 eligibility ↔ sponsorship offered.** The JD says *"We sponsor TN-1 and H-1B."* Her `Applicant Profile.md` states under Visa / Work Authorization: *"US work authorization: TN-1 eligible (Canadian citizen; employer support letter required, renewable in 3-year increments, no lottery/cap)."* A job that sponsors is a different job for a TN-eligible candidate — this fact pair alone is why the Phase-0 gate never paused on her file.
 
 **API platform depth, both directions.** The JD asks for *"a shipped API platform decision… versioning policy, pricing model, deprecation program, or build-vs-buy call."* Her files carry **all four**:
 
-- versioning policy + deprecation → `projects/developer-api-platform.md` and `projects/api-sunset-legacy-v1.md` (retired v1 with 4,000 dependent customers, zero incidents — the JD's "3,000+ integrated partners" deprecation fear is a thing she's already done at larger scale);
+- versioning policy + deprecation → `Projects/Developer Api Platform.md` and `Projects/Api Sunset Legacy V1.md` (retired v1 with 4,000 dependent customers, zero incidents — the JD's "3,000+ integrated partners" deprecation fear is a thing she's already done at larger scale);
 - pricing model → the usage-based redesign, including the +34% result *and* the walked-back launch with its 18% churn ("bring the one that still stings a little; we'll ask what you'd change" — her files have that answer pre-written);
 - build-vs-buy → the tokenization-core decision with its honest vendor-friction ledger.
 
@@ -22,7 +22,7 @@
 
 **Culture fit is stated on both sides, verbatim-adjacent.** JD: *"strategy docs here get argued with, not nodded at"* / *"worked with engineers who push back."* Her file: *"A written-strategy culture. Docs that get argued with"* / *"Engineers who push back. The best product calls I've made lost the first argument."* When a candidate's stated values mirror the JD's stated values this closely, the interview-signal confidence is high.
 
-**The nice-to-haves she was born with.** JD nice-to-haves read like her file's table of contents: started as an engineer (4 years at Ferroline), marketplace/payments economics (Cartway seller payments), 0→1 internal platform to company standard (`projects/zero-to-one-internal-tooling.md`), US+UK market experience (the UK payments launch, FCA registration and all).
+**The nice-to-haves she was born with.** JD nice-to-haves read like her file's table of contents: started as an engineer (4 years at Ferroline), marketplace/payments economics (Cartway seller payments), 0→1 internal platform to company standard (`Projects/Zero To One Internal Tooling.md`), US+UK market experience (the UK payments launch, FCA registration and all).
 
 ## What pulled the score down — and why it's a trade-off, not a disqualifier
 
