@@ -1,0 +1,17 @@
+name: PII + persona scrub gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  scrub:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fail if founder markers, real contact data, or non-fictional personas appear
+        run: bash scripts/scrub-check.sh
