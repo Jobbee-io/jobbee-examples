@@ -11,7 +11,7 @@ Austin, TX
 
 ## Summary
 
-New-grad software engineer (BS CS, May 2026, Alder Ridge University, 3.8 GPA). Two internships on production teams, one shipped payment-error state machine, one distributed-systems capstone (Raft KV store) I can defend line by line. F-1 → OPT through mid-2028; will need sponsorship within that window — stated up front, happy to walk through the process. I'm applying for my first full-time role and I'm optimizing for the team I'll learn from, not the title.
+New-grad software engineer (BS CS, May 2026, Alder Ridge University, 3.8 GPA). Two internships on production teams, one shipped payment-error state machine, one distributed-systems capstone (Raft KV store) I can defend line by line. F-1 → OPT through mid-2027, STEM extension through spring 2029; will need H-1B sponsorship inside that window — stated up front, happy to walk through the process. I'm applying for my first full-time role and I'm optimizing for the team I'll learn from, not the title.
 
 ---
 

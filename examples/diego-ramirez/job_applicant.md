@@ -36,3 +36,17 @@ I graduated in May 2026 (BS Computer Science) and I'm job hunting for my first f
 - Small enough that I see how features go from idea to deploy; big enough that someone has seen the failure modes before.
 - On-call when I've earned it, not in month one.
 - A team that writes things down. I will; it works best if it's a habit already.
+
+## Visa / Work Authorization
+
+- Citizenship: Mexico (F-1 international student in the US for university)
+- US work authorization: F-1 post-completion OPT (12 months) + STEM OPT extension (24 months) — valid through spring 2029
+- Sponsorship need: H-1B sponsorship (lottery) required within ~2 years to stay ahead of the cycle — employer must be willing to sponsor
+- No other statuses or pending applications
+
+## Clarifications
+
+*(Questions Jobbee asked when my file was missing something. Log format: question, answer, newest last. My answer to the first one is what created the Visa / Work Authorization section above.)*
+
+**Q:** What is your citizenship and current work authorization for the US?
+**A:** Mexican citizen; I came to the US on an F-1 for university and graduated May 2026. Work authorization is OPT (12 months post-completion) plus the STEM extension (24 more months), so I'm authorized to work in the US through spring 2029 with no employer sponsorship needed during that window. The part that does need an employer is what comes next: H-1B sponsorship, which is a lottery, which is why I say "within about two years" — I want the sponsorship conversation started well before the authorization clock becomes urgent. That's the whole picture: no other statuses, no pending applications, and I'd rather walk any team through the process and standard cost ranges in the first conversation than have it discovered in week six.

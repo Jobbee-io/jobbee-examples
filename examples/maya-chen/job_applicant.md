@@ -33,3 +33,10 @@ Notes about my search for anything the workspace settings can't hold. Plain fact
 - Writing-first: I design in short docs, review small PRs, and put numbers in everything I claim.
 - I take on-call as a participant, not a manager-of-on-call. Pages should be rare and actionable; I've built that and will maintain it.
 - I keep project notes current — the detailed project files in this workspace are how I think, and they stay up to date as work ends, not when a search starts.
+
+## Clarifications
+
+*(Questions Jobbee asked when something in my files was ambiguous. Log format: question, answer, newest last. Notably, Jobbee never asked me a visa question — my citizenship is stated plainly above, so that gate had nothing to do. The one thing it did catch was a real contradiction I'd been living with:)*
+
+**Q:** You list target TC $350–420K and also "remote-first is my preference." Those pull against each other: would you take $340K for a fully-remote staff role, or is $350K a floor?
+**A:** Honest answer, because the contradiction was real and I'm glad it got named: **$350K is a floor for hybrid.** My current setup is hybrid and $350K–$420K was priced against that world. For a *fully-remote* staff role I'd accept **$335K — but only if the on-call maturity is exceptional** (the kind of rotation I describe liking above: pages rare and actionable, a real audit culture, someone who can show me the last three months of page data and not wince). The trade I'm actually making: remote returns me 10+ hours a week and my best deep-work hours, and I'll pay real money for that — but I won't pay it *and* accept a death-march rotation, because that combination is how good engineers burn out, and I've rebuilt myself from exactly one of those. Fully-remote at $335K with a mediocre on-call culture: no. Fully-remote at $335K with genuinely excellent operational maturity: yes, and I'd say so plainly rather than negotiate to a number neither of us believes. Hybrid roles keep the $350K floor as written.

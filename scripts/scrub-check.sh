@@ -44,7 +44,7 @@ while IFS= read -r -d '' f; do
 done < <(git ls-files -z)
 
 # ── 3. Approved personas only ───────────────────────────────────────
-allowed="maya-chen|diego-ramirez|sam-oaks"
+allowed="maya-chen|diego-ramirez|sam-oaks|priya-anand|ravi-kulkarni|marcus-webb"
 while IFS= read -r persona_dir; do
   [[ -z "$persona_dir" ]] && continue
   if ! [[ "$persona_dir" =~ ^($allowed)$ ]]; then

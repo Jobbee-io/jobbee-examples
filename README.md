@@ -10,15 +10,26 @@ Example Jobbee workspaces — real-looking, entirely fictional people, showing e
 
 ## What's here
 
-Each folder under `examples/` is one complete example workspace:
+Each folder under `examples/` is one complete example workspace. Pick the persona closest to your situation — profession *and* the use-case column:
 
-| Persona | Level | Why it exists |
-|---|---|---|
-| [`maya-chen`](examples/maya-chen/) | Senior Backend Engineer | The core use case: senior IC with deep systems work, targeting staff-level roles |
-| [`diego-ramirez`](examples/diego-ramirez/) | New Graduate | Entry-level search: internships, projects, and coursework as evidence |
-| [`sam-oaks`](examples/sam-oaks/) | Staff+ / Lead | Leadership scope without losing hands-on depth |
+| Persona | Profession | Level | Use case demonstrated |
+|---|---|---|---|
+| [`maya-chen`](examples/maya-chen/) | Senior Backend Engineer | Staff-track senior | **Picky** — hard filters (on-call maturity, industries) + a non-visa clarification answered |
+| [`diego-ramirez`](examples/diego-ramirez/) | New Graduate (SWE) | Entry | **Immigrant** — F-1/OPT/STEM timeline, sponsorship need, visa clarification + write-back |
+| [`sam-oaks`](examples/sam-oaks/) | Staff+ / Lead | Leadership without losing hands-on | Core senior-IC shape: scope without title inflation |
+| [`priya-anand`](examples/priya-anand/) | Principal Product Manager (API platform / payments) | Principal | **Full-data** — the most complete workspace: ranked locations, per-geo comp, machine-readable visa facts, clarification history. Also **cross-country** (US/UK/remote-EU) and **picky** (won't-list stated plainly) |
+| [`ravi-kulkarni`](examples/ravi-kulkarni/) | Data Scientist (experimentation / causal inference) | Senior DS, 6 YOE | **Immigrant** — H-1B mechanics, PERM in progress, the transfer-vs-restart trade-off written out; real-life location constraint (direct flights to spouse's city) |
+| [`marcus-webb`](examples/marcus-webb/) | Investment Banking Director (TMT / fintech) | Director, 15 YOE | **Picky** — 8 explicit filters with reasons, comp *structure* floor; proof `projects/` isn't only for engineers (deals as projects) |
 
-> The three folders are fictional personas, assembled for these examples. Names, employers, numbers, and projects are invented; any resemblance to real people or companies is coincidental. Don't copy the specifics — copy the shape: what kind of fact goes in which file.
+> The folders are fictional personas, assembled for these examples. Names, employers, numbers, and projects are invented; any resemblance to real people or companies is coincidental. Don't copy the specifics — copy the shape: what kind of fact goes in which file.
+
+## Clarifications & write-back
+
+Jobbee reads these files with NLP — there's no schema to satisfy. When a file is **ambiguous or missing a material fact**, Jobbee pauses and asks a clarification question by email; your answer is then written back into `job_applicant.md` as a Q/A log under `## Clarifications` (newest last), with visa/work-authorization answers also landing as plain bullets under `## Visa / Work Authorization`. See it in [`diego-ramirez`](examples/diego-ramirez/job_applicant.md) (the visa question fired for him, and the answer created his visa section) and [`priya-anand`](examples/priya-anand/job_applicant.md) (a visa clarification plus an ambiguity clarification, both answered and logged). Contrast on purpose: [`maya-chen`](examples/maya-chen/job_applicant.md) states her citizenship inline, so the visa gate never fired for her — she only got a non-visa clarification (comp-vs-remote).
+
+## Full loop demo
+
+The [`demo/`](demo/) directory shows one complete loop end-to-end (illustrative, hand-authored): a fictional job posting → the match rationale explaining the score against priya-anand's files → the tailored resume Jobbee writes from her base resume. Start at [`demo/README.md`](demo/README.md).
 
 ## Using an example
 
@@ -36,6 +47,7 @@ examples/<persona>/
   job_applicant.md                  # Applicant Profile — read by job search & scoring
   resumes/base/MASTER_BASE_RESUME.md  # Base Resume — read by resume tailoring
   projects/*.md                     # Project files — one per project, no limit
+demo/                               # Illustrative full loop: JD → match rationale → tailored resume
 ```
 
 ## License
