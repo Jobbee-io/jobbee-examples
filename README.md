@@ -10,7 +10,7 @@ Example Jobbee workspaces — real-looking, entirely fictional people, showing e
 
 ## What's here
 
-Each folder under `examples/` is one complete example workspace. Pick the persona closest to your situation — profession *and* the use-case column:
+Each folder under `examples/` is one complete example workspace. Pick the persona closest to your situation — profession *and* the use-case column. (Professions were chosen so that senior pay clears $400K TC / $190K base on [levels.fyi](https://www.levels.fyi) — these are searches where comp precision genuinely matters.)
 
 | Persona | Profession | Level | Use case demonstrated |
 |---|---|---|---|
@@ -20,6 +20,9 @@ Each folder under `examples/` is one complete example workspace. Pick the person
 | [`priya-anand`](examples/priya-anand/) | Principal Product Manager (API platform / payments) | Principal | **Full-data** — the most complete workspace: ranked locations, per-geo comp, machine-readable visa facts, clarification history. Also **cross-country** (US/UK/remote-EU) and **picky** (won't-list stated plainly) |
 | [`ravi-kulkarni`](examples/ravi-kulkarni/) | Data Scientist (experimentation / causal inference) | Senior DS, 6 YOE | **Immigrant** — H-1B mechanics, PERM in progress, the transfer-vs-restart trade-off written out; real-life location constraint (direct flights to spouse's city) |
 | [`marcus-webb`](examples/marcus-webb/) | Investment Banking Director (TMT / fintech) | Director, 15 YOE | **Picky** — 8 explicit filters with reasons, comp *structure* floor; proof `projects/` isn't only for engineers (deals as projects) |
+| [`elena-vargas`](examples/elena-vargas/) | Enterprise Account Executive (infra / data platforms) | Principal AE, 12 YOE | **Quota-carrying comp constraints** — OTE floor, base/variable split, uncapped accelerators, territory quality, per-year attainment history incl. an honest 94% year |
+| [`dana-whitfield`](examples/dana-whitfield/) | Principal Product Marketing Manager (developer / technical products) | Principal PMM, 14 YOE | **Brand-evangelist work in a comp-real title** — title precision note, messaging tested in dev communities, positioning failure postmortem, win/loss as strategy |
+| [`kenji-sato`](examples/kenji-sato/) | Staff Developer Advocate (engineer-origin DevRel) | Staff / lead-track, 11 YOE | **OSS record as proof-of-work** — 4.1K-star maintainer project documented as searchable facts, measured talk outcomes, green-card visa facts, travel constraint stated plainly |
 
 > The folders are fictional personas, assembled for these examples. Names, employers, numbers, and projects are invented; any resemblance to real people or companies is coincidental. Don't copy the specifics — copy the shape: what kind of fact goes in which file.
 
