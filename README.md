@@ -4,7 +4,7 @@ Example Jobbee workspaces — real-looking, entirely fictional people, showing e
 
 - **Applicant Profile** (`Applicant Profile.md`) — how Jobbee reads your situation when it searches for jobs
 - **Base Resume** (`Base Resume.md`) — your resume's bigger sibling: everything that didn't fit on the page
-- **Project files** (`Projects/*.md`) — one file per project, capture each and every detail you know
+- **Project files** (`Projects/*.md`) — at least one file per project, capture each and every detail you know
 
 > [Jobbee](https://jobbee.io) finds your jobs and writes your resumes. These example workspaces show the input side of that: the workspace files you own, written the way Jobbee reads them.
 
@@ -51,7 +51,7 @@ Files appear here with the same names you see in the Jobbee editor (the workspac
 examples/<persona>/
   Applicant Profile.md    # Applicant Profile — read by job search & scoring
   Base Resume.md          # Base Resume — read by resume tailoring
-  Projects/*.md           # Project files — one per project, no limit
+  Projects/*.md           # Project files — at least one per project, no limit
 demo/                     # Illustrative full loop: JD → match rationale → tailored resume
 ```
 

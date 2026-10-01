@@ -20,8 +20,8 @@ Jobbee does two things with your workspace files: it **finds and scores jobs** a
   to tailor from)        │                               │     what to check)
                          │                               │
  Projects/*.md         ──►   depth evidence for        ──►   tailored resume
- (one file per           │    selective pull-forward  │     (1–2 pages, per job)
-  project)               │    into the one-pager      │
+ (at least one          │    selective pull-forward  │     (1–2 pages, per job)
+  file per project)     │    into the one-pager      │
 ```
 
 If a job is interesting but your file is thin — say, it never states your citizenship, or "platform experience" could mean two things — the loop inserts a step: **Jobbee asks, you answer, the answer is written back into `Applicant Profile.md`** (under `## Clarifications`, with visa facts also landing in `## Visa / Work Authorization` as machine-readable bullets). Next search, that fact is just... there.
