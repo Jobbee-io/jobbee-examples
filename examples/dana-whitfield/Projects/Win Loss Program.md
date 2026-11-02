@@ -2,38 +2,43 @@
 
 # The win/loss program that changed roadmap decisions
 
-Halyard Tools, 2019–2022. The project I cite when a company asks whether PMM can be a strategic function or is permanently a content desk. I built Halyard Tools' win/loss program from zero — no budget line, one part-time researcher, a spreadsheet, and a lot of stubbornness — and within two years it had changed two roadmap decisions and retired one pricing model. This file is the design of the program, the decisions it changed, and the parts of the craft that don't survive being written down as a template.
+Halyard Tools, September 2019 to January 2022. I built Halyard's win/loss program from zero: no budget line at the start, no tool, a spreadsheet and an interview guide. In its first two years it produced 94 interviews (58 losses, 36 wins). It changed two roadmap decisions and retired one pricing model. This file holds the program design, the three decisions, and the mistakes.
 
-## What existed before (nothing, and worse than nothing)
+## What existed before
 
-Halyard Tools knew its win rate (54%) and had folk theories for every loss: "price," "the incumbent," "the demo went sideways." Every theory was someone's experience standing in for evidence, and — the tell I've since learned to spot everywhere — every team's folk theory assigned the loss to a factor outside that team's control. Sales lost to price; product lost to features; nobody ever lost to their own onboarding. The raw material was there (every closed-lost deal had a rep who'd been on the calls) but the knowledge was unstructured, unrecorded, and self-serving in exactly the way unrecorded knowledge always is.
+Halyard knew its win rate, 54%, and had a folk theory for every loss: "price," "the incumbent," "the demo went sideways." Each team's theory put the loss outside that team's control. Sales lost on price; product lost on features. Nobody ever lost on their own onboarding. The reps on each lost deal had the raw material, but it was unrecorded, and unrecorded knowledge drifts toward whatever flatters the person holding it.
 
-## The program design
+## The design
 
-**Who does the interviews, and why that's the whole ballgame:** I interviewed directly — not the account rep. The rep on a lost deal is the person least able to hear the real reason; the buyer curated their answer for the person they'd be working with (or avoiding) for years. A neutral third party with no account future gets answers reps never hear. Where travel budgets allowed, a researcher I trained ran the second-year interviews with the same guide, and we calibrated on ten shared interviews to keep the coding consistent.
+**Who interviews.** I did, not the account rep. A buyer curates their answer for the rep, because they may work with that person, or avoid them, for years. Someone with no account future hears what reps never hear. In year two a part-time contract researcher ran about half the interviews with the same guide. We both coded the same 10 interviews first to check that we were coding them the same way.
 
-**The interview itself:** 30–40 minutes, structured but conversational, with one rule that produced most of the value — *always ask the follow-up after the polite answer.* The first reason a buyer gives is the socially comfortable reason ("price"); the real reason lives one follow-up down ("price *relative to what we believed it did* — your deployment claims needed three engineers to verify"). We logged the first answer AND the follow-up, because the gap between them is the finding.
+**The interview.** 30 to 40 minutes, structured but conversational. One rule produced most of the value: always ask the follow-up after the polite answer. The first reason a buyer gives is the comfortable one ("price"). The real one is a question further down: "price relative to what we believed it did; your deployment claims needed three engineers to verify." We logged both answers, because the gap between them is the finding.
 
-**The coding:** every interview coded against a fixed frame — triggers, alternatives considered, evaluation process, decision criteria stated vs. revealed, and the moment the deal was actually decided (buyers decide earlier than they say; the "when did you decide" question is where losses stop being about features). Coded in a spreadsheet before anyone told me I needed a tool; the tool came later and changed nothing about the thinking.
+**The coding.** Every interview was coded against a fixed frame:
+- the trigger for the evaluation;
+- the alternatives considered;
+- the evaluation process;
+- decision criteria, both stated and revealed;
+- when the deal was actually decided.
 
-**Cadence and output:** every deal above $50K ACV, win or loss (losses-only programs drift toward complaint-collecting; wins are half the signal). Quarterly synthesis: one page of patterns, one page of verbatims, one page of recommended decisions. Sent to the whole company, presented to leadership live, with recordings available under a no-attribution rule so buyers stayed safe to be honest.
+Buyers decide earlier than they say, and "when did you decide?" is where losses stop being about features.
+
+**Cadence and output.** Every deal above $50K ACV, win or loss. Each quarter I produced a synthesis: one page of patterns, one page of verbatims, one page of recommended decisions. It went to the whole company and was presented live to leadership. Recordings were available internally under a no-attribution rule, so buyers stayed safe to be honest.
 
 ## The decisions it changed
 
-**1. The onboarding rebuild (2020).** Twenty-two of the first 40 coded losses had some version of "we couldn't get it running in the trial window" — and none of the 22 said "product" as the reason. The folk theory said features; the data said the first 48 hours. Product re-prioritized the quickstart path and setup automation; win rate moved from 54% to 61% over the following three quarters. The verbatim I keep: "We loved the demo. We just never got our own pipeline to that state."
+1. **The onboarding rebuild (2020).** Of the first 40 coded losses, 22 described some version of "we couldn't get it running in the trial window." None of the 22 gave "product" as the reason. The folk theory said features; the data said the first 48 hours. Product re-prioritized the quickstart path and setup automation. The win rate moved from 54% to 61% over the next three quarters. The verbatim I keep: "We loved the demo. We just never got our own pipeline to that state."
+2. **Drift remediation, pulled forward (2020 to 2021).** The 2019 messaging test had already put drift detection into Flowramp's GA scope (`Projects/Tier 1 Launch Api Platform.md`). Automatic remediation was planned for late 2021. Win/loss found it in 14 loss write-ups as "the thing the other tool had." Two different instruments pointed at the same gap, and remediation moved up two quarters, shipping in Q1 2021.
+3. **Usage credits, retired (2021).** In 18 coded losses, and tellingly in 4 wins, buyers described usage credits as "a meter running during evaluation." They under-tested the product to avoid the bill, then judged a hobbled version. The pricing team had defended credits for a year against anecdotes. They retired them one quarter after seeing the pattern across more than 30 interviews, and replaced them with free evaluation tiers. Evaluation-to-paid conversion rose 19% in two quarters.
 
-**2. The drift-detection priority call (2020–2021).** The community messaging test had already flagged drift detection as the missing differentiator (`Projects/Tier 1 Launch Api Platform.md`); win/loss independently found it in 14 loss write-ups as "the thing the other tool had." Two independent signals from two different instruments pointing at the same gap is as close to certainty as roadmap decisions get. It shipped six months early.
-
-**3. The usage-credit pricing model, retired (2021).** Eighteen coded losses (and, tellingly, four wins) described usage credits as "a meter running during evaluation" — buyers under-tried the product to avoid the bill, then evaluated a hamstrung version. The pricing team had defended the model for a year against anecdotes; they retired it one quarter after seeing the pattern across 30+ interviews, replaced by free evaluation tiers. Evaluation-to-paid conversion went up 19% in two quarters.
-
-**Cumulatively:** 94 interviews over two years, three decisions above, and a quieter cultural shift — the quarterly win/loss read became the one company-wide document people actually argued with, which is the only compliment I want for a synthesis doc.
+The quarterly win/loss read also became the one company-wide document people argued with. That's the only compliment I want for a synthesis.
 
 ## What I'd do differently
 
-- **I waited too long to include wins.** The first two quarters were losses-only because losses feel urgent. Wins-only patterns (why the 46% chose us, often for reasons adjacent to why others left) would have found the onboarding finding two quarters earlier.
-- **Buyer decline rate was 50% and I treated it as a fact of nature.** It wasn't — a shorter guide, a $75 thank-you donation to a fund of the buyer's choosing, and asking *at decision time* instead of two weeks later got the rate to ~30% in year two. Every 10 points of decline is a biased sample; I knew this and underacted anyway.
-- **I presented verbatims unattributed but not unedited.** One verbatim, lightly trimmed for length, was recognizable enough internally that it cost a CSM an awkward week. The no-attribution rule protects buyers; internal people need the same protection, and since then "no verbatim sharper than the deal team can defend" is my editing standard.
+- **I waited too long to include wins.** The first two quarters were losses only, because losses feel urgent. The patterns in why the 54% chose us would have surfaced the onboarding finding two quarters earlier.
+- **I treated a 50% buyer decline rate as a fact of nature.** It wasn't. In year two, three changes got it to about 30%: a shorter guide, a $75 thank-you donation to a charity of the buyer's choice, and asking at decision time rather than two weeks later. Every 10 points of decline is a more biased sample. I knew that and acted slowly anyway.
+- **I presented verbatims unattributed but not unedited.** One verbatim, lightly trimmed, was recognizable enough internally that it cost a customer success manager an awkward week. Since then my rule is that no verbatim is sharper than the deal team can defend. The no-attribution rule protects buyers; internal people need the same protection.
 
-## What this proves about PMM as a function
+## Why it matters for the role I want
 
-The program needed no permission, no tooling, and no headcount to start — a calendar, a guide, and the standing to ask buyers for 30 minutes. What it needed that most orgs won't give: someone with the patience to code 94 interviews and the standing to put the finding in front of the roadmap debate. That's the PMM-as-translator seat in one project: not the person who makes the roadmap sound good — the person who makes sure the roadmap hears what the market actually said.
+The program needed no permission, no tool and no headcount to start. It needed the patience to code 94 interviews, and the standing to put the findings in the roadmap debate. That is the difference I look for in a PMM seat: being in the room when the roadmap is argued, not handed it afterwards.

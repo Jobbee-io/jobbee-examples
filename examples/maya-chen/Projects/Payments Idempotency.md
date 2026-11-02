@@ -2,55 +2,59 @@
 
 # Payments idempotency rebuild
 
-Cartway, marketplace payments. May 2019 – Dec 2019. I owned the capture path before the incident and led the rebuild after it.
+Cartway, marketplace payments. May 2019 to December 2019. I owned the capture path before the incident, wrote the root-cause analysis after it, and led the six-month rebuild.
 
 ## The incident
 
-May 2019, a Tuesday. We got a payment gateway status-page note about elevated timeouts. What we didn't know was that our own capture endpoint had two compounding problems, and the gateway's retries turned them into a money bug.
+May 2019, a Tuesday. The payment gateway's status page reported elevated timeouts. Our own capture endpoint had two problems that the gateway's retries turned into a money bug.
 
-**What the capture path looked like.** One Ruby service (`captured` in the logs), three instances behind a load balancer. The flow: read the payment intent from Postgres, call the gateway's capture API, write `captures` row, mark intent captured.
+The capture path was one Ruby service (`captured` in the logs), three instances behind a load balancer. The flow: read the payment intent from Postgres, call the gateway's capture API, write a `captures` row, mark the intent captured.
 
-**Problem 1: the endpoint wasn't idempotent.** If the gateway call succeeded but our write-back timed out (connection reset after the response left the gateway), our service returned a 5xx. Retry semantics then meant calling capture again on an intent that was already captured. The gateway, to its credit, rejected duplicates on *its* idempotency key — but we weren't sending one consistently. The retry was a second, fresh capture.
+**Problem 1: the endpoint wasn't idempotent.** If the gateway call succeeded but our write-back failed (connection reset after the gateway had responded), we returned a 5xx. The caller retried, and we called capture again on an intent that was already captured. The gateway rejects duplicates that carry its idempotency key, but we didn't send one consistently. So the retry was a fresh second capture.
 
-**Problem 2: the "protection" we had was worse than nothing.** Someone before me (a name I never learned; the commit predates the monorepo import) added in-memory dedupe: a hash set of intent IDs per process, "recently captured." With three load-balanced instances, a retry had a 2-in-3 chance of landing on an instance that had never seen the intent. It also died on every deploy. The code even had a comment saying "temporary until real idempotency." It had been temporary for eleven months.
+**Problem 2: the dedupe we had was worse than nothing.** Someone before me had added an in-memory set of recently captured intent IDs, per process. With three load-balanced instances, a retry had a 2-in-3 chance of reaching an instance that had never seen the intent, and every deploy emptied the set. The code comment said "temporary until real idempotency". It had been there eleven months.
 
-**The trigger.** The gateway's status incident caused timeouts at exactly the rate that made both problems collide: real timeouts (harmless), and success-after-reset (poison). Over ~50 minutes: 1,912 duplicate captures, $486K, on 1,784 distinct payment intents (some charged three times). Our reconciliation job — the one I'd built two months earlier — flagged the imbalance at 04:12, which is the only reason the number wasn't worse.
+**What happened.** The gateway incident produced two kinds of timeout: real ones (harmless) and success-then-reset (the bad kind). Over about 50 minutes overnight: 1,912 duplicate captures, $486K, on 1,784 distinct payment intents; some were charged three times. The nightly reconciliation job I'd built two months earlier flagged the imbalance at 04:12 (`Payouts Reconciliation.md`). That alert is why the number wasn't larger.
 
-**Response.** Gateway-side refunds were straightforward; 100% of affected customers were refunded within 40 hours. We paused capture for 25 minutes (drained the queue rather than risk more), wrote the customer comms, and I started the RCA that evening.
+**Response.** We paused capture for 25 minutes and drained the queue rather than risk more. Every affected customer was refunded within 40 hours, through the gateway. I started the RCA that evening.
 
-## Root cause, in one line
+## Root cause
 
-The capture endpoint's contract with its caller was "at-most-once" while every layer around it — gateway retries, LB retries, our own retry queue — was "at-least-once." The dedupe set was a patch pretending to be a contract.
+The endpoint behaved as "at most once" while every layer around it (gateway retries, load-balancer retries, our own retry queue) was "at least once". The dedupe set was a patch pretending to be a contract. Underneath that: we returned an error on a post-write timeout, treating "I don't know if it happened" as "it failed".
 
 ## The rebuild
 
-Six months, me leading, two engineers assisting, one PM part-time.
+Six months: me leading, two engineers, a PM part-time.
 
-**Design.** End-to-end idempotency keys on every mutation:
-- Client (our own checkout service) generates the key, sends it on create and every retry.
-- Key stored in Postgres with a unique constraint, written in the same transaction as the state change. `INSERT ... ON CONFLICT DO NOTHING` returning zero rows means "already handled, return the recorded response."
-- Recorded responses cached per key for 72 hours, so retries after success return the original result, not a fresh attempt.
-- Gateway calls wrapped in an outbox pattern: write intent-to-capture into an outbox table in the same transaction, relay worker executes and marks it. A crashed worker leaves the row; recovery replays it under the same key.
+**The contract.** End-to-end idempotency keys on every mutation:
+- The client (our checkout service) generates the key and sends it on the first call and every retry.
+- The key is stored in Postgres under a unique constraint, in the same transaction as the state change. `INSERT ... ON CONFLICT DO NOTHING` returning zero rows means "already handled": return the recorded response.
+- Recorded responses are kept per key for 72 hours, so a retry after success returns the original result. Keys are pruned after 30 days.
+- Gateway calls go through an outbox: the intent to capture is written to an outbox table in the same transaction, and a relay worker executes it and marks it done. A crashed worker leaves the row, and recovery replays it under the same key.
 
-**Key-value store choice.** We evaluated three homes for the idempotency keys:
-- *Redis with TTL* — fast, but we had already been burned by treating Redis as a source of truth (the dedupe set trauma). Losing Redis means losing the guarantee. Rejected.
-- *DynamoDB conditional writes* — purpose-built for this, but it was a second datastore in the hot path with its own consistency story and on-call surface. We were a 20-engineer company. Rejected.
-- *Postgres, unique constraint, same transaction* — no new system, the guarantee inherits the ledger's transactionality, and we could prove correctness by reading one query. Slower than Redis by ~4ms p99. Chosen.
+**Where to store the keys.** We evaluated three options:
+- Redis with a TTL: fast, but losing Redis means losing the guarantee, and we'd just been burned by treating process memory as a source of truth. Rejected.
+- DynamoDB conditional writes: built for this, but a second datastore in the hot path, with its own consistency model and on-call load, at a 20-engineer company. Rejected.
+- Postgres, unique constraint, same transaction: no new system, the guarantee shares fate with the money, and correctness can be shown by reading one query. About 4 ms slower than Redis at p99. Chosen.
 
-The trade-off, stated plainly: we paid ~4ms and some table growth (keys pruned after 30 days) to buy a guarantee that shares fate with the money. For a payments path, that's the right trade. I'd make it again.
+I'd make the same trade today: 4 ms and some table growth for a guarantee that can't drift from the ledger.
 
-**Migration without a big bang.** New capture service deployed shadow-first for three weeks (read traffic, no writes), then dual-wrote, then old path made read-only, then deleted. Each step had a rollback. Total elapsed customer-visible time: zero downtime.
+**Migration with no downtime.** The new capture service ran in shadow for three weeks (reading traffic, no writes), then dual-wrote, then the old path went read-only, then it was deleted. Each step had a rollback.
 
-**Numbers at launch (Dec 2019):** capture p99 210ms (was 190ms — we accepted the 20ms for the outbox), duplicate captures detected by reconciliation: zero for the next 14 months, keys table ~180M rows at steady state, pruning working.
+## The numbers
 
-## What I'd say if you ask "what did *you* do"
+- Capture p99 at launch (December 2019): 210 ms, up from 190 ms. We accepted the 20 ms for the outbox.
+- Duplicate captures found by reconciliation: zero in the 8 months from launch until I left Cartway in August 2020.
+- Idempotency-key table: about 180M rows at steady state, with pruning working.
 
-- Wrote the RCA. My name is on the doc.
-- Designed the idempotency contract and the outbox relay; made the Postgres-vs-Redis call and wrote the one-page justification.
-- Ran the shadow/dual-write cutover plan.
-- Testified in the post-incident review with the merchant team, which is where I learned that "we refunded everyone" is not the same as "we kept their trust."
+## What I did, specifically
 
-## What still bothers me
+- Wrote the RCA; my name is on it.
+- Designed the idempotency contract and the outbox relay, and wrote the one-page Postgres-versus-Redis justification.
+- Planned and ran the shadow and dual-write cutover.
+- Presented in the post-incident review with the merchant team. Refunding everyone in 40 hours didn't settle it for them; they wanted to know what would stop a repeat, which is what the rebuild answered.
 
-- The `capture` service returned 5xx on *post-write* timeout because we conflated "I don't know if it happened" with "it failed." Fixing that distinction is what made idempotency necessary; we should have had it before the incident.
-- The dedupe set survived eleven months because nothing tested multi-instance behavior. Our integration tests were single-instance. The test-lane fix (multi-replica integration job) shipped with the rebuild and is the piece I'd keep if I could only keep one thing.
+## What I'd change
+
+- The 5xx-on-unknown behavior should have been fixed before the incident. Separating "failed" from "unknown" is what made idempotency necessary, and it was visible in the code.
+- The dedupe set survived eleven months because our integration tests ran a single instance. The multi-replica integration job we added with the rebuild is the piece I'd keep if I could keep only one.

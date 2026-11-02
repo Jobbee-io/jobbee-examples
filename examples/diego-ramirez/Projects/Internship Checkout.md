@@ -1,66 +1,70 @@
 <!-- Fictional example persona for Jobbee (jobbee.io). Not a real person; numbers invented. CC-BY-4.0, see repo LICENSE. -->
 
-# Checkout internship — the payment-error state machine
+# Checkout internship: the payment-error state machine
 
-Cartway, checkout team, Jun–Aug 2025 internship. ~1,400 checkouts/day through this path. I owned the state machine end-to-end; the team of 9 (my mentor Priya N., two other engineers, everyone else adjacent) reviewed and shipped it with me.
+Cartway, checkout team, June to August 2025 internship. About 1,400 checkouts a day hit a payment error and go through the code I wrote. I owned the state machine end to end. The team of 9 (my mentor Priya N., two other engineers, and the rest nearby) reviewed and shipped it with me.
 
 ## What I walked into
 
-Week 1, reading the checkout service: payment failures were handled by **six ad-hoc error branches**, each written at a different time by different people. The pattern I kept finding:
+In week 1, reading the checkout service, I found payment failures handled by six error branches, written at different times by different people:
 
-- `gateway_timeout` → retried immediately, unbounded (a retry loop with no budget).
-- `card_declined` → terminal, but *also* caught by the timeout retry wrapper upstream, so a declined card could get retried twice before giving up (once by the handler, once by the wrapper that "helpfully" wrapped everything).
-- `network_error` → sometimes retried, depending on which of two helper functions the call site used.
-- Three more variants, each subtly different. Nobody could draw the whole flow. My mentor's honest answer when I asked for the diagram: "If someone draws it, it'll be wrong by next quarter."
+- `gateway_timeout`: retried immediately, with no limit.
+- `card_declined`: terminal, but also caught by a retry wrapper upstream, so a declined card could be retried twice before giving up.
+- `network_error`: sometimes retried, depending on which of two helper functions the call site used.
+- Three more, each slightly different.
 
-Support's view was worse: when a checkout failed, they had logs and vibes. Whether a failed payment was safe to retry was a question each support person answered from experience.
+Nobody could draw the whole flow. My mentor's answer when I asked for a diagram: "If someone draws it, it'll be wrong by next quarter." Support had logs and experience, and whether a failed payment was safe to retry depended on who answered the ticket.
 
 ## What I designed
 
-A **typed state machine** for payment errors. The pitch I wrote in week 2 (my mentor made me rewrite it twice, which was correct of her): every payment failure enters one state machine with explicit states and transitions, and every transition is either allowed or not — no helper-function vibes.
+A typed state machine that every payment error enters, with explicit states and transitions. A transition is either allowed or it isn't. My mentor made me rewrite the week-2 design doc twice, and both rewrites were right.
 
-**9 states:**
-`attempting` → `gateway_timeout` | `network_error` | `card_declined` | `insufficient_funds` | `gateway_5xx` | `validation_error` | `retry_budget_exhausted` → terminal states: `failed_permanent` | `failed_retryable_deadline_passed`
+The states: the entry state `attempting`, then 9 more. Seven error states: `gateway_timeout`, `network_error`, `card_declined`, `insufficient_funds`, `gateway_5xx`, `validation_error`, `retry_budget_exhausted`. Two terminal states: `failed_permanent` and `failed_retryable_deadline_passed`. The PR counted 9 states plus the entry state.
 
-(Okay, that's 10 with `attempting` — the file that went into the PR says 9 states + the entry state, and I've argued about this at lunch. The PR comment settled it: entry doesn't count.)
+14 transitions, each with a rule. The ones that matter:
 
-**14 transitions**, each with a rule attached. The load-bearing ones:
-- Every retryable class carries a **retry budget** (attempts *and* a wall-clock deadline), tracked in the payment row, not in memory — the checkout pod can die mid-retry and the budget survives.
-- `card_declined` and `insufficient_funds` are terminal, full stop. No wrapper can retry them. (This was the bug fix, below.)
-- `gateway_timeout` → retryable *with a deadline*: after 45 seconds total, the state becomes `failed_retryable_deadline_passed` and the only path forward is a human-support flow with the payment's audit trail attached.
-- Every transition writes an **events row** (payment_id, from_state, to_state, reason code, timestamp). That table is what support reads — it replaced "logs and vibes."
+- Every retryable class has a retry budget (attempts and a wall-clock deadline) stored in the payment row, not in memory, so a checkout pod can die mid-retry and the budget survives.
+- `card_declined` and `insufficient_funds` are terminal. No wrapper can retry them.
+- `gateway_timeout` is retryable with a deadline. After 45 seconds in total it moves to `failed_retryable_deadline_passed`, and the only path forward is a support flow with the payment's history attached. (Version 1 got this wrong; see below.)
+- Every transition writes an events row: payment ID, from-state, to-state, reason code, timestamp. That table is what support reads now.
 
-## What I owned vs. assisted
+## Timeline
 
-**Owned (wrote, and my name is on the blame):**
-- The state machine itself: type definitions in TypeScript (~2,400 lines with tests), the transition table, the retry-budget persistence.
-- The events table schema and the support-facing view on top of it.
-- The migration that moved existing in-flight payments onto the new states (dual-write for one release cycle, then cutover).
+- Week 1: reading the code. Week 2: design doc.
+- Week 3: version 1 (error classes and retry budgets) shipped behind a flag. 100% of payment errors on it at the start of week 4.
+- Week 4: the incident below, 3 days after full rollout.
+- Weeks 6 to 9: events table, support view, and moving in-flight payments onto the new states (dual-write for one release cycle, then cutover).
+- Week 10: the six old branches deleted.
 
-**Assisted (my work, their steering):**
-- The service-level wiring: I wrote the first version of the retry wrapper; my mentor refactored it into the team's existing patterns. I learned more from her diff comments than from anything else that summer.
-- Load-test scenarios: I wrote the chaos cases (mock gateway returning malformed sequences), the staff engineer wrote the harness that ran them in CI.
+## What I owned and what I had help with
 
-## The bug I caused, and fixed (week 4)
+Owned (my name on the code): the TypeScript state machine, about 2,400 lines with tests; the transition table; retry-budget persistence; the events table schema and the support view; the in-flight migration.
 
-The one I'll tell interviewers about before they find it themselves.
+Help: I wrote the first retry wrapper and my mentor refactored it into the team's existing patterns. I learned more from her review comments than from anything else that summer. For load tests I wrote the chaos cases (a mock gateway returning malformed sequences); the team's staff engineer wrote the harness that runs them in CI.
 
-**What I built:** v1 of the state machine treated `gateway_timeout` as **terminal**. My reasoning, which felt airtight: "we don't know if the capture happened, so we must not retry — retrying risks a double charge." I was pattern-matching from a blog post about idempotency I'd read, applied to a system where I hadn't checked whether the capture call was safe to retry.
+## The bug I caused, and fixed
 
-**What happened in staging:** nothing. Because in staging, the mock gateway never timed out *mid-incident* — it timed out instantly and deterministically. The distinction that mattered (timeout-after-success vs. timeout-before-sent) never occurred.
+Version 1 treated `gateway_timeout` as terminal. My reasoning: "we don't know if the capture happened, so retrying risks a double charge." I'd taken that from a blog post about idempotency and applied it without checking whether this capture call was safe to retry.
 
-**What happened in prod:** week 4, the real gateway had a 20-minute incident with slow timeouts. My terminal classification meant every checkout that hit a slow timeout was **stranded**: the customer saw an error, the payment row said `failed_permanent`, and the retry budget that was supposed to save us never got a chance. 312 in-progress checkouts stranded. Support noticed before I did — tickets came in while I was reading the dashboard going "huh."
+Staging didn't catch it. The mock gateway timed out instantly and the same way every time, so the case that mattered (a slow timeout during a real incident) never happened.
 
-**The fix, and the part I'm actually proud of:**
-1. Hotfix within the day: reclassify `gateway_timeout` as retryable-with-deadline, safe because the team confirmed the capture call sent an idempotency key (which I hadn't checked — that check is now step 1 of my design checklist, permanently).
-2. Root-cause my *design process*, not just the code: I had made a safety decision (don't retry = don't double-charge) without tracing what the downstream call actually guaranteed. In the fix PR I added the regression tests that encode the real incident: slow-timeout sequences at every retry-budget edge.
-3. Wrote the incident note myself and presented it at the team's review. My mentor's comment, which I've kept: "the bug is fine, it's Tuesday; not checking the idempotency contract before making a terminal-state decision is the thing to never do again."
+In week 4 the real gateway had a 20-minute incident with slow timeouts. Every checkout that hit one was stranded: the customer saw an error, the payment row said `failed_permanent`, and the retry budget never got a chance. 312 checkouts were stranded. Support noticed from tickets before I did.
 
-**Numbers for honesty's sake:** 312 stranded checkouts, all recovered either by the hotfix's automatic retry sweep (289) or manual support recovery (23), zero double charges (the idempotency key held — the thing I hadn't verified was, accidentally, the thing that saved us).
+The fix:
 
-## What the three months taught me, compressed
+1. A hotfix the same day: `gateway_timeout` became retryable with a deadline. That was safe because the team confirmed the capture call sends an idempotency key, which I hadn't checked. Checking that contract is now step 1 of my design checklist.
+2. Regression tests that replay the real incident: slow-timeout sequences at every edge of the retry budget.
+3. I wrote the incident note and presented it at the team review. My mentor's comment: "The bug is fine, it's Tuesday. Making a terminal-state decision without checking the idempotency contract is the thing to never do again."
 
-- **Staging environments fail differently than prod**, and the difference is always in the *timing and sequence* of failures, never the happy path. My chaos cases in CI after this reproduce incident timing, not just incident types.
-- **Check the downstream contract before making an upstream safety decision.** One sentence; cost me one incident to learn it.
-- **Design docs get better when someone makes you rewrite them twice.**
-- I asked for and got a mid-internship feedback session after the bug. Best career decision I've made so far: my mentor told me my PR descriptions assumed the reader had my context, and I've been fixing that since.
+All 312 recovered: 289 by the hotfix's automatic retry sweep and 23 by support by hand. Zero double charges. The idempotency key I hadn't verified is what made the retries safe.
+
+## Results
+
+- In the team's incident reviews for the three months after launch, payment errors during gateway incidents went from "page a human" to "recovers within the retry budget".
+- Support answers "is this safe to retry?" from the events table instead of from memory.
+
+## What I took from it
+
+- Staging fails differently from production, and the difference is in the timing and order of failures. My chaos cases now reproduce incident timing, not only error types.
+- Check what the downstream call guarantees before making an upstream safety decision.
+- After the bug I asked for a mid-internship feedback session. My mentor told me my PR descriptions assumed the reader had my context. I've been fixing that since.

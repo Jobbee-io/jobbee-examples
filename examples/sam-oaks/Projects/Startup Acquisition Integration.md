@@ -1,48 +1,50 @@
 <!-- Fictional example persona for Jobbee (jobbee.io). Not a real person; numbers invented. CC-BY-4.0, see repo LICENSE. -->
 
-# Startup acquisition integration — the engineering side
+# Startup acquisition integration: the engineering side
 
-Feb 2020 – Mar 2021, Grousemont Systems. I led the engineering side of integrating Cinderpeak Labs (my company, where I'd been Head of Platform; 45 engineers, developer-tools product) into Grousemont, a ~4,000-engineer enterprise software company. Kept/rewrote/sunset across 60+ services; 39 of 45 acquired engineers still at Grousemont 12 months post-close — a retention number I'm prouder of than any technical artifact from that year. This is the record of what we kept, what we rewrote (including my own team's code), what we killed, and how the people part actually worked.
+Grousemont Systems, February 2020 to March 2021. I led the engineering side of integrating Cinderpeak Labs, where I had been Head of Platform (45 engineers, a developer-tools product), into Grousemont, an enterprise software company of about 4,000 engineers. Keep, rewrite or sunset decisions for 60+ services, and 39 of 45 acquired engineers still at Grousemont 12 months after close. I'm prouder of that retention number than of any technical artifact from the year.
 
-## What each side wanted (the honest version)
+## What each side wanted
 
-**Grousemont** had bought a product and a team, in that order of conviction. Their stated goals: ship Cinderpeak's product to Grousemont's enterprise customers within a year; adopt "whatever's good" from the startup's engineering practice; keep the talent (their diligence report named retention targets explicitly).
+Grousemont had bought a product and a team, in that order of conviction. Its goals: sell Cinderpeak's product to its enterprise customers within a year, adopt whatever was good in the startup's engineering practice, and keep the people. The diligence report named retention targets.
 
-**Cinderpeak** — us — wanted our product to matter at scale and feared, correctly, the classic pattern: acquirer sandbags the product, strips the team, and the technology dies in a spreadsheet. Our leverage was real but perishable: retention cliff starts at 12 months, and our best people had liquid motivations.
+We, the Cinderpeak side, wanted the product to matter at scale, and feared the usual pattern: the acquirer starves the product, the team leaves, the technology dies in a spreadsheet. Our leverage was real but short-lived. The retention cliff started at 12 months, and our best people had options.
 
-I sat in the middle, which is the actual job description of the integration lead: trusted by the acquired (I was them) and credible to the acquirer (I could read their org). Neither side ever got full honesty from the other directly. From me, they did, because I was structurally forced to be the one person who could afford it.
+I sat between them. The acquired engineers trusted me because I was one of them; the acquirer found me credible because I could read its org. My job was to say to each side what they weren't hearing from the other.
 
-## The triage: keep / rewrite / sunset
+## Keep, rewrite or sunset
 
-First 90 days: a full inventory of our 60+ services (the startup had over-microserviced, as startups flush with funding do — I say this as the person who approved the architecture). Each service got a recommendation doc, decided in review with Grousemont's division architects, with three questions: does it serve the product roadmap, does its design survive enterprise scale, and does anyone outside its authors understand it?
+In the first 90 days we inventoried all 60+ services. The startup had split into too many services, as well-funded startups do, and I'd approved that architecture. Each service got a recommendation doc, decided in review with Grousemont's division architects, against three questions: does it serve the product roadmap, will its design survive enterprise scale, and does anyone besides its authors understand it?
 
-**Kept as-is: 23 services.** The core pipeline engine, the deploy agent, the scheduler — the crown jewels, and the pieces that *worked* and were understood. Keeping them untouched was a signal as much as a decision: "we're not here to re-litigate your code." Signal mattered; the acquired engineers were reading every decision for evidence of the sandbag scenario.
+**Kept as-is: 23.** The pipeline engine, the deploy agent, the scheduler: the core of the product, working and understood. Leaving them untouched was also a signal. The acquired engineers read every decision for evidence that the product was about to be starved.
 
-**Rewrote: 9 services.** The interesting cases:
-- **4 were Cinderpeak's own code, including one I'd designed** (the original multi-tenant control plane). The reasons were scale-shaped: our tenancy model assumed 340 customers; Grousemont's enterprise sales pipeline assumed thousands, with per-customer compliance isolation. The rewrite wasn't a quality judgment — our code was *good at what it was built for* — it was a change of what it was built for. I wrote the keep/kill doc for my own control plane personally, with the measured capacity cliff attached (testing showed degradation past ~1,200 tenants), because if the lead's own code isn't first through the honest process, the process is theater and everyone knows it.
-- **5 were enterprise-compliance rewrites:** auth flows, audit logging, data-residency hooks — features our mid-market product had never needed. The acquired engineers did most of this work, by design: it's career-building work, it's the acquirer's knowledge pouring in, and it kept our best people on the parts of the system they knew.
+**Rewrote: 9.**
+- 4 were Cinderpeak's own code, including one I had designed: the original multi-tenant control plane. Our tenancy model assumed 340 customers; Grousemont's sales pipeline assumed thousands, each with compliance isolation. Load testing showed the control plane degrading past about 1,200 tenants. I wrote the recommendation for my own control plane myself, with that number attached. If the lead's own code doesn't go through the process first and honestly, nobody believes the process.
+- 5 were enterprise-compliance rewrites: auth flows, audit logging, data-residency hooks, none of which our mid-market product had needed. The acquired engineers did most of this, by design. It was career-building work, it brought Grousemont's knowledge in, and it kept our best people on systems they knew.
 
-**Sunset: 28 services.** The over-microserviced long tail: 14 had fewer than 5 calls/day, 9 duplicated Grousemont platform capabilities (their SSO, their billing, their observability — all older, all enterprise-hardened), 5 were experiments that had never shipped. Consolidation reduced the fleet by nearly half, and — counterintuitively — *increased* the velocity of the product work, because the remaining teams stopped paying the 28-service operational tax. The sunset docs each named what functionality moved where; three legit bugs in that migration (double-charging trial conversions, caught in canary) were the cost of speed, paid in the open.
+**Sunset: 28.** 14 handled fewer than 5 calls a day. 9 duplicated Grousemont platform services (single sign-on, billing, observability), which were older and already enterprise-hardened. 5 were experiments that never shipped. Cutting them nearly halved the service count, and the remaining teams stopped paying the operating overhead of 28 services, which sped up product work. Each sunset doc named where the functionality went. The cost of moving fast was three bugs in those moves, including double-charging on trial conversions, all caught in canary and fixed in the open.
 
-## The people part (where integrations actually fail)
+## The people side
 
-- **No re-interviews.** The acquirer's HR wanted "role-fit assessment." I blocked it with the retention data from comparable acquisitions (attrition roughly doubles when acquired engineers are re-interviewed for jobs they already hold) and put my own credibility on the line: "Re-interview them and you can re-recruit them, at market, from competitors." Won that argument; it was the single highest-leverage meeting of the year.
-- **Titles and comp mapped at close, publicly, with the formula shown.** Messy spreadsheet, everyone could see their own row, two genuine out-of-band fixes for people the formula would have insulted. The perception of a fair process mattered more than the formula's elegance.
-- **The acquired team kept a real roadmap for 12 months.** The product shipped *to new enterprise customers* in month 9, on the original architecture, by the original team, plus the compliance rewrites. Nothing kills acquired-team retention like watching your product assigned to a "synergy" roadmap owned by strangers.
-- **What I'd do differently: the culture export got one direction.** I spent the year exporting Cinderpeak practices inward — the postmortem habit, design-doc culture (which later seeded the Fernbrook-scale version of this program, but that's a later chapter). I under-invested in the reverse: teaching *our* people Grousemont's enterprise rhythm — release governance, support tiers, sales-assist. Three of the six regretted attritions in year one were engineers who drowned in process they were never taught and read as bureaucracy rather than craft. A two-way exchange program was the fix I proposed at month 10 and should have proposed at month 2.
+- **No re-interviews.** Grousemont's HR wanted a role-fit assessment for every acquired engineer. I blocked it with data from comparable acquisitions (attrition roughly doubles when acquired engineers are re-interviewed for jobs they already hold) and my own credibility: "Re-interview them and you'll be re-recruiting them, at market, from competitors." It was the most important meeting of the year.
+- **Titles and pay mapped at close, with the formula shown.** A messy spreadsheet where everyone could see their own row, plus two out-of-band fixes for people the formula would have insulted. A process people saw as fair mattered more than an elegant formula.
+- **The acquired team kept its own roadmap for 12 months.** The product shipped to new enterprise customers in month 9, on the original architecture, built by the original team plus the compliance rewrites.
+
+## What I got wrong
+
+I exported practice in one direction only. I spent the year bringing Cinderpeak habits into Grousemont (the postmortem habit, the design-doc culture) and under-invested in teaching our engineers Grousemont's enterprise rhythm: release governance, support tiers, sales assistance. Three of the six engineers who left in year one were people who drowned in process nobody explained to them, and read it as bureaucracy rather than craft. I proposed a two-way exchange program in month 10. It should have been month 2.
 
 ## Outcome
 
-- Product live with Grousemont's enterprise customers at month 9; ~11,000 pipelines/day grew to ~19,000 by month 18.
-- Fleet: 60+ services → 32 by month 12; operational cost of the acquired estate down 44%.
-- **Retention: 39/45 at 12 months; 35/45 at 24 months** (vs. the acquirer's own M&A baseline of ~60% at 12 — their number, not mine, which is the only reason I cite it).
-- 4 of the 9 rewrites were led by acquired engineers; two of those engineers got promoted *inside* Grousemont's ladder within 18 months, which did more for the "stay" math than any retention bonus.
-- The postmortem and design-doc practices I brought became seed stock for what I later built at division scale — the integration taught me that importing practice works only when the imported practice arrives with a respected local sponsor and its first dozen wins, not as a memo.
+- Product live with Grousemont's enterprise customers in month 9. About 11,000 pipelines a day at acquisition grew to about 19,000 by month 18.
+- Services: 60+ → 32 by month 12. Operating cost of the acquired estate down 44%.
+- Retention: 39 of 45 at 12 months, 35 of 45 at 24 months. Grousemont's own M&A baseline was about 60% at 12 months; that's their number, which is the only reason I quote it.
+- 4 of the 9 rewrites were led by acquired engineers. Two of them were promoted on Grousemont's ladder within 18 months, which did more for retention than any bonus.
+- The postmortem and design-doc habits I brought spread only where a respected local engineer sponsored them and had early wins to show. A memo didn't move anyone. I used that lesson again when I built the postmortem program at Fernbrook (`Incident Postmortem Program.md`).
 
 ## What transfers
 
-1. Triage your own code first, in writing, hardest case first — the process's credibility is set by whether the lead's own artifacts survive it.
-2. Keep the crown jewels visibly untouched; rewrite for *changed requirements*, not taste; sunset loudly with named destinations.
-3. Retention is decided in months 0–3 (re-interviews, comp formula, roadmap ownership), not by the retention bonus at month 12.
-4. Culture flows both directions or it's colonization, and colonization has a measurable attrition rate.
-5. The sunset bug cost (three, caught in canary) is the honest price of decommissioning speed — budget for it and say so upfront.
+1. Put your own code through the triage first, in writing, hardest case first.
+2. Leave the core visibly untouched, rewrite for changed requirements rather than taste, and sunset loudly with named destinations.
+3. Retention is decided in months 0 to 3 (re-interviews, pay formula, roadmap ownership), not by the bonus at month 12.
+4. Practice has to flow both ways, or the acquired team pays for it in attrition.

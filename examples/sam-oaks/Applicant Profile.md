@@ -6,11 +6,11 @@ Fourteen years in, and the honest version of what I'm looking for next. Written 
 
 ## What I'm looking for
 
-- **Staff or Principal Engineer, or an Engineering Manager role I can grow into.** I've done both shapes — currently a hybrid IC+lead (Staff title, direct team) — and I'm deliberately open to either full form. What I won't take is a Staff role that's title-only with no scope, or an EM role where I'd inherit an org I can't still understand technically.
+- **Staff or Principal Engineer, on the individual-contributor track.** I've done both shapes: I've managed up to 12 engineers, and today I'm a hybrid IC+lead (Staff title, direct team of 6). For what's next I'm choosing the IC path. What I won't take is a Staff role that's title-only with no scope.
 - **14 years of experience.** Career shape: enterprise software → founding engineer at a developer-tools startup (acquired) → big-co post-acquisition → platform leadership at a mid-size company, where I've led 8–12 engineers across 3 teams at peak while staying hands-on (I still ship code most weeks; ask me what's in my last PR).
 - **Depth areas:** platform infrastructure, developer experience, and build systems — that last one is my origin story and still the lens I bring to everything (see the build-consolidation project file). Secondary depth: incident process, org-level cost management, acquisition integration (I've led the engineering side of one and lived the acquired side of the same one).
 - **Work authorization:** US citizen, no constraints anywhere. Denver-based; hybrid in Denver or Boulder preferred, remote fine, relocation negotiable for the right scope.
-- **Compensation:** current base $245K + bonus. Looking at $260K–$300K base for Staff/Principal, or equivalent EM bands; equity matters to me more than the top-line number — I want a stake, not a stipend.
+- **Compensation:** current base $245K + bonus. Looking at $260K–$300K base for Staff/Principal; equity matters to me more than the top-line number — I want a stake, not a stipend.
 
 ## How I evaluate a posting (be warned, I read between lines)
 
@@ -29,5 +29,5 @@ I've built and run the systems engineers touch every day — builds, deploys, de
 ## Things I want to be straight about
 
 - **I'm a builder of platforms and a repairer of orgs, not a green-field product visionary.** Give me a codebase with 5 build systems and a team that's tired, and I'm dangerous. Give me a blank page and "imagine the future of X" and I'll do fine, but it's not where I'm strongest.
-- **I've managed people and chosen to step back to hybrid.** If you need a pure EM, ask me about it — I'd take it with eyes open, but I want the conversation to include *why* the IC path is underweight, not just that the EM seat is open.
+- **I've managed people and chosen the IC path.** I'll mentor, lead cross-team projects and own a technical charter. Please don't route me to engineering-manager openings: I've done that seat, and I do my best work when the technical charter is the job, not the direct reports.
 - **I say "no" with a doc.** My refusals come with data, an alternative, and an owner. If a culture reads that as obstruction, we'll both be unhappy.

@@ -2,54 +2,77 @@
 
 # Build system consolidation: five systems to one
 
-Grousemont Systems, Developer Productivity division (~800 engineers), Feb 2021 – Feb 2022. I ran it end to end: the audit, the choice, the migration, and the decommissioning fight at the end. Before this, I'd spent my Cinderpeak years building CI for other companies; this was the first time I rebuilt a build *estate* that wasn't mine from birth.
+Grousemont Systems, February 2021 to February 2022. The division Cinderpeak had been folded into (about 800 engineers) ran five build systems across 650 repos. I was the Senior Staff Engineer in its Developer Productivity group and ran the consolidation end to end: the audit, the choice, the migration and the decommissioning. Build systems are my origin story, and this is the project I'd spend an interview on. This file is the overview.
 
-## The starting mess
+Companion files: `Build System Consolidation Decision.md` (the options doc, the scoring and the two escalations that settled it), `Build System Consolidation Migration.md` (batches, the transpiler, what broke, the holdout, and the decommissioning).
 
-An 800-engineer division that had grown by four acquisitions in six years had, predictably, five build systems in production:
+## The starting estate
 
-1. **Maven tree A** — the original product line. 210 repos. Java 8, pinned 2016-era plugins, a parent POM hierarchy four levels deep that only two people fully understood.
-2. **Maven tree B** — acquired company "Veltis" (2017). 130 repos. Maven, but *different*: different internal repo manager, different artifact naming conventions, different release tooling.
-3. **Gradle tree A** — the mobile and API teams. 95 repos. Honestly the healthiest of the five; the team that owned it had taste.
-4. **Gradle tree B** — acquired company "Orben Digital" (2019). 140 repos. Gradle, but with a custom build-logic DSL that was elegant and completely unportable.
-5. **"Kelvin"** — the homegrown Perl build orchestrator from 2009, wrapping 75 repos of the legacy services division. Named after the first author's cat. Its CI integration was a cron server named `big-daddy-2` that one retired-in-spirit contractor had configured and nobody dared touch.
+The division had grown through four acquisitions in six years, and each had brought its own build:
 
-Measured state: **clean-build p50 across the division: 26 minutes.** CI compute: ~$2.9M/year (part of a larger infra bill). Cross-team onboarding was the hidden tax — internal survey: 62% of engineers said they'd lost "at least a day" to build weirdness in the prior quarter, and new-joiner surveys were worse.
+1. **Maven tree A:** the original product line. 210 repos, Java 8, plugins pinned to 2016 versions, a parent POM hierarchy four levels deep that two people fully understood.
+2. **Maven tree B:** from the Veltis acquisition (2017). 130 repos. Also Maven, but with its own repository manager, artifact naming and release tooling.
+3. **Gradle tree A:** the API and client-SDK teams. 95 repos and the healthiest of the five; the team that owned it had taste.
+4. **Gradle tree B:** from Orben Digital (2019). 140 repos, with a custom build-logic DSL that was elegant and completely unportable.
+5. **Kelvin:** a homegrown Perl build orchestrator from 2009 wrapping 75 repos of the legacy services group. Its CI ran on a cron server called `big-daddy-2`, configured years earlier by a contractor, that nobody wanted to touch.
 
-## Choosing the target (and making the choice defensible)
+Cinderpeak's own code was out of scope: it was Go, built with Go's own toolchain, and its clean builds already took about 3 minutes.
 
-The choice — a single modern build system — was easy to want and easy to lose, so I made the *decision process* the deliverable:
+**Baseline (January 2021):**
+- Clean-build p50 26 minutes, p95 71, across the 650 repos.
+- About $2.9M a year of CI spend in the division, of which about $1.2M was the build and unit-test executors for these repos. The rest (integration environments, performance labs, packaging) wasn't in scope.
+- Survey: 62% of engineers said they'd lost at least a day to build problems in the previous quarter (Q4 2020, 410 responses).
+- The division onboarded about 15 engineers a month, and every one of them met whichever build their team happened to use.
 
-- **Options doc** (my own proposal + two counter-proposals from division architects) with a scored matrix: migration cost per repo class, cache architecture, remote-execution viability, hiring pool, plugin escape hatches, and — the column that actually decided it — **onboarding simplicity**, because our turnover meant we onboarded ~15 engineers/month.
-- **The winning system's own learning curve was the loudest objection** ("you're replacing five tools people know with one tool nobody knows"). Answer: true for week one, false for month two, and I committed to measuring it. Post-migration onboarding survey actually *improved* (one build system's docs to read, one Slack channel to join, one golden-path template to copy).
-- **I did not run a bake-off.** Deliberate: three of the five candidate systems were already in production here, and a bake-off would have re-litigated loyalties instead of planning a migration. The options doc was the fight; once it closed, the migration was logistics. This worked, and I'd do it again — but it required the CTO publicly accepting the doc as *the* decision, which took me two escalation rounds to get.
+## My role and the team
 
-## The migration mechanics
+I wrote the options doc and the migration plan, designed the batch gates, wrote the first version of the Maven-to-Bazel transpiler, ran the weekly batch review, and owned the decommissioning. A core team of 5 engineers from Developer Productivity did most of the migration work; two of them took my transpiler from prototype to the tool that handled 340 repos. Owning teams spent about 2 days per batch on review and sign-off. For the Gradle-B rewrite we added 2 Orben engineers. The infrastructure division, which had run Bazel for 4 years, lent us advice and the design of their remote cache.
 
-**Batches by tree, not by team.** Repos moved in dependency-ordered batches per build tree, ~15–25 repos per batch, with each batch gated on: parity of build outputs (artifact checksums where deterministic, diffed manifests where not), CI duration regression ceiling (+10% max during transition), and the owning team's sign-off.
+## The decision, in short
 
-**The strangler pattern, enforced:** while a repo lived in the old system, its new-system config was generated by a *transpiler* (for Maven trees) or handwritten (Gradle trees). The transpiler meant migration was reviewable by the original owners — "read your own build, translated" — which converted the skeptics faster than any doc. 340 of the 650 repos went through the transpiler; I'd estimate it saved 4–6 engineer-months and a lot of goodwill.
+Bazel, with a self-hosted remote cache, over two counter-proposals from division architects: standardize on Gradle, or on Maven. No bake-off: three of the five candidates already ran in production at Grousemont, so I scored them on real data instead of re-running team loyalties for 6 to 8 weeks. Bazel won on cache architecture and CI cost and lost on learning curve, and I published that the result flips if you weight learning curve much higher. It took two escalation rounds before the CTO accepted the doc as the decision, with three conditions. Details in the decision file.
 
-**Golden-path pressure release:** simultaneous with migration, we shipped service templates so that *new* repos were born on the target system — no growing the pile while draining it. By month 4, new-repo creation on the old systems was near zero, which made the remaining migration feel inevitable rather than contentious.
+## The migration, in short
 
-## What broke
+Repos moved in dependency-ordered batches of 15 to 25, per tree. Each batch passed three gates: build-output parity, a CI-duration ceiling, and the owning team's sign-off. The two Maven trees (340 repos) went through the transpiler, which turned each repo's effective POM into Bazel build files its owners could review as "your own build, translated". New repos were created on Bazel from month 3, so the old pile stopped growing. Details in the migration file.
 
-- **Artifact-coordinate collisions (month 2):** Maven tree B's internal naming convention collided with the main registry for 40+ artifacts once both fed the same repository manager. Caught in parity checking, not in production — the parity gate earning its keep. Cost: a two-week naming-mapping slog that I'd half-scoped. My estimate miss, absorbed by the batch buffer.
-- **The Gradle-B DSL cliff (month 3):** Orben's custom build logic didn't transpile; their 140 repos needed real rewrites. I'd budgeted 3 engineers for 6 weeks; reality was 4 engineers for 11 weeks. The elegant unportable DSL was exactly as unportable as it looked, and I let the Orben team's (accurate) pride slow my re-scoping. Learned: re-scope in public the week you know, not after the buffer burns.
-- **Kelvin and `big-daddy-2` (month 5, the scope fight):** the Kelvin author — still at the company, still senior, still proud of it — blocked the migration of his 75 repos on grounds that ranged from legitimate (a genuinely weird deploy integration) to territorial. I lost the first round; 75 repos sat in "blocked" for 8 months while CI dollars kept burning. What finally moved it: the CFO's infra-cost review, where the Kelvin orphan line item was read aloud by someone with a bigger title than either of us, plus an offer I'd prepared since month 2 — Kelvin's *deploy* integration got ported as a first-class plugin with his name on the design. Not a bribe; the honest fix for his real objection. His repos moved in month 9, last of all, cleanly. The lesson I carry: holdouts usually have one legitimate grievance buried under the posture; find it and build it in.
+## Timeline and turning points
 
-## Measured outcomes (12 months post)
+- **Month 1 (February 2021):** inventory of all 650 repos, build-time baseline, survey.
+- **Months 1 to 2:** options doc, two escalation rounds, CTO decision at the end of March.
+- **End of month 2:** at the batch-plan review, Kelvin's author blocked his 75 repos, and I lost that round.
+- **Month 3:** transpiler v1, remote cache running, golden-path templates for new repos, first Maven-A batch.
+- **Month 4:** Maven tree B's artifact names collided with the main registry: a two-week detour.
+- **Months 5 to 7:** the Gradle-B rewrite, which took 44 engineer-weeks against a budget of 18.
+- **Month 8:** the six-month onboarding check required by the CTO's conditions: the "lost a day" number had fallen to 38%.
+- **Month 10 (November 2021):** the CFO's infrastructure cost review put Kelvin's cost on screen, and the block lifted. The same month, the remote cache filled its disks and slowed builds for 3 hours.
+- **Months 11 to 12:** Kelvin's repos moved, last of all. All 650 repos on Bazel by the end of January 2022.
 
-- **Build systems: 5 → 1.** The four old trees decommissioned: CI configs deleted, cron servers retired (`big-daddy-2` got a farewell party; the team genuinely mourned it, which I now think is healthy), repo-manager namespaces frozen read-only then archived.
-- **CI compute: −41%** on the affected estates (~$1.2M → ~$700K annualized on the migrated division's share), mostly from cache hit-rate and the end of five overlapping executor fleets.
-- **Clean-build p50: 26 min → 4 min** division-wide, p95 71 → 9 min.
-- **Onboarding:** "lost a day to build weirdness" survey response: 62% → 11%.
-- **The homegrown transpiler** was reused by two other divisions at Grousemont. That reuse — not the migration itself — is what got the work written up internally, and it's the lesson I'd emphasize: build the migration *tools* like products and they outlive the migration.
+## Outcomes and how they're measured
 
-## What I'd tell anyone starting one
+- **Build systems in use: 5 → 1.** All 650 repos built with Bazel. When I left in March 2022, 3 of the 5 old systems were fully decommissioned (Maven A, Gradle A, Gradle B). Kelvin was in its 60-day read-only hold and was retired in April 2022. Maven B stayed as a frozen, read-only path for rebuilding two long-term-support release lines that customer contracts required us to patch exactly as built.
+- **Clean-build p50: 26 → 4 minutes; p95: 71 → 9.** "Clean" means a CI build of main from a fresh checkout with an empty local cache and the remote cache available, January 2022 against January 2021. Before, there was no shared cache, so clean meant cold. A truly cold build, with the remote cache bypassed, still had a p50 of about 17 minutes; a scheduled job measured that weekly so we'd see if it drifted.
+- **CI compute: −41%,** about $1.2M → about $700K a year: the executor spend for the 650 repos, Q4 2021 run rate against Q4 2020. It came from a CI remote-cache hit rate of about 88% and from replacing five executor fleets with one autoscaled pool.
+- **Onboarding:** "lost at least a day to build problems last quarter" fell from 62% to 11% (Q1 2022, 455 responses).
+- **The transpiler was reused by two other divisions.** That reuse is what got the work written up internally.
 
-1. Make the *decision document* the battleground, not the migration. Decide once, in public, with named counter-proposals; then it's logistics.
-2. Transpile where you can — people review their own translated configs far more peacefully than they accept someone else's rewrite.
-3. New repos on the new system from day one; never drain a filling pool.
-4. Find the holdout's legitimate grievance early. It's almost always real, and building it in is cheaper than a nine-month stalemate.
-5. Budget buffers for the DSL cliffs. Elegant custom build logic is a migration *tax* pre-paid by whoever built it, collected from you.
+## Who disagreed, and how it was settled
+
+- **The two architects behind the Gradle and Maven proposals.** Settled by the CTO's review, and by making the Gradle-A team's architect the owner of the golden-path templates. He went from opponent to the person new repos copied.
+- **The division VP**, who first asked for a bake-off and later sided with Kelvin's author. The bake-off question went to the CTO. The Kelvin decision reversed after the cost review.
+- **Kelvin's author.** He had one legitimate objection under a lot of posture. Building that objection into the new system is what moved his repos.
+- **The Orben team,** who were right that their DSL would be hard to translate, and whose pride slowed my re-scoping.
+
+## Second-order effects and what isn't solved
+
+- The remote cache became production infrastructure the moment builds depended on it. The November outage showed we'd built it like a test service. It now has eviction limits, disk alerts and a 2-second fetch timeout so builds degrade to cold instead of hanging.
+- Bazel knowledge sat with 4 people when I left. Templates and docs covered the common path; anything unusual still went to them.
+- Maven B's frozen path still needed someone who understood Maven B until the last supported release line ended.
+- Cinderpeak's Go code stayed on its own toolchain. That was the right call for one fast repo, and it means "one build system" carries an asterisk I state up front.
+
+## What I'd do differently
+
+- Have each counter-proposal's author score their own option in the doc. The first escalation was about my scores, not the choice.
+- Re-scope Gradle B in public the week I knew it was wrong (week 3), not in week 7.
+- Bring the Kelvin offer back in month 3, when I'd already drafted it, instead of waiting 7 months to avoid a second public loss. The delay cost about $90K in CI and server spend.
+- Treat the remote cache as production from day 1.

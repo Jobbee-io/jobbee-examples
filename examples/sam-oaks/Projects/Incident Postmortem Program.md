@@ -2,46 +2,45 @@
 
 # Incident postmortem program
 
-Fernbrook Systems, Platform & Developer Experience, May 2022 – Sep 2023 (build), ongoing ownership since. I built the blameless postmortem practice: adoption from "docs nobody reads" to ~90% of Sev-1/2, action-item completion tracked at 94%. It started with an incident, it survived resistance from the most important engineer in the building, and the version that stuck is smaller than the version I first proposed.
+Fernbrook Systems, Platform & Developer Experience. Built May 2022 to September 2023; I've owned it since. I built the blameless postmortem practice: from almost no postmortems to a doc for about 90% of Sev-1 and Sev-2 incidents, with 94% of action items completed. It started with an incident, survived resistance from the most respected engineer in the building, and the version that stuck is much smaller than the one I first proposed.
 
 ## The incident that started it (May 2022)
 
-A cascading config failure: an internal config service pushed a malformed rule set to 60% of production services over 22 minutes. Result: 2 hours 40 minutes of degraded checkout for the company's largest revenue path, ~$180K in direct revenue impact, 3,100 support tickets, and a customer escalation that reached the board.
+An internal config service pushed a malformed rule set to 60% of production services over 22 minutes. Checkout, the company's largest revenue path, was degraded for 2 hours 40 minutes: about $180K of direct revenue impact, 3,100 support tickets, and a customer escalation that reached the board.
 
-I wasn't on call. I was six weeks into the platform org, with a charter that said "operational excellence" and no idea what that meant here yet. What I found when I looked:
+I wasn't on call. I was six weeks into the platform job, with a charter that said "operational excellence". What I found:
 
-- **Four postmortem docs existed in the whole company** (searchable: I checked), oldest from 14 months prior. Three were single-paragraph apologies. One blamed a specific engineer by name, in writing, in a doc any employee could read. That doc was why nobody wrote postmortems.
-- The incident *response* was actually good — SRE-style paging, competent mitigation, honest comms. The org knew how to fight fires and had no habit of learning from them. Every fix was a hallway conversation that evaporated.
-- The repeating pattern that convinced the CTO: the same failure class — **config propagation without validation or canary** — had caused two smaller Sev-2s in the prior nine months. Three occurrences, zero accumulated learning.
+- **Four postmortem docs in the whole company,** the oldest 14 months old. Three were one-paragraph apologies. One named and blamed a specific engineer, in a doc every employee could read. That doc was why nobody wrote postmortems.
+- **Incident response was good:** paging, mitigation and communication all worked. The org could fight fires and had no habit of learning from them. Fixes were hallway conversations that disappeared.
+- **The same failure class had happened before:** config pushed without validation or canary had caused two smaller Sev-2s in the previous nine months. Three occurrences, nothing learned. That's what convinced the CTO.
 
-## The design (and the cuts I made to it)
+## The design, and what I cut from it
 
-My first proposal was a full SRE-book program: review committees, severity matrices, action-item trackers, blameless training, the works. The VP's feedback, verbatim: "This is beautiful and we will do none of it. What's the smallest thing that would still work?" The shipped version:
+My first proposal was the full program: review committees, a severity matrix, an action-item tracker, blameless training. My VP's feedback: "This is beautiful and we will do none of it. What's the smallest thing that would still work?" What shipped:
 
-1. **One template, short.** Impact (customer-visible, dollars if known), timeline (timestamped, from real sources, corrected where memory was wrong — corrections marked), contributing factors (plural, systemic), what went well (mandatory — this is a blamelessness *mechanism*, not decoration), action items with a name and a date each. Two pages max. The old docs failed because writing them was unpaid labor; the template reduced the labor.
-2. **Blamelessness as a rule with teeth.** Contributing factors must be phrased as system or process properties, never as person-verbs ("the engineer deployed" is a timeline entry; "no dry-run existed for config pushes" is a contributing factor). I reviewed the first ten docs personally and bounced two back for person-blame — gently, publicly, with rewrites offered. Those rewrites, done with the authors, were the program's actual marketing.
-3. **Action items go on the roadmap or they don't exist.** Each item: owner (a name, not a team), a due date, and a slot in the owning team's sprint. Platform absorbed cross-cutting items as part of my charter. Completion tracked monthly, published. This is the only reason the number is 94% and not 40%.
-4. **The review meeting is 30 minutes, blameless by design.** Author presents for 10, discussion 15, no executives present (this rule came after the first review, where a VP's questioning tone withered two engineers into silence; I instituted the no-exec rule with the VP's own agreement after showing him the recording — his reaction, to his credit: "fair").
-5. **Cascade trigger:** any doc's contributing factors matching a prior doc's factors auto-links them. The config-class link is what let me show the CTO the three-incidents-same-cause chart that funded the fix work.
+1. **One short template.** Impact (customer-visible, dollars if known); a timeline from real sources, with corrections to memory marked; contributing factors, plural and systemic; what went well (mandatory, because it shows a defensive reader the doc isn't an attack, and it records what worked); action items, each with a name and a date. Two pages at most. The old docs failed partly because writing them was unpaid work; the template cut the work.
+2. **Blamelessness as a writing rule.** Contributing factors must describe the system or process, never a person's action. "The engineer deployed" is a timeline entry; "no dry run existed for config pushes" is a contributing factor. I reviewed the first ten docs and sent two back for blaming people, with rewrites offered. Those rewrites, done with the authors, were the program's real marketing.
+3. **Action items go on a roadmap or they don't exist.** Each has a named owner, a due date and a slot in the owning team's sprint. Platform took the cross-cutting ones under my charter. Completion is tracked and published monthly. That's the only reason the number is 94% and not 40%.
+4. **A 30-minute review:** the author presents for 10, discussion for 15, no executives in the room. That rule came after the first review, where a VP's questioning silenced two engineers. I showed him the recording, and he agreed to the rule. His word: "fair."
+5. **Recurring factors are linked automatically.** When a doc's contributing factors match an earlier doc's, they're linked. The config-push link produced the three-incidents-one-cause chart that funded the fix.
 
-## The resistance, and how it actually resolved
+## Resistance
 
-- **The senior staff engineer — the company's most respected IC — refused to write one** after his service's Sev-2. His stated reason was legit: "Postmortems here are blame documents with better fonts; I'm not volunteering my neck." He'd been the named engineer in that ancient doc, it turned out. I didn't argue with him in public. I gave him the *first rewrite*: his incident, written by me, blameless-form, and I asked him to mark it up. He marked it up ruthlessly, correctly — and then wrote the next one for his own incident, and it became the best doc in the corpus. He runs reviews now, harder than I do. The lesson: resistance to blamelessness is usually a scar, not a philosophy. Address the scar, not the argument.
-- **"We don't have time"** — the standing objection, valid everywhere. Answer was the two-page cap and the platform team doing the *timeline archaeology* (pulling the timestamped facts from logs/pager/comms so authors only did the narrative and analysis). Author time dropped to ~90 minutes median, measured from a survey, and the objection died more of starvation than argument.
-- **One exec wanted names in docs "for accountability."** The compromise that held: action items have names (public, tracked); contributing factors don't (systemic, tracked to fix). Accountability attaches to the *fix*, never to the *fallibility*. He accepted it after the first quarter of 94% completion — accountability that actually completes beats accountability that shames.
+- **The company's most respected senior staff engineer refused to write one** after his service's Sev-2. His reason was fair: "Postmortems here are blame documents with better fonts." He turned out to be the engineer named in the old doc. I didn't argue in public. I wrote the doc for his incident myself, in blameless form, and asked him to mark it up. He marked it up hard and correctly, then wrote the next one for his own incident, and it became the best doc we have. He runs reviews now, more strictly than I do. Resistance to blamelessness was a scar, not a philosophy, and addressing the scar worked.
+- **"We don't have time."** The two-page cap helped, and so did platform doing the timeline work: pulling timestamped facts from logs, pages and chat so authors only wrote the analysis. Median author time dropped to about 90 minutes, measured by survey.
+- **An exec wanted names in docs "for accountability".** The compromise that held: action items have names, public and tracked; contributing factors don't. Accountability attaches to the fix, not the mistake. He accepted it after a quarter at 94% completion.
 
 ## Outcome, measured
 
-- **~90% of Sev-1/2 incidents get a doc within 10 business days** (target: 100%; the misses are real and mostly staffing-gap related — I report them, not hide them).
-- **Action-item completion 94%** at 60 days, tracked and published monthly.
-- **Repeat-cause rate:** contributing-factor classes recurring within 12 months fell from 3/9 classes (the config example) to 1/11 in the year after the program matured. The one that recurred taught its own lesson (the fix had an owner but no verification step — verification is now a required field on every action item).
-- Config push canary + validation shipped as the program's flagship fix; three years on, zero config-propagation Sev-1s since.
-- **Adoption without me:** I stopped reviewing every doc at month 14; the practice held. Reviews are now staffed by two rotating senior engineers plus the author. When I left the loop and the numbers didn't move, that's when I considered the program real.
+- **About 90% of Sev-1 and Sev-2 incidents get a doc within 10 business days.** The target is 100%. The misses are mostly staffing gaps, and I report them.
+- **94% of action items completed within 60 days,** published monthly.
+- **Repeat causes:** contributing-factor classes that recurred within 12 months went from 3 of 9 to 1 of 11 in the year after the program matured. The one that recurred had a fix with an owner and no verification step, so verification is now a required field on every action item.
+- **Config-push validation and canary** shipped in October 2022 as the program's main fix. There has been no config-propagation Sev-1 since.
+- **It runs without me.** I stopped reviewing every doc at month 14. Reviews are now run by two rotating senior engineers and the author. The numbers didn't move when I stepped out, which is when I counted the program as real.
 
 ## What I'd tell someone building this
 
-1. Start with the smallest version that has one mechanism of *enforcement* (ours: action items on the roadmap). Postmortem programs die of being optional, not of being small.
-2. Blamelessness is a formatting rule before it's a culture. Enforce the phrasing and the culture follows; argue the culture first and you'll wait years.
-3. Do the timeline archaeology for people. The marginal hour of an incident commander should go to analysis, not scrollback archaeology.
-4. "What went well" is mandatory because blamelessness needs positive evidence to survive contact with a defensive reader — and because incident response genuinely contains things done well that otherwise get lost.
-5. Recurring-factor auto-linking is the highest-leverage feature nobody asks for. It's what turns 20 docs into a pattern library instead of a graveyard.
+1. Start with the smallest version that has one enforcement mechanism. Ours was action items on the roadmap. Postmortem programs die of being optional, not of being small.
+2. Enforce the phrasing rule first; the culture follows the format.
+3. Do the timeline work for authors so their time goes into analysis.
+4. Link recurring factors. It turns 20 docs into a pattern library instead of a graveyard.

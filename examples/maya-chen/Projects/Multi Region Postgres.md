@@ -2,46 +2,46 @@
 
 # Multi-region Postgres: the evaluation that ended in "don't"
 
-Northwind Labs, data platform. Sep 2021 – Apr 2022. I ran the evaluation, and I'm the one who argued against the thing I was asked to evaluate. The shipment-tracking product had grown two large EU enterprise customers and a US federal-adjacent customer with a data-residency requirement, and "multi-region active-active Postgres" was assumed to be the answer. My job was to make it real. The honest result was that it shouldn't be built — and what we built instead.
+Northwind Labs, data platform. September 2021 to April 2022. I ran the evaluation, recommended against the thing I was asked to evaluate, and led what we built instead. The shipment-tracking product had two large EU enterprise customers and a US federal-adjacent customer with a data-residency requirement, and "multi-region active-active Postgres" was assumed to be the answer.
 
-## The assignment as given
+## The assignment
 
-"Make the database multi-region so EU customers get EU latency and a region loss doesn't take the product down." Timeline: one quarter to a recommendation, with a mandate leaning yes. I was explicitly told the exec team expected active-active. I want that on the record because arguing against your mandate is a career decision, and I'd make it again.
+"Make the database multi-region so EU customers get EU latency and a region loss doesn't take the product down." One quarter to a recommendation. I was told directly that the exec team expected active-active. Recommending against your mandate is a career decision, and I'd make it again.
 
 ## What we evaluated
 
-Three months, two engineers plus me, running against a staging replica of the real workload: ~2.1 TB core relational data (tracking events, shipment state machines, customer tenancy tables) and a 6 TB append-only telemetry set. Peak write load ~9K writes/sec, reads ~10× that.
+Three months, two engineers and me, against a staging copy of the real workload: about 2.1 TB of core relational data (tracking events, shipment state machines, tenancy tables) plus a 6 TB append-only telemetry set. Peak writes about 9K per second, reads about 10 times that.
 
-**Option A: active-active multi-primary (bi-directional replication).** We prototyped two candidates:
-- A logical-replication-based design (Postgres 14, per-table publication, loop prevention via origin filters). It worked in the happy path and failed the review in the unhappy paths: conflict resolution on the shipment-state tables was a distributed state machine we'd now have to formally specify. Our PoC surfaced ~14 conflict scenarios; for 11 of them "last write wins" produced a shipment state that our own state-machine validator rejected. The fixes were application-level merge logic per table — that's a product of its own.
-- A CRDT-flavored rewrite of the hot tables. Not serious at our scale of table count (400+) and query surface (2,300 unique queries in the workload capture). This died on the whiteboard, and I'm including it here only to show we considered it.
+**Option A: active-active, multi-primary.**
+- Logical replication (Postgres 14, per-table publications, loops prevented with origin filters). It worked on the happy path. Our proof of concept found 14 conflict scenarios; in 11 of them, last-write-wins produced a shipment state our own state-machine validator rejected. Fixing that meant merge logic per table, a product of its own.
+- A CRDT-style rewrite of the hot tables. Not realistic with 400+ tables and 2,300 unique queries in the workload capture. It died on the whiteboard.
 
-**Option B: one primary + async replicas cross-region, manual promotion.** Simple, but the measured failover numbers were bad: cross-region promotion rehearsal took 6–11 minutes of human-driven steps, and the last-transaction loss window was real (async lag p99 4.2s cross-region, so RPO was "seconds, unbounded at the worst moment").
+**Option B: one primary, async replicas in other regions, manual promotion.** Simple, but the measured failover was bad. A cross-region promotion rehearsal took 6 to 11 minutes of manual steps. Async lag p99 was 4.2 seconds, so RPO was "seconds, unbounded at the worst moment".
 
-**Option C (my addition): regional tenant placement + sync replica in-region + automated failover in-region.** EU tenants' primary in eu-west, US tenants' primary in us-east. Every region's primary also had a synchronous replica in-region and an async warm standby cross-region. Tenancy was already clean at the row level (every table carried tenant_id), which made placement a routing problem, not a data-model problem.
+**Option C, which I added: regional tenant placement, a synchronous replica in each region, automated failover within the region.** EU tenants' primary in eu-west, US tenants' in us-east. Each regional primary had a synchronous replica in-region and an async warm standby in the other region. Every table already carried `tenant_id`, so placement was a routing problem, not a data-model problem.
 
-## Why "don't" won — the actual reasons, not the vibes
+## Why "don't" won
 
-1. **Conflict semantics are a product decision disguised as infrastructure.** Active-active turns every multi-region race into a merge policy a product owner must own. For shipment state machines, "both regions accepted status transitions concurrently" isn't a data problem; it's a business-rules problem. We could not write those policies without effectively freezing feature velocity on the hottest tables for a quarter-plus.
-2. **The measured latency win didn't justify the operational class it added.** Simulated EU-user latency with EU placement (Option C): p95 96ms. With true active-active: p91 ≈ 88ms. Twelve milliseconds of p95 improvement was the entire prize, because reads were already cache-heavy. Meanwhile active-active's steady-state tax — cross-region replication capacity, conflict telemetry, per-table merge logic — was permanent.
-3. **RPO math.** Async-replica active-active still loses data on region loss (our PoC: cross-region replication lag p99 4.2s ≈ 38K shipment events). True zero-RPO active-active would need synchronous cross-region commits: measured write-ack penalty 190–310ms and a hard availability coupling between two regions that 3,000 miles apart share weather and maintenance windows with. We'd be buying latency and fragility to solve a failure mode Option C handles with a 90-second in-region failover instead.
-4. **Operational surface.** One Postgres with proven streaming replication we had drills for, versus a federation we'd be the first at this company to operate. Our on-call had 8 people. Active-active needed tooling, training, and blast-radius discipline we'd have to invent under pressure.
+1. **Conflict resolution is a product decision.** Active-active turns every concurrent cross-region update into a merge policy someone in product must own. For shipment state machines, two regions accepting different status transitions at once is a business-rules problem. Writing those policies would have frozen feature work on the hottest tables for a quarter or more.
+2. **The latency gain was small.** Simulated EU-user p95: 96 ms with Option C, 88 ms with true active-active. Eight milliseconds of p95 was the whole prize, because reads were already mostly cached. The cost (cross-region replication capacity, conflict telemetry, merge logic per table) would have been permanent.
+3. **RPO.** Async active-active still loses data when a region fails: replication lag p99 of 4.2 seconds was about 38K shipment events. Zero-RPO active-active needs synchronous cross-region commits: measured write-ack penalty 190 to 310 ms, and two regions that must both be healthy to accept a write. That buys latency and fragility to cover a failure Option C handles with a 90-second in-region failover.
+4. **Operational surface.** One Postgres setup with streaming replication we had already drilled, versus a federation nobody at the company had operated. Our on-call was 8 people.
 
-## What we shipped (Option C), and how it did
+## What we shipped (Option C)
 
-- **Regional tenant placement** for EU/US: routing at the API edge via tenant lookup, data resident in-region. This satisfied the residency requirement, which — embarrassing but true — was the actual forcing function all along, and active-active *didn't* satisfy it cleanly anyway.
-- **Synchronous in-region replica + automated failover:** RTO 90 seconds (drill-verified quarterly, real event once, Sept 2022: 74 seconds end-to-end, no data loss), RPO 0 in-region.
-- **Cross-region async warm standby** per region for true region-loss: RPO "seconds," accepted explicitly in the design doc with the number attached, plus quarterly restore drills.
-- **Read traffic:** 4 read replicas in the primary region for the analytics-adjacent load.
+- **Regional tenant placement** for EU and US, routed at the API edge by tenant lookup, with data resident in-region. This met the residency requirement, which turned out to be the real driver all along. Active-active didn't meet it cleanly anyway.
+- **Synchronous in-region replica with automated failover.** RTO 90 seconds, drill-verified quarterly. One real event, September 2022: 74 seconds end to end, no data loss. RPO 0 in-region.
+- **Async warm standby in the other region** for a full region loss: RPO of seconds, written into the design doc with the number, plus quarterly restore drills.
+- **4 read replicas** in the primary region for analytics-style reads.
 
-Cost: 2.4× the previous DB spend (regional pairs + standbys), which the doc priced against the alternative honestly. Active-active's PoC ran at 3.1× and carried unbuilt tooling on top.
+Cost: 2.4 times the previous database spend (regional pairs plus standbys). The active-active proof of concept ran at 3.1 times, before any of the tooling it still needed.
 
-## What I got wrong in the process
+## What I got wrong
 
-- I spent the first three weeks building the active-active PoC to "earn the right" to kill it. That was backwards. The conflict-scenario enumeration (the 14 cases) should have come first — it's what killed the idea, and it would have taken two weeks, not seven. I burned a month and a half proving a thing the analysis already implied.
-- The exec readout initially buried the recommendation on slide 14 after 13 slides of data. The second version (after feedback) led with "we recommend not doing this, and here's what we do instead." The first version almost lost the room. If your recommendation is "don't," say it in the first sentence and spend your credibility budget on the alternative.
+- For the first three weeks I championed active-active. Then I spent four more weeks finishing the proof of concept to "earn the right" to kill it. Seven weeks in total, when the conflict-scenario list that actually killed it would have taken two. I now enumerate conflict semantics before benchmarking anything multi-writer.
+- My first exec readout put the recommendation on slide 14, after 13 slides of data, and nearly lost the room. The second version opened with "we recommend not doing this, and here's what we do instead." If the answer is "don't", it goes in the first sentence.
 
-## What I kept from the experience
+## What came after
 
-- "Don't" is a legitimate engineering deliverable. The doc that killed active-active has been referenced in three subsequent architecture debates at two companies, and the pattern — enumerate conflict semantics before benchmarking throughput — is how I approach any multi-writer proposal now.
-- Quarterly failover drills with real promotion, timed and written up, are the difference between an RTO number that's decoration and one that's true. Our 74-second real event is the proof point I cite most.
+- The recommendation doc has been referenced in three later architecture debates, at two companies.
+- The quarterly failover drills, with real promotion, timed and written up, are why the 90-second RTO is a measured number. The 74-second real event is the one I cite most.

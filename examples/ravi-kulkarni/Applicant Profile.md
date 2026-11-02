@@ -26,7 +26,7 @@ The facts about my search that don't fit in settings fields. I keep the visa sec
 ## Visa / Work Authorization
 
 - Citizenship: India
-- Current US status: H-1B, employer-sponsored (I-79C approval valid through 2029, current employer)
+- Current US status: H-1B, employer-sponsored (I-797C approval valid through 2029, current employer)
 - Green card: EB-2 PERM in progress with current employer — PWD (prevailing wage) determination received March 2026; ETA-9089 (PERM application) filed June 2026, pending
 - I-140: not yet filed (company files after PERM approval per policy)
 - Transfer mechanics: H-1B transfer to a new employer via premium processing — start 2–3 weeks after receipt; no lottery, no cap-gap or OPT involvement (I'm well past those stages)

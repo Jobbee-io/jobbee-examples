@@ -22,10 +22,10 @@ Staff Engineer / Team Lead, 14 years, currently at Fernbrook Systems in a delibe
 Mid-size infrastructure software company, ~300 engineers. Hired to build the platform org; led **12 engineers across 3 teams** at peak (2023–2025: platform infra, developer experience, release tooling); stepped to a deliberate hybrid of 6 direct + org-wide charter in 2026 to keep a hand in the code.
 
 - **Incident postmortem program (2022–2023).** Built the blameless postmortem practice after the quarter that made it unavoidable; adoption went from "docs nobody reads" to ~90% of Sev-1/2 with action-item completion tracked to 94%. Full story including the resistance: `Projects/Incident Postmortem Program.md`.
-- **Infra cost program (2023–2024).** $6.1M → $4.3M annual infra spend (−29%) across compute, storage, and CI, with the latency cost of each cut measured and *accepted in writing* by the service owners. Included the politics: three VPs, one CTO mandate, and the two cuts I argued against and lost. Full notes: `Projects/Dev Platform Cost Cuts.md`.
+- **Infra cost program (2023–2024).** $6.1M → $4.3M annual infra spend (−29%) across compute, storage, and CI, with the latency cost of each cut measured and *accepted in writing* by the service owners. Included the politics: three VPs, one CTO mandate, and the two cuts I argued for and lost. Full notes: `Projects/Dev Platform Cost Cuts.md`.
 - **Dev platform build-out (2022–2025).** Golden-path service templates (new service to first production deploy: 3 weeks → 2 days), self-serve environment provisioning, and the internal developer portal now covering 87% of services. Adopted by 41 of the company's 46 teams without a mandate — the template's default being right did the persuasion.
 - **Team topology work (2024–2025).** Re-cut 3 platform teams around user segments (service teams, pipeline users, cost/ops) after measuring where requests actually came from; platform NPS −12 → +31. Led 12 engineers through it without a single regretted attrition.
-- Still hands-on: wrote the release-tooling queue service (Go) that now handles ~2,400 deploys/week; most recent PR this month.
+- Still hands-on: wrote the release-tooling queue service (Go) that now handles ~2,400 deploys/week; most recent PR this month. Full notes: `Projects/Release Queue Service.md`.
 
 ### Grousemont Systems — Senior Staff Engineer, Developer Productivity (Feb 2020 – Mar 2022)
 
@@ -81,5 +81,5 @@ Enterprise build-and-release tooling vendor, ~120 engineers. My build-systems or
 ## Failures, indexed honestly
 
 - The Cinderpeak YAML schema — I designed it, it calcified, and migrating 340 customers off my own design in 2019 was the bill coming due. I now design config formats like I'll have to migrate off them, because I will.
-- At Grousemont, I lost the scope fight over decommissioning the homegrown build system in year 1 and let it sit for 8 months before re-raising it with better allies. The delay cost real CI dollars. Escalate faster; I do now.
+- At Grousemont, I lost the scope fight over decommissioning the homegrown build system early in the program and let it sit for 8 months before re-raising it with better allies. The delay cost real CI dollars. Escalate faster; I do now.
 - First 6 months at Fernbrook, I over-hired senior platform engineers against a charter that needed two doers more than six architects; re-leveling the plan cost me one good engineer who left for a greener IC track. Hiring to the *work in front of you*, not the work you hope to win — learned at real price.

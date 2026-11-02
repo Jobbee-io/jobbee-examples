@@ -22,7 +22,7 @@ I graduated in May 2026 (BS Computer Science) and I'm job hunting for my first f
 
 - **Internships where I shipped real code.** Two internships, both on teams with production systems. At Cartway I owned a payment-error state machine end-to-end (shipped, in production, handling real checkout failures) and I can walk through the bug I caused and fixed during week 4. Details in my project files.
 - **Strong fundamentals.** Distributed systems (Raft capstone — I built a KV store that survives node kills and I know exactly where it's weak), databases, networks, OS. I like the unglamorous parts: correctness, tests, writing things down.
-- **I finish things.** TA'd for 3 semesters, ran an autograder, maintained course infrastructure. The part-time grind of keeping 400 students' submissions flowing taught me more about on-call instincts than any class.
+- **I finish things.** TA'd for 6 semesters, ran an autograder, maintained course infrastructure. The part-time grind of keeping 400 students' submissions flowing taught me more about on-call instincts than any class.
 
 ## Honest constraints — so nobody is surprised
 

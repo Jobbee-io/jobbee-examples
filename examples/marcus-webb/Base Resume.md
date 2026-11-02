@@ -29,7 +29,7 @@ Investment banker, 15 years, TMT and fintech. Analyst at a bulge-bracket-style p
 *2016 – 2021 · New York · bulge-bracket-style global bank*
 
 - Four years on the TMT execution desk: VP on 11 closed transactions, ~$5.2B aggregate announced value. Owned models, ran data rooms, managed diligence workstreams, and was the junior banker in every closing mechanic that had no second take.
-- **The Corrigan–Aldervane merger ($2.4B, 2018–2019):** led the financial-analysis workstream on the sell side through a second-request regulatory snag; ran the retention analysis and the conversations that came with it. The full workstream map, the regulatory month, and the retention drama: `Projects/Tmt Merger 2.4b.md`.
+- **The Corrigan–Aldervane merger ($2.4B, 2018–2019):** led the financial-analysis workstream on the sell side through a second-request regulatory snag; ran the retention analysis and the conversations that came with it. The full workstream map, the regulatory month, and the retention drama: `Projects/Tmt Merger 2.4b.md` (with companion files on the valuation and fairness work and on the second request and closing).
 - **Led the fintech capital-raising practice's build-out below MD:** three mandates in the first private-fintech repricing cycle, including the Series D in `Projects/Fintech Series D Led.md`.
 - Staffing: sat on the TMT staffing desk for two years — which is where I learned exactly how staffing fails and why juniors don't trust it.
 - Co-trained two analyst classes (with the same co-trainer all four years; we still argue about the LBO curriculum).
@@ -39,7 +39,7 @@ Investment banker, 15 years, TMT and fintech. Analyst at a bulge-bracket-style p
 
 - Three years on the investing side: sourcing support, diligence, and two board-observer seats on enterprise-software positions.
 - The stint bankers don't usually list and should: it's where I learned what buyers actually underwrite — underwriting discipline, IC memos, and the difference between a banker's process narrative and an investor's thesis. I've been a materially better sell-side banker for it; I model like someone who might own the answer.
-- Modeled and defended two follow-on decisions; one worked, one I got wrong for the right reasons (concentration risk vs. follow-on economics — I'd make the same call with the same information).
+- Modeled and defended two follow-on decisions; one worked, one I got wrong for the right reasons (concentration risk vs. follow-on economics — I'd make the same call with the same information). Full notes: `Projects/Ferrowell Follow On Decision.md`.
 
 ### Marbury Cross — Analyst, TMT (2010 – 2013) → Associate, TMT (2013 promoted, departed mid-2013)
 
@@ -55,7 +55,7 @@ Investment banker, 15 years, TMT and fintech. Analyst at a bulge-bracket-style p
 | # | Deal | Value | Year | My role |
 |---|---|---|---|---|
 | 1 | Corrigan Software / Aldervane Systems — merger (sell side) | $2.4B | 2019 | Workstream lead: financial analysis, regulatory support, retention (VP, Marbury Cross) |
-| 2 | Ledgerline Payments — Series D (growth round, sole placement) | $180M | 2020 | Deal lead below MD: positioning, term negotiation (VP, Marbury Cross) |
+| 2 | Tollbrook Payments — Series D (growth round, sole placement) | $180M | 2020 | Deal lead below MD: positioning, term negotiation (VP, Marbury Cross) |
 | 3 | Westcall Media — divestiture of broadcast assets (sell side) | $610M | 2017 | Senior execution: model ownership, data room (VP, Marbury Cross) |
 | 4 | Quillon Data / Brantwood Group — majority sale (sell side, two-round) | $340M | 2021 | Day-to-day process lead, boutique structure (Director, Halstead) |
 | 5 | Ossuary Cloud — buyside for a PE-backed roll-up platform | $275M | 2022 | Buyside lead: diligence coordination, financing interface (Director, Halstead) |

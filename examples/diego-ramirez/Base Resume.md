@@ -23,7 +23,7 @@ Marketplace payments platform; checkout team of 9. Hybrid, Austin.
 
 - **Owned the payment-error state machine end-to-end.** Before: six ad-hoc error branches in the checkout service, each retrying a little differently. I designed and shipped the typed state machine (9 states, 14 transitions) that every payment error now flows through: explicit retry budget per error class, terminal states that block retry, and an events table for support to read. Implemented in TypeScript, ~2,400 lines including tests.
 - **The bug I caused and fixed (week 4).** My first version treated a gateway timeout as terminal. Under a real gateway incident it stranded 312 in-progress checkouts; I traced it from support tickets, wrote the fix (timeout → retryable, with a deadline), and added the regression test that would have caught it. Full story: `Projects/Internship Checkout.md`.
-- **Shipped, verified:** checkout error-rate during gateway incidents dropped from "page a human" to "self-heals under retry budget" per the team's incident reviews for the three months after launch. ~1,400 checkouts/day flow through it.
+- **Shipped, verified:** checkout error-rate during gateway incidents dropped from "page a human" to "self-heals under retry budget" per the team's incident reviews for the three months after launch. ~1,400 checkouts/day that hit a payment error flow through it.
 
 ### Harborlight Software — Software Engineering Intern, Platform Tools (May 2024 – Aug 2024)
 
@@ -40,8 +40,9 @@ Marketplace payments platform; checkout team of 9. Hybrid, Austin.
 ### Alder Ridge University — Teaching Assistant, CS courses (Jan 2023 – May 2026, part-time during semesters)
 
 - **CS 3440 Distributed Systems (Fall 2025, Fall 2024):** led weekly lab sections of 30, graded design docs, ran office hours. Designed 4 of the lab exercises, including the failure-injection lab (kill-a-node mid-election) that students rated the most useful and most hated exercise of the course.
-- **CS 2310 Databases (Spring 2024, Fall 2023):** autograder duty. Rebuilt large parts of it — see `Projects/Grading Automation.md` for the academic-integrity edge case that forced the rewrite.
-- ~400 students per semester across both courses; wrote ~9,000 pieces of feedback over 6 semesters. Grading under deadline pressure is where I learned to be fast *and* fair.
+- **CS 2310 Databases (Spring 2024, Fall 2023):** autograder duty. Rebuilt large parts of it — see `Projects/Grading Automation.md`, including the academic-integrity gap the rebuild exposed.
+- **CS 1200 Intro to Programming (Spring 2023, Spring 2026):** lab grader, about 8 hours a week. My first TA job and my last.
+- ~400 students per semester across these courses; wrote ~9,000 pieces of feedback over 6 semesters. Grading under deadline pressure is where I learned to be fast *and* fair.
 
 ### Ramirez & Sons Landscaping (family business) — part-time, summers 2021–2023
 
@@ -51,17 +52,21 @@ Marketplace payments platform; checkout team of 9. Hybrid, Austin.
 
 ## Projects
 
-### Distributed KV store with Raft — CS 3440 capstone (Jan 2026 – May 2026)
+### Distributed KV store with Raft — senior capstone, CS 4900 (Jan 2026 – May 2026)
 
 - Go, ~5,600 lines with tests. Three-to-five-node cluster: leader election, log replication, snapshotting, and a linearizable get/put API behind a gRPC-ish (course framework) interface.
-- Passed the course's reference test suite (1,200 scenarios including partition maps and process kills) and my own fault-injection harness (chaos script: random node kills at 2–8s intervals, 30-minute soak, zero committed-write loss across 40 runs).
-- Known weaknesses I can enumerate: no lease-based reads (every read goes through the log — correct but slow), snapshot compaction tested at toy scale only. Full notes: `Projects/Capstone Distributed Kv.md`.
-- **Ran the course's final-project showcase demo** (top 8 of 96 teams chosen to demo).
+- Passed the CS 3440 reference test suite (1,200 scenarios including partition maps and process kills) and my own fault-injection harness (chaos script: random node kills at 2–8s intervals, 30-minute soak, zero committed-write loss across 40 runs).
+- Known weaknesses I can enumerate: no lease-based reads (every read waits for a ReadIndex heartbeat round — correct, but slower than leases), snapshots tested on one machine only. Full notes: `Projects/Capstone Distributed Kv.md`.
+- **Demoed at the capstone showcase** (top 8 of 96 teams chosen to demo).
 
 ### Course projects with real depth
 
 - **Query optimizer mini-project (CS 2310, 2023):** implemented select/project/join reordering over a toy catalog with cost-based choices; measured plan times against Postgres's on the same dataset (mine was 4–40× worse, and the writeup about *why* got full marks — the honest analysis was the assignment).
 - **Socket-level HTTP server (CS 3305, 2022):** C, epoll-based, concurrency lab. First time I truly understood what "the network is unreliable" means at the syscall level.
+
+### Personal project
+
+- **Scheduling app for my family's landscaping business (Dec 2023 – present).** Python/Flask + SQLite, ~140 recurring customers, used daily by two crews and the person who invoices. Missed or double-booked visits ~5/month → ~1/month; days to get paid ~23 → ~9. Includes the 2 AM reminder texts I sent by accident. Full notes: `Projects/Family Business Scheduler.md`.
 
 ### Hackathons
 
@@ -91,3 +96,4 @@ Marketplace payments platform; checkout team of 9. Hybrid, Austin.
 - 3-to-5-node Raft cluster, ~5,600 lines, 1,200-scenario reference suite + 40 chaos-soak runs, zero committed-write loss.
 - ~400 students/semester, ~9,000 graded artifacts over 6 semesters of TA work.
 - 6 project leads adopted the status dashboard; the Friday spreadsheet died.
+- ~140 recurring customers on the family-business scheduler; days to get paid ~23 → ~9; 46 customers got a 2 AM text in week one (fixed the same morning).

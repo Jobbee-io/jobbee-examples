@@ -21,7 +21,7 @@ Principal PMM for technical products — developer platforms, data infrastructur
 *Feb 2022 – present · Oakland (hybrid)*
 
 - Own the developer narrative for Verity's platform products within a big-tech marketing org: positioning, launch architecture, developer-facing content standards, and the developer slice of the corporate story.
-- **Ledgerline** (data-lakehouse product, 2023 launch): tier-1 corporate launch. $8.2M sourced-influenced pipeline in two quarters, 340 design partners registered pre-GA, and — the number I'm proudest of — 71% of launch-page visitors reaching the docs, which is what happens when the messaging doesn't oversell.
+- **Ledgerline** (data-lakehouse product, 2023 launch): tier-1 corporate launch. $8.2M sourced-influenced pipeline in two quarters, 340 design partners registered pre-GA, and — the number I'm proudest of — 71% of launch-page visitors reaching the docs, which is what happens when the messaging doesn't oversell. The campaign behind those numbers, including what I cut: `Projects/Ledgerline Launch Campaign.md`.
 - **Rebuilt the developer-relations partnership inside the org** so advocacy, docs, and PMM share one narrative calendar; ended the era of three teams discovering the same launch three different ways. The advocacy partnership is what carried the trust program: `Projects/Developer Trust Turnaround.md`.
 - Ran the **messaging test program** for every tier-1 launch since 2023: drafts posted to technical communities under my own name, revised against what experts actually broke. Two launches shipped materially different positioning than originally drafted; I count both as the program working.
 - **The repositioning that failed** — attempted to move Verity's legacy workflow product into the modern platform story; the market refused. Postmortem, with the cost, in `Projects/Positioning Failure Postmortem.md`. I keep it on the first page of this resume on purpose.
@@ -29,8 +29,9 @@ Principal PMM for technical products — developer platforms, data infrastructur
 ### Halyard Tools (developer-tools pure-play) — Staff PMM, later Head of Product Marketing
 *Jun 2018 – Jan 2022 · SF → remote*
 
-- Joined as Staff PMM #1 in marketing; left as head of a five-person product-marketing function. **Flowramp**, the public API platform: full launch ownership (`Projects/Tier 1 Launch Api Platform.md`) — waitlist→beta→GA, 2,400 registrations, 61% week-4 activation, $14M influenced pipeline across the first four quarters.
+- Joined as the first PMM in marketing (Staff PMM); left as head of a five-person product-marketing function. **Flowramp**, the public API platform: full launch ownership (`Projects/Tier 1 Launch Api Platform.md`) — waitlist→beta→GA, 2,400 registrations, 61% week-4 activation, $14M influenced pipeline across the first four quarters.
 - **Built win/loss from zero** (`Projects/Win Loss Program.md`): 94 recorded interviews over two years; output changed two roadmap decisions and killed the usage-credit pricing model. This program is the reason I believe PMM is a strategic function and not a content desk.
+- Ran **Flowramp Build Day 2021**, the company's first own developer event (226 in person, 1,140 on the livestream): 212 qualified conversations against a goal of 150 (`Projects/Flowramp Build Day Event.md`).
 - Repositioned Halyard Tools' flagship from "deployment tool" to "deployment platform" *successfully* — the counterweight to the Verity failure, and the case study in both directions about when narrative can lead product (docs and quickstarts shipped first) versus when it can't.
 - Wrote the demo scripts and quickstart copy personally for the first year; hired writers and engineers later and reviewed their work the way my first tech-writing manager reviewed mine — against the code, not against the vibe.
 
@@ -51,7 +52,7 @@ Principal PMM for technical products — developer platforms, data infrastructur
 
 ## The positioning ledger — both directions, on purpose
 
-- **Worked (Halyard Tools, 2019):** "deployment tool" → "deployment platform." Narrative led product by one quarter: we shipped the platform story, then the quickstarts, then the platform. The gap was small and the product could close it. Result: category entry, 2.1× win rate in evaluations against deployment-only tools within 18 months.
+- **Worked (Halyard Tools, 2019):** "deployment tool" → "deployment platform." Narrative led product by one quarter: we shipped the docs and quickstarts for what already worked, then the platform story, then the rest of the platform a quarter later. The gap was small and the product could close it. Result: category entry, 2.1× win rate in evaluations against deployment-only tools within 18 months.
 - **Failed (Verity, 2024):** repositioning the legacy workflow product into the modern platform narrative. Two quarters of market silence, one major analyst note calling the story "unearned," and the product's actual architecture still showing through every demo. Cost, lesson, and the decision framework that came out of it: `Projects/Positioning Failure Postmortem.md`.
 
 Both entries live in the same ledger because the pair is the qualification: I know what narrative can move and what it can't, from both sides of the line.
@@ -87,6 +88,9 @@ Working knowledge: API concepts (REST, webhooks, auth flows), SQL basics, YAML/J
 - `Projects/Developer Trust Turnaround.md` — 18 months of credibility rebuilding; what worked, what backfired.
 - `Projects/Positioning Failure Postmortem.md` — the repositioning the market rejected, with the cost.
 - `Projects/Win Loss Program.md` — the program that made PMM strategic at Halyard Tools.
+- `Projects/Ledgerline Launch Campaign.md` — the campaign behind the Ledgerline bullet: stages, definitions, what got cut.
+- `Projects/Flowramp Build Day Event.md` — the first developer event I ran end to end, including the six-day follow-up mistake.
+- `Projects/Creator Partnership.md` — six months with one data-engineering educator; not on the resume above at all, which is the point of keeping the file.
 
 ## How I work
 
@@ -97,4 +101,4 @@ Working knowledge: API concepts (REST, webhooks, auth flows), SQL basics, YAML/J
 
 ## Contact
 
-dana.whitfield@example.com · (555) 047-1155 · linkedin.com/in/example-danawhitfield · Principal PMM / Head of Developer Marketing searches; happy to walk any org through the launch or win/loss systems above as a working session, not a pitch.
+dana.whitfield@example.com · (555) 047-1155 · linkedin.com/in/example-danawhitfield · Principal PMM searches (individual contributor); happy to walk any org through the launch or win/loss systems above as a working session, not a pitch.

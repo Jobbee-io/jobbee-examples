@@ -2,51 +2,56 @@
 
 # On-call overhaul
 
-Bluepeak Systems, Payments Platform org (and by the end, org-wide). Feb 2024 – Aug 2024. Not a code project — a human-systems project, and I led it. I include it here because how a team carries its pager is load-bearing infrastructure; the org was paying more for alerting than for several services.
+Bluepeak Systems, Payments Platform org, and org-wide by the end. February 2024 to August 2024. Not a code project: a project about how the org carried its pager, and I led it.
 
-## Starting state (measured, not vibes)
+## Starting state, measured
 
-- **~900 pages/month org-wide** across 7 on-call rotations and 46 services. Median engineer: 11 pages/week.
-- **340 alert rules.** Audit found 141 of them had never fired (dead config), and 63 fired more than once a week with zero subsequent action (noise).
-- **MTTR 47 minutes**, median. The biggest component wasn't diagnosis — it was *notification quality*: pages that said "CPU > 80% on host X" with no service context, no runbook link, no severity.
-- **Attrition signal:** two engineers requested rotation transfers citing page fatigue; one threatened to. Our quarterly survey had "on-call" as the top stressor, above deadlines.
-- The rot had a history: every incident spawned a "let's alert on that" ticket. Nobody ever deleted alerts. Alert count had grown 3.2× in two years while service count grew 1.4×.
+- About 900 pages a month across 7 rotations and 46 services. The median engineer got 11 pages a week.
+- 340 alert rules. 141 had never fired. 63 fired more than once a week and never led to any action.
+- Median MTTR 47 minutes. Most of it wasn't diagnosis but bad notifications: "CPU > 80% on host X", with no service, no customer impact, no runbook, no severity.
+- Two engineers had asked to transfer off their rotation because of page load. The quarterly survey ranked on-call as the top stressor, above deadlines.
+- Every incident had produced a "let's alert on that" ticket, and nobody deleted alerts. Alert count had grown 3.2× in two years while service count grew 1.4×.
 
-## Design principles I wrote first
+## Who did what
 
-1. **A page must be actionable now** — if the next business-hours standup is an acceptable response, it's a ticket, not a page.
-2. **Every page carries the "why me"**: affected service, customer impact (or explicit none), and a runbook link that exists.
-3. **Alerts have owners and review dates.** An alert nobody owns gets deleted. Default is deletion, not silencing.
-4. **Page rate is a managed SLO of the platform team.** We took ownership of the number: ≤ 2 pages/engineer/week, measured monthly, reported like uptime.
+I proposed it in January with three months of page data, wrote the principles, ran the audit sessions, built the page-rate dashboard and the CI check, and reported the numbers monthly. Each team's alert owners did their own triage and wrote their runbooks. Our SRE lead co-owned the rotation redesign.
+
+## The principles I wrote first
+
+1. A page must be actionable now. If the next business-day standup is soon enough, it's a ticket.
+2. Every page says why me: the affected service, the customer impact (or "none"), and a runbook link that exists.
+3. Every alert has an owner and a review date. An alert nobody owns is deleted. The default is deletion, not silencing.
+4. Page rate is an SLO of the platform: at most 2 pages per engineer per week, measured monthly, reported like uptime.
 
 ## What we did
 
-**The audit (6 weeks).** Every alert rule triaged by its owning team in working sessions I ran: keep / tune / demote-to-ticket / delete. We deleted 178 rules, demoted 70 to ticket-level notifications, and tuned 92 down from static thresholds to burn-rate or multi-window conditions. The dead-141 were the easy part; the fights were the noisy-63, where each had a founding incident. My standard line in those sessions: "name the incident it guards against, and tell me what you'd do at 3am if it fired tonight." If both answers were thin, it got demoted. That question settled arguments faster than any data.
+**The audit, 6 weeks.** Every rule went through a working session with its owning team: keep and tune, demote to a ticket, or delete. 178 deleted, 70 demoted to ticket-level notifications, 92 kept and tuned (static thresholds moved to burn-rate or multi-window conditions). The 141 dead rules were easy. The fights were over the 63 noisy ones, each with an incident behind it. My question in those sessions: "Name the incident it guards against, and tell me what you'd do at 3am if it fired tonight." If both answers were thin, it was demoted.
 
-**SLO-based alerting for the top 12 services.** Burn-rate alerts (fast + slow windows) replaced ~40 CPU/memory/disk rules. This cut the most pages of any single change, because resource alerts almost never needed a human *at night* — the services were horizontal and the saturation signals lagged the customer-impact signals by design.
+**SLO burn-rate alerts for the top 12 services,** fast and slow windows, replacing about 40 CPU, memory and disk rules. This removed more pages than any other change. The services scaled horizontally, and resource saturation lagged customer impact, so those alerts almost never needed a human at night. The pattern came from the ledger cutover in January, where we'd been running burn-rate alerts since day 1 (`Ledger Core Rewrite.md`).
 
-**Runbook coverage as a gate.** Pageable alerts must link a runbook with: what the alert means, first three diagnostic commands, escalation path. We wrote 61 runbooks in 8 weeks — paired writing, the alert owner + one rotating partner, 90-minute slots. Coverage went 34% → 100% for pageable rules. (A page without a runbook now can't merge, via the alerting CI check. That check is what keeps this from rotting back.)
+**Runbooks as a gate.** Every pageable alert must link a runbook with what the alert means, the first three diagnostic commands and the escalation path. We wrote 61 in 8 weeks, in 90-minute paired sessions (the alert owner plus a rotating partner). Coverage for pageable rules went from 34% to 100%. A CI check now blocks any pageable rule without a runbook, which is what keeps this from rotting back.
 
-**Rotation redesign.** 7 rotations → 4, aligned to real service ownership. Primary/secondary with a hard escalation rule (secondary auto-engaged after 10 minutes unacked). Weekly handoff doc instead of verbal handoff (verbal handoffs were silently losing context — we found 3 recurring incidents whose workarounds lived in one person's head). **Follow-the-sun was evaluated and rejected:** two engineers volunteered, then withdrew when they did the timezone math; night-shift solo paging for a Seattle-centered org wasn't humane and wouldn't have held.
+**Rotations, 7 → 4,** aligned to real service ownership. Primary and secondary, with the secondary paged automatically after 10 minutes unacknowledged. A weekly written handoff replaced verbal handoffs; we found 3 recurring incidents whose workarounds existed only in one person's head. Follow-the-sun was evaluated and rejected: two engineers volunteered, then withdrew after doing the timezone math. Solo night shifts for a Seattle-centered org weren't humane and wouldn't have lasted.
 
-**The page-review ritual.** Every page gets a 3-line note in a shared log: actionable? runbook helped? should it exist? Monthly review, 30 minutes, deletes rules continuously. This is the piece that maintains the number after I'm gone — the audit made it better once; the ritual keeps it better.
+**The page review.** Every page gets a 3-line note in a shared log: actionable? did the runbook help? should this alert exist? A 30-minute monthly review deletes rules continuously. The audit improved things once; this keeps them improved.
 
-## Resistance, handled
+## Resistance
 
-- **"Our alerts are different."** Three teams initially exempted themselves. I stopped pushing and instead published the pilot teams' before/after numbers with names attached; two of the three joined within a month, the third after its own bad quarter. Volunteering-by-evidence beat mandating.
-- **"Deleting alerts is dangerous."** Fair fear, so every deletion was reversible for 30 days (rule archived, not destroyed) and we tracked "deleted alert we needed" events: 2 in the year after, both caught by the page-review ritual and restored within a day. That number — 2 — is what ended the argument.
-- **One senior engineer openly called it make-work** in the kickoff. Rather than argue, I made him owner of the SLO-burn-rate migration for his own service, which had the worst page rate in the org. It was either the best or luckiest assignment I made: his service's page count fell from 31/month to 2, and he became the overhaul's loudest internal advocate.
+- **"Our alerts are different."** Three teams exempted themselves. I stopped pushing and published the pilot teams' before-and-after numbers with team names. Two of the three joined within a month, the third after its own bad quarter.
+- **"Deleting alerts is dangerous."** Fair, so every deletion was reversible for 30 days (archived, not destroyed), and we counted "deleted alert we needed" events. There were 2 in the following year, both caught by the page review and restored within a day. That number ended the argument.
+- **A senior engineer called it make-work** at the kickoff. Instead of arguing, I asked him to own the burn-rate migration for his own service, which had the worst page rate in the org. Its pages fell from 31 a month to 2, and he became the project's loudest advocate.
 
-## Results (12-month follow-up, so this is durable, not a post-sprint high)
+## Results, 12 months later
 
-- Pages: ~900/month → **~65/month**. Per-engineer: 11/week → <1/week.
-- MTTR 47 → **19 minutes**, mostly from notification quality and runbooks.
-- Customer-impact incident rate: unchanged (the whole point — we deleted noise, not signal; the 2 restored alerts were the only misses).
-- Survey: "on-call" fell from top stressor to 5th. Both rotation-transfer requests withdrawn, rescinded voluntarily.
-- The alert-count graph stayed flat for a year afterward. The CI check and the ritual are why.
+- Pages: about 900 a month → about 65. Per engineer: 11 a week → under 1.
+- Alert rules: 340 → 92 pageable.
+- MTTR: 47 → 19 minutes, mostly from better notifications and runbooks.
+- Customer-impact incident rate: unchanged. That was the test: we removed noise, not signal. The 2 restored alerts were the only misses.
+- Survey: on-call fell from top stressor to fifth. Both transfer requests were withdrawn.
+- The alert-count graph stayed flat for the year. The CI check and the page review are why.
 
-## What I'd tell anyone starting this
+## What I'd tell someone starting this
 
-- Don't start with tooling. Start with the audit and the "what would you do at 3am" question. The tooling cost us maybe 10% of the effort.
-- The hardest part is social, not technical: convincing people that a quiet pager is a sign the system works, not that they've been made expendable. Bring receipts (the unchanged incident rate is the receipt that matters).
-- Manage page rate like an SLO forever, or you're buying a season of quiet, not a system.
+- Start with the audit and the 3am question, not tooling. Tooling was maybe 10% of the effort.
+- The unchanged customer-impact rate is the number that convinces people a quiet pager means the system works. Track it from day 1.
+- Keep page rate as an SLO permanently, or you get one quiet season, not a system.

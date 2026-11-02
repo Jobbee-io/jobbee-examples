@@ -1,38 +1,116 @@
 <!-- Fictional example persona for Jobbee (jobbee.io). Not a real person; numbers invented. CC-BY-4.0, see repo LICENSE. -->
 
-# The Tessergate maintainer journey — first commit to 1.0 and past it
+# The Tessergate maintainer journey: first commit to 1.0 and past it
 
-Personal project, January 2019 – present. Tessergate validates and pins namespace-level Kubernetes resource guardrails as code. 4.1K stars, 41 releases, 37 contributors, MIT. This file is the maintainer story — the origin, the decisions, the 1.0, and the contributor conflict that taught me more about governance than any conference talk on the subject.
+Personal project, January 2019 to now. Tessergate validates and pins namespace-level Kubernetes resource guardrails as code. 4.1K stars, 41 releases, 37 contributors, MIT. My resume gives it a section of facts. This file holds the rest: why it's built the way it is and the alternatives I turned down, the timeline, how the project is governed, what each number means, what broke, the contributor conflict, and what I still haven't solved.
 
-## The origin, told exactly
+## The origin
 
-January 2019: my home lab had four clusters (a mix of a NAS-hosted setup and cloud free tiers I used for employer-side learning I couldn't do at work), and I kept re-burning the same hour: one team's namespace quietly set `memory: unlimited`, one cluster's staging namespace had no default limit at all, and nothing told me until something fell over. Existing policy engines solved this correctly and heavily — admission controllers, CRDs, an operating model built for platform teams with platform-team headcount. I wanted the *audit-and-pin* layer by itself, run from a laptop, with guardrails expressed as plain YAML in git. A weekend scratchpad became a CLI; the CLI became Tessergate.
+In January 2019 my home lab had four clusters: one on a NAS and three on cloud free tiers, which I used to learn things I couldn't try at work. I kept losing the same hour. One namespace had quietly been set to `memory: unlimited`; one cluster's staging namespace had no default limit at all; and nothing told me until something fell over. The existing policy engines solved this correctly and heavily: admission controllers, custom resources, and an operating model built for teams with platform-engineering headcount. I wanted the audit-and-pin layer on its own, run from a laptop, with guardrails written as plain YAML in git. A weekend scratchpad became a CLI, and the CLI became Tessergate.
 
-I did not build it "to grow an audience." I built it because the hour kept re-burning, and I mention that because every piece of governance advice below is downstream of a tool built for one opinionated user first. The 4.1K stars followed usefulness, not marketing.
+I built it for one opinionated user, me, before anyone else. The governance choices below all come from that.
 
-## The decisions that shaped the project
+## How it works
 
-**Why guardrails-as-code, not a controller.** The controller architecture was the road not taken, deliberately: laptops-first means no cluster-side install, which means the tool fits brownfield clusters nobody is allowed to touch — which turns out to be most of them. The trade-off I signed up for and still defend: Tessergate can't *enforce* at admission time; it audits, pins drift, and generates the configs an admission controller would consume. Practitioners who need enforcement graduate to the heavy tools, ideally still using Tessergate's output. Being explicitly the *lighter* tool in a stack of heavier ones is a better position than being an average one among three.
+Tessergate is a single Go binary with five commands:
+- `tessergate audit` reads every namespace's ResourceQuota and LimitRange objects through a read-only kubeconfig and compares them with the guardrail files in git.
+- `tessergate diff` shows the drift.
+- `tessergate pin` writes the patches needed to bring a namespace back in line, as YAML for a person or a CI job to apply. It only changes the cluster if you pass `--apply`.
+- `tessergate export` generates admission-controller policies, for Kyverno and OPA Gatekeeper, from the same guardrail files.
+- `tessergate migrate` rewrites guardrail files when the config format changes.
 
-**The breaking-changes policy (since v0.7).** Early Tessergate had the standard hobby-project sin: config format churn that followed my learning curve. v0.5 broke three users' CI in a week, and one of them wrote a beautifully dry issue titled "your tool is great, please stop improving it." That issue is the reason the policy exists: deprecation notices two minor versions ahead, old flags kept through a full minor cycle, automated migration notes in every release body, and a `Tessergate migrate` command for format changes. Cost: slower iteration. Benefit: when the 1.0 shipped in September 2022 with a written stability commitment, it landed on two years of earned credibility, and the release thread had zero breaking-change complaints — on an audience-sized project, that absence *is* the metric.
+Guardrail files support team defaults with namespace overrides, and simple label selectors.
 
-**Recruiting maintainers on purpose.** The 37 contributors didn't happen by accident, and the project's durability is really about three of them: a core contributor I recruited from a high-quality issue thread in 2021 (she now owns the config parser), a docs lead who turned the README from my private shorthand into something strangers could use (that story continues in `Projects/Docs Contribution Battle.md`), and a CI-obsessed contributor whose migration-test harness is the reason the breaking-changes policy is enforceable rather than aspirational. The maintainer skill nobody writes up: turning your best issue-commenters into co-owners *before* you burn out, not after. I recruited on evidence of judgment, not volume — one careful escalation path in an issue was worth fifty closed typos.
+## The design decisions, and what I turned down
 
-**The 1.0 launch (September 2022).** Two years of 0.x, a stability commitment in writing (config format frozen, breaking changes only behind explicit version gates), a migration guide, and a launch post that led with the failure modes honestly — including the v0.5 story above. Installed-base tripling over the following year wasn't the launch's effect alone; it was the launch *confirming* what the policy had already promised. 1.0s are read as promises, and I'd only earned the right to make one.
+**A CLI, not a controller.** A controller needs cluster-admin rights to install. In brownfield clusters, the people who feel this problem often don't have those rights, and the people who do won't add another controller. A CLI with read-only access fits clusters nobody is allowed to touch, which is most of them. The trade-off I accepted and still defend: Tessergate can't enforce at admission time. It audits, pins drift, and exports the policies an admission controller would enforce. Teams that need enforcement graduate to the heavier tools, ideally still using Tessergate's output. Being clearly the lighter tool in a stack is a better position than being an average one among three.
 
-## The toxic-contributor situation, in full
+**Plain YAML, not a policy language.** I considered Rego and CUE. Rego would have meant every reviewer learning a policy language to read a guardrail in a pull request. CUE was powerful, but few users knew it in 2019 and its error messages were hard for newcomers. I chose YAML with a small schema, validated with JSON Schema. The cost is expressiveness. Inheritance and selectors arrived only in v0.9, and some requests still can't be expressed. I'd make the same call.
 
-2023, contributor "V" — technically competent, and over roughly five months: PRs that quietly reverted other contributors' decisions without discussion, review comments on other people's PRs that read as territorial claims ("this is mine, hands off" phrasing toward a first-time contributor), a conversation in the community channel that turned personal toward the docs lead, and finally a threat to fork "the real Tessergate" with the community when I declined to fast-track his architecture rewrite.
+**Go.** It uses the same client libraries as Kubernetes itself, and it ships as one static binary that runs on a laptop or in CI with nothing else installed.
+
+**No telemetry, ever.** The tool doesn't phone home. That makes my usage numbers rough (see below), and I accept that. A guardrails tool that reports on your clusters to someone else's server is a tool security teams rightly block.
+
+## The timeline
+
+- **January 2019:** first commit. v0.1 in March (audit only); public on GitHub in April.
+- **May 2020:** v0.5 changed the config format and broke three users' CI in one week. One of them filed a dry issue titled "your tool is great, please stop improving it."
+- **September 2020:** v0.7 shipped the breaking-change policy and the `migrate` command.
+- **2021:** I recruited the maintainers who made the project durable. The first was a core contributor who now owns the config parser. The second was a docs lead. The third was a CI-focused contributor whose migration-test harness made the breaking-change policy enforceable.
+- **October 2021:** the ClusterCamp talk. Weekly installs went from 190 to 890 within a month (`Projects/Conference Talk That Mattered.md`).
+- **September 2022:** 1.0, with a written stability commitment.
+- **February to July 2023:** the contributor conflict below.
+- **2024 to now:** the 1.x line, currently 1.6.
+
+## The breaking-change policy
+
+The v0.5 issue is the reason the policy exists. It has four parts:
+- deprecation notices two minor versions ahead;
+- old flags kept for a full minor cycle;
+- migration notes generated automatically in every release body;
+- `tessergate migrate` for every format change.
+
+The migration-test harness enforces it. On every release it runs the stored config fixtures against the previous two minor versions and the three most recent Kubernetes minor versions.
+
+The cost is slower iteration. The benefit showed at 1.0. It landed on two years of kept promises, and the release thread had zero breaking-change complaints. On a project this size, that silence is the metric.
+
+## The 1.0 launch
+
+1.0 shipped in September 2022, after three and a half years of 0.x, the last two under the policy. It came with a written stability commitment: the config format is frozen, and breaking changes come only behind explicit version gates. It also had a migration guide and a launch post that led with the failure modes, including the v0.5 story. A 1.0 is read as a promise, and I only had the right to make one because the policy had been kept for two years first.
+
+## Governance
+
+- **Roles:** contributor, then reviewer, then maintainer. There are 3 maintainers with merge rights besides me. Each owns an area through a CODEOWNERS file: config parser, docs, CI and release.
+- **Format changes go through a written RFC**, open for at least two weeks.
+- **Decisions are by lazy consensus among maintainers.** As creator I keep a tie-break. I've used it twice, and I want to give it up (see below).
+- **The code of conduct** has been the Contributor Covenant since 2020. Enforcement is the hard part, as the conflict below shows.
+- **Service targets:** first review on a pull request within 2 days (median), issue triage within a week.
+- **Time:** about 6 hours a week on average, more in release weeks. All of it on my own time; the IP boundary is in my applicant file.
+
+How I recruit maintainers matters more than any feature. I recruit on evidence of judgment, not volume: one careful escalation path in an issue thread is worth fifty closed typos. The point is to turn your best issue commenters into co-owners before you burn out, not after.
+
+## The numbers, and what they mean
+
+- **4.1K stars:** the GitHub count. It's close to a vanity metric. I list it because people search on it.
+- **41 releases:** 24 in the 0.x line (March 2019 to August 2022) and 17 since 1.0.
+- **37 contributors:** people with at least one merged pull request. 9 have more than 5.
+- **Weekly installs:** release-binary downloads plus Homebrew installs per week, from the platforms' public counts. Without telemetry I can't separate new users from reinstalls or CI runners, so I use it only as a trend. About 190 a week before ClusterCamp, 890 at the peak a month after, and between 500 and 900 every week since.
+- **Adopters:** organizations that added themselves to the adopters file by pull request. There were 9 at 1.0, 27 a year later, and 38 today. Most are single teams. Three are companies, none of them my employers, that built Tessergate into their internal platform toolchains. That's the adoption I'm proudest of.
+
+## What broke, and the fixes
+
+- **v0.5, May 2020:** the format change above. The fix was the policy, the `migrate` command, and later the harness.
+- **1.3.0, March 2024:** a regression in LimitRange parsing for pods with several containers that each set default limits. The harness missed it because none of the fixtures had more than one container. A user reported it on a Saturday morning, and 1.3.1 shipped 36 hours later. We added 14 fixtures for multi-container cases, and the release checklist now asks which fixture covers each parser change.
+
+## The contributor conflict
+
+In 2023 a contributor I'll call V was technically strong. Over about five months:
+- his pull requests quietly reverted other contributors' decisions without discussion;
+- his review comments on other people's pull requests read as territory claims, including "this is mine, hands off" phrasing toward a first-time contributor;
+- a channel conversation with the docs lead turned personal;
+- when I declined to fast-track his architecture rewrite, he threatened to fork "the real Tessergate."
 
 What I did, in order:
+1. **Private, direct and documented.** Two direct messages, in April and May, each naming the specific behavior and its impact. Each offered a path back: take the rewrite through the normal RFC process, with no privileged lane. He read both. Neither changed anything.
+2. **Public standards, applied equally.** The code of conduct already covered this. The hard part was enforcing it on a productive contributor. In June I removed the personal attack under channel moderation and suspended his review rights pending the RFC. I stated it in the governance channel with quotes of the behavior, not verdicts on his character.
+3. **The target came first.** The docs lead got an apology from me, because the conflict had cost her room in her own project, and a standing offer to hand me any interaction she didn't want to carry. She's still the docs lead. Keeping her is the outcome that matters most.
+4. **The fork threat got no answer.** A fork is free, legal and none of my business. Treating it as a threat would have made it leverage. He forked in July; the fork was archived four months later. I never mentioned it in the project.
 
-1. **Private, direct, documented.** Two DMs over a month, each naming the specific behavior and the specific impact, each offering a path back (review the rewrite through the normal RFC process, no privileged lane). Both read; neither changed the behavior.
-2. **Public standards, applied equally.** The code of conduct already covered this; the hard part was enforcement, because V was productive. I enforced: channel moderation for the personal attack, PR-review privileges suspended pending the RFC, stated in the governance channel with the reasons — behavior quotes, not character verdicts.
-3. **Protecting the target first.** The docs lead got an apology *from me* — the conflict had cost her air in her own project — and a standing offer to hand her any Tessergate interaction she didn't want to carry. She's still the docs lead; the retention *is* the outcome that matters most in the ledger.
-4. **The fork threat, answered by not answering it.** A fork is free and legal and none of my business; responding to it as a threat would have dignified it as leverage. He forked; the fork archived after four months. I never mentioned it in the project.
+My mistake: I waited too long. For about six weeks I told myself "he's productive, maybe this passes." In that time the first-time contributor he had targeted went quiet and never came back. That is the cost I weigh heaviest. Productivity is never an exemption from conduct rules. Any ambiguity about that costs you exactly the quiet, careful contributors you can't afford to lose.
 
-What I'd still do differently: **I waited too long to act** — about six weeks of "he's productive, maybe this passes," during which the first-time contributor he'd targeted went quiet and never returned. Contributor churn that I could have prevented with faster enforcement is the cost I weight heaviest in the whole ledger. The governance lesson I carry to every community I touch: **productivity is never a conduct exemption, and ambiguity about that costs you exactly the contributors you can't afford to lose** — the quiet, good ones.
+## Boundaries with employers
 
-## The state of it, honestly
+At SubstrateNine I maintain the official guardrails starter configs for its users. Those live in SubstrateNine's repository; Tessergate stays employer-neutral. I've turned down two commercial vendors who offered to bring Tessergate into their portfolios. Its neutrality is what makes it useful, and three of the adopter companies told me so directly.
 
-Tessergate is healthy and deliberately not huge: I've turned down "join our portfolio" offers from two commercial vendors (the employer-neutrality is the asset; see the IP-boundary note in my applicant file), and the maintainer bench is three deep, which is enough. Weekly installs have run 500–900 since ClusterCamp 2021 (`Projects/Conference Talk That Mattered.md` is that story). If I'm being precise about the failure mode I watch for now: it's not toxic contributors anymore, it's *me* — maintainer attention is the binding constraint, which is why the recruiting decisions above get more of my care than any feature.
+## What isn't solved
+
+- **Bus factor.** The release signing keys sit with me and one other maintainer, and I still hold the tie-break. My plan for 2027 is a three-maintainer steering vote and keys shared with all four maintainers. Until then, the project depends on me more than it should.
+- **Admission-time enforcement** is still the most requested feature, with over 200 thumbs-up on the issue. I keep saying no, because it would make Tessergate a controller and lose the property that makes it fit brownfield clusters. Export is the answer I offer instead. Not everyone accepts it.
+- **Kubernetes keeps moving.** Each Kubernetes minor release costs about a weekend of compatibility work. The CI maintainer and I split it, and it is the least visible work in the project.
+- **My attention is the binding constraint.** It isn't toxic contributors anymore; it's me. That's why recruiting gets more of my care than any feature.
+
+## What I'd do differently
+
+- Write the breaking-change policy before v0.5, not after it broke three people's CI.
+- Act within a week on conduct problems, whatever the person's output.
+- Share release keys and the tie-break from 1.0 on, when the project first made a public promise.

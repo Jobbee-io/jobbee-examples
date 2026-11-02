@@ -44,7 +44,7 @@ while IFS= read -r -d '' f; do
 done < <(git ls-files -z)
 
 # ── 3. Approved personas only ───────────────────────────────────────
-allowed="maya-chen|diego-ramirez|sam-oaks|priya-anand|ravi-kulkarni|marcus-webb|elena-vargas|dana-whitfield|kenji-sato"
+allowed="maya-chen|diego-ramirez|sam-oaks|priya-anand|ravi-kulkarni|marcus-webb|elena-vargas|dana-whitfield|kenji-sato|aisha-okafor|lena-hoffmann|nadia-saliba|rohan-ghaisas|grace-liu|paul-brennan|ana-kowalska|rebecca-thornbury|daniel-osei|harriet-cole|joelle-ashworth|isaac-fenwick|marisol-salcido|megan-albright|jonah-pruett"
 while IFS= read -r persona_dir; do
   [[ -z "$persona_dir" ]] && continue
   if ! [[ "$persona_dir" =~ ^($allowed)$ ]]; then

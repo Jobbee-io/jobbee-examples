@@ -2,42 +2,54 @@
 
 # Zero-to-one internal tooling — the platform nobody had to adopt
 
-Ferroline Systems, 2015–2017. I built the internal shipment-exception tool that went from one skeptical pilot team to company standard: 14 ops teams, spreadsheets dead, and one heroic Access database ceremonially unplugged. This is the influence-without-authority story in full, because the mechanics matter more than the outcome.
+Ferroline Systems, 2014–2017. I built the internal shipment-exception tool that went from one skeptical pilot team to company standard: 14 ops teams, the spreadsheets gone, and one heroic Access database unplugged. I started it as an evening project while I was a backend engineer, and finished it as Ferroline's first PM for internal products. The mechanics of adoption without authority matter more than the outcome, so they get most of this file.
+
+## Timeline
+
+- Early 2014: I start building it on evenings, still an integrations engineer.
+- Mid-2014: pilot with the Montreal ops team.
+- July 2015: 4 teams on it. At my mid-2015 review the company created a PM role for internal products and gave it to me. The tool was most of the case. My MBA capstone, a pricing analysis, was the written half.
+- July 2015 to mid-2017: as PM, 4 teams to 14, and the Chicago Access database migrated in 2016.
 
 ## The problem I didn't have permission to solve
 
-Ferroline moved freight; when shipments went wrong (weather, customs, carrier failures), ops teams worked exceptions. Every team had its own system: spreadsheets, three Notion-ish tools of the era, and one Access database maintained by a single wizard in the Chicago office whose PTO was a company risk factor.
+Ferroline's software ran freight operations. When shipments went wrong (weather, customs, carrier failures), ops teams worked exceptions. Every team had its own system: spreadsheets, three wiki-based trackers, and one Access database maintained by a single wizard in the Chicago office whose time off was a company risk.
 
-Nobody owned this. Exceptions were 20% of ops labor and 0% of anyone's roadmap. I was a backend engineer on the integrations team who kept getting pinged because my webhook fan-out code was where exception events surfaced first.
+Nobody owned this. Ops leadership's own 2014 time study put exceptions at 20% of ops labor, and they were on nobody's roadmap. I kept getting pinged because my webhook fan-out code was where exception events surfaced first.
+
+What I built: a small Python and Postgres web app that consumed the same event stream my integration code already produced. Two engineering colleagues gave it their evenings. That was the whole team until I became PM.
 
 ## The wedge: pilot with one skeptical team
 
-The mistake every internal tool makes: build for everyone, launch to silence. I did the opposite.
+The usual internal-tool mistake is to build for everyone and launch to silence. I did the opposite.
 
-- **Picked the most skeptical team on purpose** — the Montreal ops team, whose lead had publicly said internal tools "always break in week three." If it survived her, it could survive anyone; if it didn't, I'd find out while the blast radius was five people who'd already told me the truth.
-- **Built the boring 20%:** a single exception queue with one canonical state model (detected → triaged → action → resolved → verified) and a timeline of every event. No dashboards, no AI, no "vision." The pitch was one line: *"the same queue your team already keeps, minus the copy-paste between systems."*
-- **Survived week three** because I'd built the thing she actually predicted: week three is when the demo data gets replaced by real messiness. Real data exposed three state-model holes in the first 48 hours; I fixed them same-day, in front of her team, and said out loud that her team found them. The Montreal lead became the tool's most aggressive advocate — skeptical converts evangelize harder than the choir.
+- **I picked the most skeptical team on purpose.** The Montreal ops lead had said publicly that internal tools "always break in week three." If the tool survived her five-person team, it could survive anyone. If it didn't, I'd find out from people who had already told me the truth.
+- **I built the boring 20%.** One exception queue, one state model (detected → triaged → action → resolved → verified), and a timeline of every event on the shipment. No dashboards. The pitch was one line: "the same queue your team already keeps, minus the copy-paste between systems."
+- **It survived week three** because I'd built for what she predicted. Week three is when demo data gets replaced by real mess. Real data exposed three holes in the state model in the first 48 hours. I fixed them the same day, in front of her team, and said out loud that her team had found them. She became the tool's loudest advocate.
 
 ## The expansion mechanics
 
-Adoption spread team-by-team, and the mechanics were deliberate:
+- **Proof over promotion.** Each new team joined after watching a neighboring team's queue, not after watching my slides.
+- **The data model was the product.** Teams didn't adopt my tool; they adopted a shared exception taxonomy, and the tool was where it lived. The real product work was the fight over what counts as "resolved." My first version let ops mark an exception resolved on their own judgment. I lost that argument to the customer-service leads: the second version says "verified" needs a customer-visible confirmation, not an ops assumption. They were right.
+- **Migrations were first-class work.** Every team's old system got an import path and a documented goodbye. The Chicago Access database got its own migration project and rollback plan. The wizard reviewed the import, said it was cleaner than hers, and became the Chicago team's power user. That was the day I knew the database was done.
 
-- **Proof over promotion:** each new team joined after watching a *neighboring team's* exception queue, not after watching my slides. Social proof from peers, not from the builder.
-- **The data model was the product.** Teams didn't adopt my tool; they adopted a shared exception taxonomy — and the tool was just where the taxonomy lived. The fight over "what counts as resolved" (I lost the first version: verification required a customer-visible confirmation, not an ops assumption; the second version won) was the actual product work.
-- **Migrations as first-class work:** every team's old system got a data-import path and a documented goodbye. The Chicago Access database got its own migration project, its own rollback plan, and — after the wizard reviewed the import and said "huh, cleaner than mine" — its blessing. The wizard became the Chicago team's power user, which was the day I knew it was over for the database.
+## Influence without authority, itemized
 
-## Influence-without-authority, itemized
+I had no authority over any ops team. What I actually did:
 
-I had no org authority over any ops team. What I actually did:
-
-- **Answered pings about exception events with fixes, not pointers** — the integrations team's trust was the currency that bought me engineering time from two colleagues who thought the tool was worth their evenings.
-- **Never once escalated "teams should use this."** The ask was always "would this fix the thing you complained about last Tuesday?" — small, specific, deniable.
-- **Let the spreadsheet die of neglect instead of banning it.** Teams keep parallel spreadsheets while they don't trust a tool. I checked (politely, monthly) when they last opened theirs. The Montreal team's answer went from "this morning" to "why would I" in nine weeks; adoption is measured in that answer, not in license counts.
-- **Wrote things down in public.** The state-model decisions, the rejected designs, the known gaps — in a doc anyone could comment on. When the VP of ops eventually asked "who's running this," the doc was the answer, and the honest one was: nobody, everybody, come see.
+- Answered exception pings with fixes, not pointers. The integrations team's trust was what bought me the two colleagues' evenings.
+- Never escalated "teams should use this." The ask was always "would this fix the thing you complained about last Tuesday?" Small and specific.
+- Let the spreadsheets die of neglect instead of banning them. Teams keep a parallel spreadsheet while they don't trust a tool. Once a month I asked each team lead when they last opened theirs. Montreal's answer went from "this morning" to "why would I" in nine weeks. Adoption is that answer, not a license count.
+- Wrote everything down in public: state-model decisions, rejected designs, known gaps, in a doc anyone could comment on. When the VP of ops asked who was running this, the doc was the answer.
 
 ## Outcome
 
-- 14 ops teams on the exception tool; per-exception handling time down 31% (ops-measured, not me-measured).
-- The Access database unplugged in a small office ceremony that the wizard attended voluntarily.
-- What it cost me: about 18 months of evenings and a standing 30 minutes with each team lead, monthly, forever.
-- What it made me: at my next review, the company created a PM role for internal products and asked me to take it. The tool was the application; the role was the acceptance letter. I've been a PM since — and I still believe the best product training is building something nobody was assigned to want.
+- 14 ops teams on the tool.
+- Per-exception handling time down 31%. Ops analytics measured it, not me: median minutes from exception detected to verified-resolved, for each team, over the 3 months before and the 3 months after it adopted.
+- The Access database unplugged, with the wizard present by choice.
+- What it cost: about 18 months of evenings (early 2014 to mid-2015) and a standing 30 minutes a month with each team lead, which I kept for as long as I was there.
+
+## What I'd do differently
+
+- Get an ops-side owner named earlier. Until 2016 the tool's priorities lived in my head and my doc. When I left in 2017, the handover took two months because the ops VP had to find someone to inherit decisions I had made alone.
+- Measure the baseline before the pilot, not after. Montreal's before-numbers were reconstructed from spreadsheet timestamps. They held up, but I'd rather not have had to defend a reconstruction.

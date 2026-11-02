@@ -1,0 +1,44 @@
+<!-- Fictional example persona for Jobbee (jobbee.io). Not a real person; numbers invented. CC-BY-4.0, see repo LICENSE. -->
+
+# A scheduling app for my family's landscaping business
+
+Personal project: nobody assigned it, graded it or paid me for it. Built over winter break 2023–24, in use since the March 2024 season. The users are my dad, my uncle (who runs the second crew) and my mom, who does the invoicing. It isn't on my one-page resume, but it's the only thing I've built where I chose the problem, the users weren't classmates or coworkers, and I've kept it running for three seasons.
+
+## The problem
+
+I worked the crews every summer from 2021 to 2023 and led a weekend crew by 2023. The business ran on my dad's paper calendar and his phone.
+
+- **Missed or double-booked visits:** about 5 a month in 2023. A customer's text would reach one crew lead but not the calendar.
+- **Quotes took days.** My dad wrote them by hand in the evenings.
+- **Getting paid was slow.** Invoices went out in batches when my mom had a free evening: about 23 days from a finished job to payment.
+
+## What I built
+
+Python, Flask and SQLite on a $6-a-month virtual server. Boring tools on purpose, since I'd be maintaining it alone, mostly from a dorm room.
+
+- A day view per crew that works on a phone in a truck: today's jobs in order, address, gate notes, the work to do.
+- Recurring visits (weekly and biweekly mowing) generated from one customer record, so a change happens in one place.
+- Text reminders the evening before a visit, and a "job done, here's your invoice" text when the crew marks a job finished, through a pay-per-message SMS service.
+- Quote templates by yard size and service.
+- A paid/unpaid board for my mom.
+
+About 140 recurring customers were on it by mid-2024.
+
+## The numbers, 2024 season against 2023
+
+- Missed or double-booked visits: about 5 a month → about 1. Most of the rest were gate codes nobody wrote down.
+- Days to get paid: about 23 → about 9, mainly from same-day invoice texts.
+- Running cost: about $11 a month for the server and texts.
+- My dad's count: about three evenings a week back from quotes and invoices.
+
+## What went wrong
+
+- **The 2 AM texts.** On the first Monday, 46 customers got their "your crew is coming today" text at 2 AM. The server ran on UTC and I'd stored the send time as "7:00" with no timezone. Two customers called my dad. I fixed it that morning: every time is stored with its timezone, and the scheduler has a fake-clock test that covers daylight-saving changes. My mom wrote the apology text, and it was better than mine.
+- **No backups for six weeks.** Everything lived in one SQLite file on one server. Nothing was lost, but a maintenance notice from the provider made me realize a disk failure would take everything. I added nightly encrypted backups to a second provider and tested a restore.
+- **A feature nobody asked for.** I spent most of a weekend on route optimization. My dad still orders jobs his own way, because he knows which customers want the crew early. Now I ask him first.
+
+## What I'd do differently
+
+- Watch a full week of how the business runs before writing code, instead of relying on my memory of summers.
+- Do timezones and backups first.
+- Keep a short changelog for my family, so they hear about changes from me and not from a customer.

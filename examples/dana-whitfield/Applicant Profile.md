@@ -10,7 +10,7 @@ A note on what I do versus what I'm called, because searches miss it otherwise: 
 
 ## What I'm looking for
 
-- **Principal PMM or Head of Developer Marketing**, on technical products: developer platforms, data infrastructure, dev tools, APIs. 14 years in: technical writer → product marketing → Senior PMM → Staff PMM → Principal PMM (big-tech marketing org today). I want a seat where marketing is a strategy function, not a content mill.
+- **Principal PMM, as an individual contributor**, on technical products: developer platforms, data infrastructure, dev tools, APIs. 14 years in: technical writer → product marketing → Senior PMM → Staff PMM → Principal PMM (big-tech marketing org today). I ran a five-person product-marketing team at Halyard Tools; I'm not looking to manage a team again now. I want a seat where marketing is a strategy function, not a content mill.
 - **Stage:** growth-stage through public. I've launched at a scrappy pure-play (Halyard Tools) and run narrative inside a big-tech org (Verity Cloud); both taught me things the other couldn't. What I optimize for is org shape, not logo.
 - **Scope I want, stated as outcomes:** I own the narrative and the launch architecture; I test messaging in real developer communities *before* it ships; I run win/loss as a strategic input, not a slide; and I have the standing to say "this product isn't ready for the story we want to tell" and be thanked for it.
 

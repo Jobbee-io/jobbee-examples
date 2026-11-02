@@ -12,17 +12,17 @@ Seattle, WA
 
 ## Summary
 
-Backend engineer, ~9 years, currently Staff on the Payments Platform at Bluepeak Systems. I've spent my career on the unglamorous load-bearing parts of backend systems: payment capture and idempotency, event streaming at tens of thousands of events per second, Postgres replication and failover, and the on-call systems that keep all of it operable. I've worked at three stages of scale — a marketplace payments company, a logistics platform doing 40K events/sec, and a fintech infrastructure company whose ledger core sustains ~11,000 TPS. I write things down, I measure before I fix, and I have one genuinely expensive outage in my past that I rebuilt a whole subsystem because of.
+Backend engineer, ~9 years, currently a staff-track senior on the Payments Platform at Bluepeak Systems. I've spent my career on the unglamorous load-bearing parts of backend systems: payment capture and idempotency, event streaming at tens of thousands of events per second, Postgres replication and failover, and the on-call systems that keep all of it operable. I've worked at three stages of scale — a marketplace payments company, a logistics platform doing 40K events/sec, and a fintech infrastructure company whose ledger core sustains ~11,000 TPS. I write things down, I measure before I fix, and I have one genuinely expensive outage in my past that I rebuilt a whole subsystem because of.
 
 ---
 
 ## Experience
 
-### Bluepeak Systems — Staff Backend Engineer, Payments Platform (Feb 2023 – present)
+### Bluepeak Systems — Senior Backend Engineer, Payments Platform (Feb 2023 – present)
 
-Business banking platform, ~3.2M business accounts. Payments Platform team of 12. Promoted to Staff in March 2025.
+Business banking platform, ~3.2M business accounts. Payments Platform team of 12. On the staff track since March 2025.
 
-- **Ledger core rewrite (2023–2024).** Led the rewrite of the double-entry ledger write path in Go: 3.7× throughput (3,000 → 11,000 TPS sustained), p99 write latency 180ms → 60ms. The hard part wasn't speed, it was proving equivalence: we ran old and new ledgers in parallel for nine weeks with a continuous reconciliation diff (1.4B events/day through Kafka, 240 topics) before cutting over.
+- **Ledger core rewrite (2023–2024).** Led the rewrite of the double-entry ledger write path in Go: 3.7× throughput (3,000 → 11,000 TPS sustained), p99 write latency 180ms → 60ms. The hard part wasn't speed, it was proving equivalence: we ran old and new ledgers in parallel for nine weeks with a continuous reconciliation diff (1.4B events/day through Kafka, 240 topics) before cutting over. Full notes: `Projects/Ledger Core Rewrite.md`.
 - **Reconciliation drift find (2024).** Found a recurring reconciliation gap costing ~$1.2M/year in manual review effort, caused by clock skew in one consumer group writing settlement events out of order. Fixed with monotonic sequence fences per account rather than trusting timestamps. Wrote the doc that made this legible to auditors.
 - **VM → Kubernetes migration (2024).** Led the migration of the last 31 VM-hosted services onto the company k8s platform (~900 pods at peak now). Did capacity planning from measured p95s, not vendor defaults; the fleet shrank 22% in the move.
 - **On-call overhaul (2024).** Org-wide: alert rules 340 → 92, pages ~900/month → ~65/month, MTTR 47 → 19 minutes. Full notes: `Projects/On Call Overhaul.md`.
@@ -42,9 +42,9 @@ Shipment-tracking SaaS for large shippers. Event telemetry peaked at 40K events/
 
 Marketplace payments platform: payment intents peaked around 2,500 TPS; partitioned Postgres ledger ~4 TB by 2020. Promoted to Senior in 2019.
 
-- **Double-charge incident and idempotency rebuild (May 2019 – Dec 2019).** A gateway retry plus a non-idempotent capture endpoint (with an in-memory dedupe that didn't survive multi-instance deploys) double-charged 1,912 transactions, $486K, all refunded within 40 hours. I owned the RCA and then the six-month rebuild of the capture path around end-to-end idempotency keys. Zero service-caused duplicates in the 14 months after launch. This is the incident that shaped how I work. Full notes: `Projects/Payments Idempotency.md`.
+- **Double-charge incident and idempotency rebuild (May 2019 – Dec 2019).** A gateway retry plus a non-idempotent capture endpoint (with an in-memory dedupe that didn't survive multi-instance deploys) double-charged 1,912 transactions, $486K, all refunded within 40 hours. I owned the RCA and then the six-month rebuild of the capture path around end-to-end idempotency keys. Zero service-caused duplicates in the 8 months from launch until I left. This is the incident that shaped how I work. Full notes: `Projects/Payments Idempotency.md`.
 - **Monolith carve-out (2018–2020).** Co-led carving a Ruby monolith into Go services — 14 services by 2020 — chosen by transaction boundaries, not fashion. Kept the ledger in Postgres throughout; resisted a NoSQL detour I'm still glad we resisted.
-- **Payouts reconciliation (2019).** Built nightly reconciliation for marketplace payouts; unexplained balance days went from ~6/month to zero. Boring, and the most-used tool I built there.
+- **Payouts reconciliation (2019).** Built nightly reconciliation for marketplace payouts; unexplained balance days went from ~6/month to zero. Boring, and the most-used tool I built there. Nine weeks from finance's request to production; the whole story, including the alert fatigue I caused in week 7: `Projects/Payouts Reconciliation.md`.
 
 ### Earlier
 
@@ -80,4 +80,4 @@ Marketplace payments platform: payment intents peaked around 2,500 TPS; partitio
 
 - The double-charge incident (2019) — mine to own; rebuilt the capture path because of it.
 - The active-active proposal I championed for three weeks before the data killed it — killed it myself, in writing.
-- A week-2 consumer-lag regression after the Redpanda cutover that better shadow-phase metrics would have caught pre-cutover. The dashboards were supposed to be done first. I let the schedule argue me out of it.
+- A consumer-lag regression on day 2 of the Redpanda producer flips that better shadow-phase metrics would have caught pre-cutover. The dashboards were supposed to be done first. I let the schedule argue me out of it.

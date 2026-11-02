@@ -34,7 +34,7 @@ Senior data scientist, six years in, specializing in experimentation and causal 
 - Bayesian hierarchical models for small-state pricing: three states with too little data for classical rate indications; the partial-pooling approach gave credible estimates where the classical method returned noise, and the pricing committee used them.
 - Owned the claims-severity dataset (2.1B rows, BigQuery): dbt models, documentation, and the data-contract discipline that let analysts self-serve without paging me. I was deliberately *not* the SQL person here, and the structure is why.
 
-### Meridian Analytics (consultancy) — Associate Data Scientist
+### Pelgrave Analytics (consultancy) — Associate Data Scientist
 *Jul 2018 – May 2019 · Raleigh, NC*
 
 - Client work across retail and healthcare: A/B test design and analysis, survey design, the unglamorous data-cleaning that is 60% of the real job. Shipped 14 client engagements; the two I'm proud of involved telling clients their pet metric was noise.
@@ -42,8 +42,8 @@ Senior data scientist, six years in, specializing in experimentation and causal 
 
 ### Before that
 
-- **MS Statistics, Ohio State University** (2016–2018). Thesis on Bayesian model comparison for small-sample hierarchical problems — more useful in industry than it sounds.
-- **BS Mathematics, University of Pune** (2012–2016).
+- **MS Statistics, Tallowfield University** (2016–2018). Thesis on Bayesian model comparison for small-sample hierarchical problems — more useful in industry than it sounds.
+- **BS Mathematics, Navaprabha University (Pune)** (2012–2016).
 
 ---
 
