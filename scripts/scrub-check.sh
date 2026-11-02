@@ -2,8 +2,8 @@
 # PII scrub gate for Jobbee-io/jobbee-examples (runs in public CI).
 # Checks GENERIC leak patterns only — this file itself is public, so
 # it must never contain the specific markers it scans for.
-# Founder-specific markers are checked by a LOCAL pre-push gate kept
-# outside this repo. See scripts/scrub-why.md.
+# Founder identity is checked by each change's author against a private
+# checklist before it is published. See scripts/scrub-why.md.
 #
 # Exit 1 = leak found; CI blocks. Exit 0 = clean.
 set -uo pipefail
