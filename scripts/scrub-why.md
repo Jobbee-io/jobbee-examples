@@ -1,7 +1,7 @@
 # Scrub gate policy — why these patterns
 
-The public examples repo must never expose the founder's identity
-(founder is intentionally pseudonymous) nor any real contact data.
+The public examples repo must never contain a real person's identity
+or real contact data.
 
 ## What the gate checks
 
@@ -15,10 +15,8 @@ The public examples repo must never expose the founder's identity
    approved fictional persona directories may exist under
    `examples/`. A stray copy of a real workspace fails the gate at
    the directory level.
-3. **Founder identity** (not a script) — every change is checked by
-   its author against a private checklist before it is published. The
-   public gate deliberately has no founder-specific patterns: a public
-   file listing them would itself publish them.
+3. **Real people** (not a script) — every change is reviewed by its
+   author before it is published.
 
 ## Adding a persona
 

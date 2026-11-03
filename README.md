@@ -16,7 +16,7 @@ Each folder under `examples/` is one complete example workspace. Pick the person
 
 | Persona | Profession | Level | Use case demonstrated |
 |---|---|---|---|
-| [`priya-anand`](examples/priya-anand/) | Principal Product Manager (API platform / payments) | Principal | **Full-data** — the most complete workspace: ranked locations, per-geo comp, machine-readable visa facts, clarification history. Also **cross-country** (US/UK/remote-EU) and **picky** (won't-list stated plainly) |
+| [`priya-anand`](examples/priya-anand/) | Principal Product Manager (API platform / payments) | Principal | **Full-data** — the most complete workspace: ranked locations, per-geo comp, visa facts, clarification history. Also **cross-country** (US/UK/remote-EU) and **picky** (won't-list stated plainly) |
 | [`marcus-webb`](examples/marcus-webb/) | Investment Banking Director (TMT / fintech) | Director, 15 YOE | **Picky** — 8 explicit filters with reasons, comp *structure* floor; proof `Projects/` isn't only for engineers (deals as projects) |
 | [`elena-vargas`](examples/elena-vargas/) | Enterprise Account Executive (infra / data platforms) | Principal AE, 13 YOE | **Quota-carrying comp constraints** — OTE floor, base/variable split, uncapped accelerators, territory quality, per-year attainment history incl. an honest 94% year |
 | [`dana-whitfield`](examples/dana-whitfield/) | Principal Product Marketing Manager (developer / technical products) | Principal PMM, 14 YOE | **Brand-evangelist work in a comp-real title** — title precision note, messaging tested in dev communities, positioning failure postmortem, win/loss as strategy; an event, a campaign and a one-creator partnership as projects |
@@ -34,7 +34,7 @@ Each folder under `examples/` is one complete example workspace. Pick the person
 | Persona | Profession | Level | Use case demonstrated |
 |---|---|---|---|
 | [`maya-chen`](examples/maya-chen/) | Senior Backend Engineer | Staff-track senior | **Picky** — hard filters (on-call maturity, industries) + a non-visa clarification answered |
-| [`diego-ramirez`](examples/diego-ramirez/) | New Graduate (SWE) | Entry | **Immigrant** — F-1/OPT/STEM timeline, sponsorship need, visa clarification + write-back |
+| [`diego-ramirez`](examples/diego-ramirez/) | New Graduate (SWE) | Entry | **Immigrant** — F-1/OPT/STEM timeline, sponsorship need, visa clarification, answer saved to his file |
 | [`sam-oaks`](examples/sam-oaks/) | Staff+ / Lead | Leadership without losing hands-on | Core senior-IC shape: scope without title inflation |
 | [`ravi-kulkarni`](examples/ravi-kulkarni/) | Data Scientist (experimentation / causal inference) | Senior DS, 6 YOE | **Immigrant** — H-1B mechanics, PERM in progress, the transfer-vs-restart trade-off written out; real-life location constraint (direct flights to spouse's city) |
 | [`kenji-sato`](examples/kenji-sato/) | Staff Developer Advocate (engineer-origin DevRel) | Staff / lead-track, 11 YOE | **OSS record as proof-of-work** — 4.1K-star maintainer project documented as searchable facts, measured talk outcomes, green-card visa facts, travel constraint stated plainly |
@@ -92,13 +92,9 @@ Your job is usually where most of your projects are. Find the closest kind of wo
 | Academic work or an internship | [diego-ramirez · Capstone Distributed Kv](examples/diego-ramirez/Projects/Capstone%20Distributed%20Kv.md) · [diego-ramirez · Internship Checkout](examples/diego-ramirez/Projects/Internship%20Checkout.md) |
 | A personal project, outside work and school | [diego-ramirez · Family Business Scheduler](examples/diego-ramirez/Projects/Family%20Business%20Scheduler.md) |
 
-## Clarifications & write-back
+## Clarifications
 
-Jobbee reads these files with NLP — there's no schema to satisfy. When a file is **ambiguous or missing a material fact**, Jobbee pauses and asks a clarification question by email; your answer is then written back into `Applicant Profile.md` as a Q/A log under `## Clarifications` (newest last), with visa/work-authorization answers also landing as plain bullets under `## Visa / Work Authorization`. See it in [`diego-ramirez`](examples/diego-ramirez/Applicant%20Profile.md) (the visa question fired for him, and the answer created his visa section) and [`priya-anand`](examples/priya-anand/Applicant%20Profile.md) (a visa clarification plus an ambiguity clarification, both answered and logged). Contrast on purpose: [`maya-chen`](examples/maya-chen/Applicant%20Profile.md) states her citizenship inline, so the visa gate never fired for her — she only got a non-visa clarification (comp-vs-remote).
-
-## Full loop demo
-
-The [`demo/`](demo/) directory shows one complete loop end-to-end (illustrative, hand-authored): a fictional job posting → the match rationale explaining the score against priya-anand's files → the tailored resume Jobbee writes from her base resume. Start at [`demo/README.md`](demo/README.md).
+There's no schema to satisfy: plain notes work. When a file is **ambiguous or missing a fact that matters**, Jobbee asks you a clarification question by email and saves your answer into `Applicant Profile.md`, so the same question doesn't come up twice. See it in [`diego-ramirez`](examples/diego-ramirez/Applicant%20Profile.md) (he was asked about his visa, and his answer became his visa section) and [`priya-anand`](examples/priya-anand/Applicant%20Profile.md) (two questions, both answered). Contrast on purpose: [`maya-chen`](examples/maya-chen/Applicant%20Profile.md) states her citizenship in her file, so she was never asked about it — her one question was about comp vs remote.
 
 ## Using an example
 
@@ -115,10 +111,9 @@ Files appear here with the same names you see in the Jobbee editor (the workspac
 
 ```
 examples/<persona>/
-  Applicant Profile.md    # Applicant Profile — read by job search & scoring
-  Base Resume.md          # Base Resume — read by resume tailoring
+  Applicant Profile.md    # Applicant Profile — read when searching for your jobs
+  Base Resume.md          # Base Resume — what your tailored resumes are cut from
   Projects/*.md           # Project files — at least one per project, no limit
-demo/                     # Illustrative full loop: JD → match rationale → tailored resume
 ```
 
 ## License
