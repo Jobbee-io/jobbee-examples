@@ -14,8 +14,13 @@ or real contact data.
 2. **Approved personas** (public CI gate, same script) — only
    approved fictional persona directories may exist under
    `examples/`. A stray copy of a real workspace fails the gate at
-   the directory level.
-3. **Real people** (not a script) — every change is reviewed by its
+   the directory level. Each folder under `demos/` must be named
+   `<approved persona>--<job>`, so a demo is always a persona's.
+3. **Binary files** (public CI gate, same script) — binary files carry
+   hidden metadata, so none are allowed except a demo's
+   `tailored-resume.pdf`, and that file must carry no document
+   metadata.
+4. **Real people** (not a script) — every change is reviewed by its
    author before it is published.
 
 ## Adding a persona

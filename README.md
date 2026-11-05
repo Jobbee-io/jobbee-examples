@@ -6,7 +6,7 @@ Example Jobbee workspaces — real-looking, entirely fictional people, showing e
 - **Base Resume** (`Base Resume.md`) — your resume's bigger sibling: everything that didn't fit on the page
 - **Project files** (`Projects/*.md`) — at least one file per project, capture each and every detail you know. A project is any substantial piece of work, in your job or outside it ([what counts](#what-counts-as-a-project)). Length follows the work: a few weeks of work can fit in half a page, while a multi-year program can need an overview plus companion files that share its name (see [`maya-chen` · Ledger Core Rewrite](examples/maya-chen/Projects/Ledger%20Core%20Rewrite.md))
 
-> [Jobbee](https://jobbee.io) finds your jobs and writes your resumes. These example workspaces show the input side of that: the workspace files you own, written the way Jobbee reads them.
+> [Jobbee](https://jobbee.io) finds your jobs and writes your resumes. These example workspaces show the input side of that: the workspace files you own, written the way Jobbee reads them. The [demos](#demos-real-resumes-for-real-jobs) show the output side: resumes Jobbee wrote from these workspaces for real job postings.
 
 ## What's here
 
@@ -47,6 +47,24 @@ Each folder under `examples/` is one complete example workspace. Pick the person
 | [`grace-liu`](examples/grace-liu/) | Senior Solutions Engineer (observability) | Senior → Principal SE, 10 YOE | **Engineer → presales** — the move written as a project, SE pay read as expected cash (OTE, split, payout pool) not AE pay, a presales record with definitions and one technical loss |
 
 > The folders are fictional personas, assembled for these examples. Names, employers, numbers, and projects are invented; any resemblance to real people or companies is coincidental. Don't copy the specifics — copy the shape: what kind of fact goes in which file.
+
+## Demos: real resumes for real jobs
+
+Each folder under `demos/` is one real Jobbee run: a persona's workspace, a real job posting, and the resume Jobbee wrote for it. The people are fictional; the jobs were real when captured. No resume was sent to any employer, and Jobbee isn't affiliated with them.
+
+| Demo | Posting level | Job |
+|---|---|---|
+| [`diego-ramirez` → Affirm](demos/diego-ramirez--affirm-software-engineer-early-career/) | Entry | Software Engineer, Early Career (SF) |
+| [`marisol-salcido` → Lucid Motors](demos/marisol-salcido--lucid-motors-staff-supply-chain-manager/) | Staff | Staff Supply Chain Manager, Thermal |
+| [`maya-chen` → Affirm](demos/maya-chen--affirm-staff-software-engineer-ledger/) | Staff | Staff Software Engineer, Backend (Ledger Engineering) |
+| [`priya-anand` → Twilio](demos/priya-anand--twilio-principal-product-manager/) | Principal | Principal Product Manager |
+
+Each demo has four files:
+
+- `README.md`: the job's links and what to compare between the workspace, the posting and the resume
+- `tailored-resume.pdf`: the resume Jobbee delivered
+- `tailored-resume.md`: the text of that PDF, for reading and search
+- `job-posting.html`: a saved copy of the posting, for when the link stops working (the demo's README links to it as a web page)
 
 ## What counts as a project
 
@@ -94,7 +112,7 @@ Your job is usually where most of your projects are. Find the closest kind of wo
 
 ## Clarifications
 
-There's no schema to satisfy: plain notes work. When a file is **ambiguous or missing a fact that matters**, Jobbee asks you a clarification question by email and saves your answer into `Applicant Profile.md`, so the same question doesn't come up twice. See it in [`diego-ramirez`](examples/diego-ramirez/Applicant%20Profile.md) (he was asked about his visa, and his answer became his visa section) and [`priya-anand`](examples/priya-anand/Applicant%20Profile.md) (two questions, both answered). Contrast on purpose: [`maya-chen`](examples/maya-chen/Applicant%20Profile.md) states her citizenship in her file, so she was never asked about it — her one question was about comp vs remote.
+There's no schema to satisfy: plain notes work. When a file is **ambiguous or missing a fact that matters**, Jobbee asks you a clarification question by email and saves your answer into your workspace files, so the same question doesn't come up twice. See it in [`diego-ramirez`](examples/diego-ramirez/Applicant%20Profile.md) (he was asked about his visa, and his answer became his visa section) and [`priya-anand`](examples/priya-anand/Applicant%20Profile.md) (two questions, both answered). Contrast on purpose: [`maya-chen`](examples/maya-chen/Applicant%20Profile.md) states her citizenship in her file, so she was never asked about it — her one question was about comp vs remote.
 
 ## Using an example
 
@@ -114,11 +132,19 @@ examples/<persona>/
   Applicant Profile.md    # Applicant Profile — read when searching for your jobs
   Base Resume.md          # Base Resume — what your tailored resumes are cut from
   Projects/*.md           # Project files — at least one per project, no limit
+
+demos/<persona>--<job>/
+  README.md               # The job's links, and what to compare
+  tailored-resume.pdf     # The resume Jobbee wrote for that job
+  tailored-resume.md      # The text of that PDF
+  job-posting.html        # Saved copy of the job posting
 ```
 
 ## License
 
 Contents of this repository are licensed under [CC-BY-4.0](LICENSE). You are free to copy and adapt the example files into your own Jobbee workspace (or anywhere else) with attribution.
+
+One exception: the saved job postings (`demos/*/job-posting.html`). Their text belongs to the employers, and this license doesn't cover it.
 
 ## More
 
