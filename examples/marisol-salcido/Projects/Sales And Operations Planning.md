@@ -4,6 +4,18 @@
 
 Verdillo Power Systems, energy storage business unit, April 2023 – June 2024. I designed the process and ran it for 14 monthly cycles, alongside my sourcing job, then handed it to the planning manager. On my resume it's one bullet. This file holds why it existed, who owned what, how a cycle worked, the numbers with their definitions and the parts I don't claim, and the 4 months it took to stop being a data review.
 
+## The full story
+
+Before April 2023 the energy storage business unit ran on 3 forecasts. Sales ops kept one, planning ran MRP from a copy of it, and finance had its own. Sourcing bought from whatever MRP said. My power module overbuy came out of the gaps between them, and in March 2023 the VP of supply chain asked me to fix it.
+
+I designed the process: the charter, the monthly calendar, the templates and the commitment register. I chaired the supply review and the pre-S&OP, and facilitated the executive meeting, which the general manager chaired and where he made the decisions. Sales ops owned the base forecast, planning owned the range and the supply plan, and finance owned the financial view. A BI analyst built the dashboard to my spec.
+
+The first months didn't work. For 3 cycles the executive meeting was 2 hours over 40 slides, a data review, and the CFO's delegate twice sent an analyst instead. In cycle 4 I cut it to 6 pages of decisions. For 4 cycles I also chased one agreed number, and the sales ops lead felt we were auditing his forecast. In cycle 5 we switched to a range and gave sales the demand review agenda, and the arguing stopped within 2 cycles. In cycle 6 my hand-kept register missed a $600K capacitor buffer order, and planning automated it from the ERP. By cycle 8, in November 2023, the register was doing its job: it showed our new magnetics agreement sat above the low case for early 2024, and the general manager used the agreement's flex to cut first-quarter orders by 15%.
+
+After 14 cycles, in June 2024, I handed the process to the planning manager, who runs it now. Forecast accuracy had gone from 58% to 74%, and raw-material days of supply from 112 to 74. Running it took about a day a week on top of my categories, and my magnetics renewal ran 3 weeks late because of it.
+
+What's still open is the measurement. Inventory fell $23M and expedite costs by more than half over the same months, but the end of the shortage and lower demand explain part of both. I can't split them cleanly. I don't claim the $23M of inventory, and when I quote the expedite drop, I say the end of the shortage explains part of it.
+
 ## Why it existed
 
 Before this, the business unit had 3 forecasts. Sales ops kept one in a spreadsheet and updated it each quarter. Planning ran our MRP from a copy of it. Finance had its own. Sourcing bought from whatever MRP said. Nobody owned the gaps between them.

@@ -53,3 +53,7 @@ I had no authority over any ops team. What I actually did:
 
 - Get an ops-side owner named earlier. Until 2016 the tool's priorities lived in my head and my doc. When I left in 2017, the handover took two months because the ops VP had to find someone to inherit decisions I had made alone.
 - Measure the baseline before the pilot, not after. Montreal's before-numbers were reconstructed from spreadsheet timestamps. They held up, but I'd rather not have had to defend a reconstruction.
+
+## What's still open
+
+When I left Ferroline in 2017, what was open was who would own the tool after me. The ops VP had to find someone to inherit decisions I had made alone, and that handover took two months.

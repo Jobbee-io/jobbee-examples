@@ -32,3 +32,7 @@ The partner didn't catch it either. I don't count that as his miss: he reviewed 
 - The trace became a written rule in the customer-agreement playbook I built later in 2023 (`Projects/Customer Agreement Playbook.md`). I teach this agreement, anonymized, in the first-year contracts bootcamp.
 
 An in-house team will hand me hundreds of agreements nobody can read twice. How this one was found, reported and fixed is the most useful thing I can tell them about how I work.
+
+## What's still open
+
+Nothing is open. The June 2023 amendment ended the uncapped exposure, a side letter fixed the one other agreement with the same problem in 2023, and no claim arose while the exposure lasted.

@@ -4,6 +4,18 @@
 
 Halstead Partners, 2022–2023, still running. I designed and ran the overhaul of analyst training and staffing at a 60-person M&A boutique, after two exit-survey cycles in a row showed the same failure modes. Twelve-month analyst attrition fell from 31% to 14%. I did it alongside a full deal load; one managing partner sponsored it.
 
+## The full story
+
+By early 2022, two cycles of exit surveys were saying the same things. Analysts couldn't see what their work was for, staffing was a black box, model review felt like hazing, and people left between months 9 and 14. Five of the 16 analysts in the 2020 and 2021 classes had gone within a year.
+
+In March 2022 I took it to the managing partners as a cost problem, at about $150K per departure. One managing partner sponsored it. The design and the running of it were mine, on top of a full deal load.
+
+I built it in pieces, each aimed at one failure. The six-week training, with a written standards doc and graded work products, started with the July 2022 class. Juniors who were good at process craft taught that block. The staffing sheet went live in September. My first version showed a utilization score for each banker, and within three weeks people were gaming it. I took the scores out in October and kept the visibility. That was my main mistake, and the lesson I've used most since. The partners grumbled about the 48-hour feedback rule for one review cycle, until one of them used the format to win an argument with another partner. For the year-two map, I asked the three most recent promotees what had actually got them promoted, and wrote that down.
+
+The result: 3 of the 21 analysts in the 2022 and 2023 classes left within 12 months, 14% against 31%. On a sample of 20 models before and 20 after, first-review comments fell from a median of 38 to 14. The program is still running.
+
+Two things are open. Classes of about 10 are a small sample, so I want more classes behind the 14% before I call it settled. And the program still depends on me. It has a sponsor, but no second owner who earns fees, and a program like this needs one.
+
 ## What was broken
 
 Halstead hires a class of 8 to 10 analysts a year. Training had accreted over a decade: two weeks of onboarding (a modeling-template walkthrough and "shadow your team"), then sink or swim. Exit interviews from the 2020 and 2021 classes said the same four things:

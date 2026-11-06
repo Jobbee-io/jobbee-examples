@@ -4,6 +4,16 @@
 
 Migiem, courier app, 3 February to 28 March 2025. A normal feature, and one bullet on my resume.
 
+## The full story
+
+When I moved to the courier app in January 2025, couriers were fighting a spinning button in stairwells, basements and garages. Every step needed the network. In January, 3.9% of deliveries reached our server more than 10 minutes late, and dispatch logged about 280 "app won't confirm delivery" calls a week.
+
+I owned the Android side, from the first ride-along to the numbers afterwards. Paweł D. owned what dispatch needed to see, Igor N. made the status endpoint safe to call twice, and Ola W. designed the offline states. We spent week 1 on requirements, week 2 on the design and API contract, and weeks 3 to 5 building the outbox. The pilot with 40 couriers in week 6 is where my assumptions broke: phone clocks set by hand, full-size photos filling 16 GB phones, battery savers delaying sync, and dispatchers misreading "pending sync". Each got a fix, and the rollout went from 10% on 18 March to 100% on 28 March.
+
+By April and May late statuses were down to 0.5% of deliveries and the calls to about 35 a week. The sync has been in production since.
+
+What's open: 12 proof photos were lost in the first 8 weeks, all on phones that were reset or had the app removed before syncing, and nothing in the app can save those. The battery-saver delays are worked around with extra triggers, not solved. And I can't claim the courier rating rise from 3.6 to 3.9, because per-delivery pay changed in the same quarter.
+
 ## The problem
 
 About 9,000 couriers a month use the app on their own phones, mostly with 3 or 4 GB of RAM and Android 9 to 13. They tap "picked up", then "delivered", and take a proof-of-delivery photo for doorstep drops. Every step needed the network, and Warsaw's apartment blocks are full of stairwells, basements and garages with no signal. The button spun and failed, so couriers retried, called dispatch or confirmed later from the street. The customer still saw "on the way" and contacted support, and the next order waited.

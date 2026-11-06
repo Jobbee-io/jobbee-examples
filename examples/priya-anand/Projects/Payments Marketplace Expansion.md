@@ -4,6 +4,20 @@
 
 Cartway, 2018–2020. I led the seller-payments expansion into Canada, the UK and Germany. Canada and the UK launched and grew. Germany was killed at the pilot stage in Q3 2019, and the kill memo became the template the org used for two later sunset decisions.
 
+## The full story
+
+When I joined Cartway's seller payments in 2017, sellers in three countries were telling us the same thing in different ways. Canadians lost a conversion fee on every USD payout. UK sellers waited 3–5 business days. German sellers abandoned onboarding at a bank check built for US accounts. In 2018 we set out to localize payouts in all three. Germany went into an internal planning doc before its licensing path was solid. That was a mistake, and it cost me later.
+
+Canada came first, because we already had the entities. I wrote the requirements and the spec for the bank partner's reconciliation files, and we launched in Q1 2019.
+
+The UK was the long one: FCA registration, safeguarding rules for client money, and Faster Payments through a sponsoring bank. The safeguarding rules reshaped our ledger, with client funds segregated and reconciled daily. The ledger team built it, and the finance controller ran the reconciliation. I came to that design late, during compliance review, when I should have started it in 2018. We designed a degraded mode for partner outages before launch, and launched in Q2 2020.
+
+Germany depended on passporting from the UK entity. In 2019, with the Brexit timeline uncertain, that path went from "by Q2" to "possibly 12+ months" through a direct application. We paused partner selection before signing anything. I wrote the kill memo, our VP of International argued to continue, and the VP Product and the CFO decided within two weeks. Germany was killed in Q3 2019, with about $90K sunk, most of it reusable.
+
+Through all of it I owned the product requirements, the partner criteria, the launch order and the seller payout experience. Our partnerships lead owned price, counsel owned the filings, and 9 engineers built it.
+
+Canadian sellers grew 62% in the 12 months after launch, and UK sellers 48% in their first year, a number I heard after I left. The kill memo became the org's sunset template. When I left Cartway in February 2021, the open part was the rest of the EU. The German localization work sat in the UK layer, ready for when the regulatory picture settled.
+
 ## Why these three countries
 
 The marketplace (11,000 active sellers at peak) had demand signals in all three:

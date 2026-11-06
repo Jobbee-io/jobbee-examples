@@ -4,6 +4,16 @@
 
 Quillfield Pet Foods. Analysis June – August 2023, approved September 2023, effective January 2, 2024, results measured over FY2024. On my resume this is one bullet. This file has the options, the elasticity work, my recommendation, the one change the CFO made to it, and what actually happened, which was worse than my base case.
 
+## The full story
+
+Input costs had been rising for 2 years. A 5% increase in March 2022, before I joined, had recovered about half of it, and gross margin fell from 34.6% in FY2021 to 31.2% in FY2022. The VP of Operations and the CFO started at 9% across the board. The VP of Sales wanted no increase, with line reviews coming at 2 big retailers. In June 2023 my director asked me to build the case.
+
+From June to August I estimated elasticity by product line from 2 years of point-of-sale data at our 3 largest retailers. The sales ops analyst pulled the promotion history, the VP of Sales and 2 account managers gave me retailer context, and an analyst on the data team reviewed my code. I recommended a tiered increase: the most on core dry food, nothing on the entry-price line. In September the CEO and CFO approved it with one change. The CFO moved entry-price to 4%. I argued against it in 1 meeting, then let it go.
+
+The increase took effect on January 2, 2024, and it went worse than my base case. I had no price realization tracker until April, by which time 3 months of extra promotions had been spent. Over the year, account teams gave back 0.7 points of price, more than double what I'd assumed. At its spring line review our largest retailer cut 2 entry-price items, effective in May. 2 national competitors didn't follow until the autumn. That was the assumption that decided the answer, and I had left it on page 6. FY2024 delivered +$18M of gross profit against +$24M modeled.
+
+The increase itself is closed: the FY2024 bridge measured it, and the tracker still runs every month. One question stays open. I can't prove whether the CFO's extra 4% on entry-price cost us those 2 items, about $4.8M a year in revenue.
+
 ## Why we needed a decision
 
 Input costs (proteins, fats, packaging, freight) had been rising for 2 years. A 5% list increase in March 2022, before I joined, recovered about half of it. Gross margin went from 34.6% in FY2021 to 31.2% in FY2022 and 30.4% in FY2023. The VP of Operations and the CFO started at 9% across the board. The VP of Sales wanted no increase: 2 big retailers had line reviews coming, and store brands were already taking share at the low end. My director asked me to build the case for the executive team.

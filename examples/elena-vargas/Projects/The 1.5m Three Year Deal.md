@@ -105,3 +105,7 @@ Priya struck the outage line: lost sales aren't budget. I agreed and reran it on
 - 9 stakeholders, a 60-store pilot at $45K for 90 days, 3 rounds of redlines, zero price concession, a 6–3 vote.
 - Pilot: deployment time down 61%, rollback under 4 minutes, store-manager adoption 78% in 30 days. All measured by Teresa's ops leads, against thresholds they set.
 - Renewed in January 2026 for 3 more years with a 22% expansion. I'd left Fennec by then; my successor on the account told me. The pilot's go memo is still cited inside Harvestlane, which is the compounding return on letting the customer own its own decision.
+
+## What's still open
+
+When I left Fennec at the end of 2024, the open item on this deal was its renewal, about a year away. It renewed in January 2026, so nothing on this deal is open now.

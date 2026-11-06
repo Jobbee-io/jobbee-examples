@@ -55,3 +55,7 @@ I rejected importing directly from competitors' tools (legal risk, and a mainten
 - Collect real artifacts in research, not descriptions of them.
 - Talk to the risk team in week 1 of any change that loosens a control.
 - Decide before the test which claim it can support, and write that into the test plan.
+
+## What's still open
+
+Two things were still open when I moved to the Member App team in 2023. The share-link change from October 2022 had shipped without a test, so it had no clean number. And no test had shown that the redesign raised trial-to-paid, because ours was sized for activation.

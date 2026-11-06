@@ -4,6 +4,20 @@
 
 Orrinvale Health, May to November 2025, for the 2026 plan year. Benefits joined my scope in April 2024, and this was my first large benefits change. On my resume it's one bullet. It's the project I learned the most from, because I got the first version wrong. All figures are plan-level aggregates. I never saw an individual's claims: the broker gave us de-identified reports, with any group under 10 people suppressed.
 
+## The full story
+
+Benefits joined my job in April 2024, and this was my first large benefits change. In May 2025 the broker's actuary projected that our self-funded medical plan would cost 12.6% more in 2026, about $2.7M, and the CFO asked for options that kept the increase near 5%. I owned the cost model and the design proposal. The benefits manager owned the broker, plan administration and open enrollment. The CHRO and CFO decided.
+
+My first proposal was to drop the PPO and move everyone to the high-deductible plan, with a company HSA contribution. It was projected to save $1.6M against trend. It was approved in July and announced at an all-hands on August 12, 2025, as a decision.
+
+I had made two mistakes: I had modeled the average employee, and we announced instead of asking. Within 2 weeks there were 486 comments, a letter signed by 318 employees, and 4 listening sessions that ran out of chairs. I ran 3 of them with the benefits manager. When I reran the model by pay band, employees under $60K would have paid about $1,050 a year more, around 2% of their pay. They had done that math before I did.
+
+I led the redesign. On September 15 we announced it: the PPO stays for 2026 and 2027, contributions are banded by salary, the lowest band gets a larger HSA contribution, maintenance drugs for chronic conditions are covered before the deductible, and the FAQ is written in dollars. Projected savings fell to $0.98M, so the company absorbed about $620K more.
+
+At open enrollment in November 2025, PPO enrollment fell from 44% to 34%, by choice. Plan cost for January to September 2026 is up 6.8%, against 8.0% budgeted.
+
+What's still open: 9 months of claims at our size is noisy, and 2 large claims could still move the full-year number. And the PPO is promised only through 2027. What comes after that is a later decision.
+
 ## What it was and why
 
 Orrinvale's medical plan is self-funded: the company pays claims directly, with stop-loss insurance for very large ones. In 2025 we offered 2 plans, a PPO (44% of enrolled employees) and a high-deductible plan with a health savings account (56%). 1,640 employees were enrolled. Total medical and pharmacy cost for 2025 was about $21.4M, about 78% of it paid by the company.

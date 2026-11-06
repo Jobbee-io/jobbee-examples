@@ -4,6 +4,18 @@
 
 Corriemoor Partners, for a UK online fashion retailer. September 2025 – February 2026, plus a 90-day review in June 2026, as the day-to-day engagement lead. On my resume this is one bullet with 4 numbers. This file holds the decisions, the people consequences, how each number is counted, and 2 mistakes that cost the client 3 weeks and some trust.
 
+## The full story
+
+The client's gross margin had fallen 2.1 points in FY2024/25, and late markdowns were a big part of it. A markdown took a median of 9 days, through a weekly committee and 2 sign-offs. In September 2025 the CCO asked us for a new operating model. I led the work day to day with 2 consultants and an analyst. The partner spent about a day a week, mostly with the CCO.
+
+The order I believe in is decisions first, then structure. I broke it early. The CCO wanted to see options, so in weeks 2 to 4 I showed 3 structures while the decision work was still going on. The CCO picked option B in week 4. In weeks 5 to 7 my decision charter showed that option B gave markdown decisions to a role that didn't hold the stock data. We redesigned, and it cost 3 of the 10 design weeks. In week 6 a workshop deck took a draft structure to 40 people before HR had seen it, and the HR director heard about it from her own team. I apologised to her that day, and from then on drafts stayed in a restricted folder.
+
+Meanwhile the consultants ran the process mapping and built the role catalogue. We interviewed 46 people and mapped 63 recurring decisions, and 24 went into the charter, each with one owner. The structure followed: 9 category teams, with planning and pricing as shared teams. The CCO owned the final design. The HR director owned selection and consultation. I had planned consultation at 2 weeks and it took 5, so go-live moved from January to February 2026.
+
+I had asked for a 90-day review in the statement of work, and I ran it in June 2026. Median markdown time was down from 9 days to 2, and layers from 7 to 5. Roles went from 410 to 384: 15 vacancies not backfilled and 11 redundancies. Those were the client's decisions.
+
+Two things are still open. The first range run fully on the new model took 27 weeks against 26 planned, so that part hasn't met its own plan yet. And gross margin is up 0.8 points, but I can't separate our part from the weather and a supplier change, so I don't claim it. Both sit with the client now. My last figure is the range result they shared in September 2026.
+
 ## What it was, and why
 
 The client sells own-brand and third-party fashion online, about £850m revenue. Its commercial function (buying, merchandising, trading, planning and pricing) had 410 roles. Gross margin fell 2.1 points in FY2024/25, and late markdowns were a big part of it. A markdown needed a weekly committee and 2 sign-offs: a median of 9 days from the sell-through report to a new price on the site. There were 7 layers between the Chief Commercial Officer and the most junior roles, and a new range took 30 weeks from brief to launch.

@@ -74,3 +74,7 @@ Across both treatments and the three dates, I'd modeled a price reduction of $6M
 
 - Start market definition at signing whenever there is product overlap, with the CRM win/loss pull as step one.
 - Get the deferred-revenue treatment written into the agreement's working-capital definition at signing. We left it to the closing statement, and it cost a weekend and a range of $6M of uncertainty that a sentence could have removed.
+
+## What's still open
+
+Nothing in this stretch is open: the waiting period ended in May 2019 with no divestiture conditions, the peg settled at $8.2M on the final weekend, and the deal closed on June 28, 2019.

@@ -50,3 +50,7 @@ I led the audit of the shared library's 140 suppression rules. 23 were over-broa
 My own habits changed too. I scope a suppression to a signed binary or a hash, never to a host group. Before calling anything contained, I check every host the attacker's account touched, including hosts with no open alert. And we had flagged MFA for service accounts in this client's quarterly report months earlier; a sentence in a report isn't pushing.
 
 I still write suppressions, because noise burns analysts out, but I treat each one as code that can hide an attack. The same rule covers Semgrep suppressions at Tillgrove today.
+
+## What's still open
+
+Nothing from that night is still open for me. The client restored all 3 servers from backups and confirmed the root cause, and I finished the suppression audit and its new standard before I left Lanternwatch in August 2022.

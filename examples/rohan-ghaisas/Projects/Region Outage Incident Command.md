@@ -39,3 +39,7 @@ I was the incident commander for the Pune layer: in command 12:06–20:15, then 
 ## What I'd keep
 
 Moving only the broken part. A full failover would have turned a 1 hour 39 minute ingestion problem into a day of database work. A quarterly game day now moves ingestion to West on purpose; in July 2026 it took 11 minutes.
+
+## What's still open
+
+Nothing from this incident is open: all 11 postmortem action items were done by April 2026. What carries on is the quarterly game day, which keeps the move to West in practice.

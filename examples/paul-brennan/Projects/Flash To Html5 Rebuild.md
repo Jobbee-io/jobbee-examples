@@ -4,6 +4,18 @@
 
 Brightkettle Studio, for the Larchmere Science Center, a regional science museum, February to June 2011. One line in my resume's Earlier section, which is all it deserves there. The file stays because three habits I still use started here: test on the weakest device, keep content out of the code that runs it, and treat accessibility as a requirement that comes from real people.
 
+## The full story
+
+By late 2010 the watershed interactive the studio had built in 2008 was stuck. About 300 classrooms used it, the iPad couldn't run Flash, and districts in the region were piloting iPads. The museum's education director asked for a version that worked on them before the fall 2011 term. We started in February 2011: three developers and one designer, with me as lead developer and the account lead handling the budget and the client.
+
+The first call was to cut. The usage logs showed 8 of the 22 modules under 5% of sessions, and the education director agreed to drop them. Then the designer and I spent about 3 weeks moving the content out of the Flash timelines into JSON by hand. It was the riskiest part of the job, and it wasn't in the estimate.
+
+My first prototype drew everything on canvas and ran at about 9 frames per second on a first-generation iPad. I had tested on a desktop and a laptop. Moving the interface to HTML and CSS, and redrawing only what changed, got it past 25. Meanwhile one developer built the module navigation and the kiosk mode, and the other built the teacher pages.
+
+The classroom pilot found two things. Students rotated the iPads, and the landscape-only layout broke. And a teacher asked whether a blind student in the class could use it. Portrait layout, keyboard controls and a text description of each simulation step went into the last month. They are where the 2 extra weeks went: 17 against a fixed fee that assumed 15, absorbed by the studio.
+
+We shipped in June 2011. Nothing is left open. The museum ran this version until 2019, and the education director wrote to tell me when they retired it.
+
 ## What it was
 
 In 2008 Brightkettle built the museum a Flash interactive about watersheds: 22 modules in which students follow rainwater from a hillside down to the Missouri River and change how the land is used to see what happens to the river. By 2010 about 300 classrooms used it each school year, and the museum ran it on kiosks in its main hall. The iPad shipped without Flash in April 2010, several districts in the region had iPad pilots by late 2010, and the museum's education director asked us for a version that worked on iPads before the fall 2011 term.

@@ -56,3 +56,7 @@ A randomized trial in intracranial hemorrhage, published in 2024, reported bette
 - Name the balancing measure in the first draft, not after someone asks for it.
 
 This is the closest thing in my record to the MSL job seen from the other side of the table: I've been the formulary decision-maker asking a manufacturer's medical team for data, and I know what a useful answer looks like.
+
+## What's still open
+
+Whether the restriction changed outcomes for patients is still open. With 21 courses in the first year under the criteria, there are too few cases to compare, and I haven't claimed an effect either way. The criteria stay open to new evidence too: after the 2024 trial, the committee asked for a yearly review.

@@ -4,6 +4,16 @@
 
 Velloway Air Systems, FP&A. January – December 2021; the new system went live in July 2021. On my resume this is one bullet, under a job I left in 2022. This file says which part of the ERP project was mine, which part wasn't, and how a plant controller caught a $1.3M mapping error before I did.
 
+## The full story
+
+In 2021 Velloway's private-equity owner required a new ERP. The company had run a heavily customized JD Edwards system for about 15 years, and the CFO and IT chose SAP S/4HANA with an outside implementation firm. The Controller led the finance workstream and I was its FP&A member. The management reporting pack was my part: 46 manual spreadsheet steps, a flash report on business day 8 and the full pack on day 10, with lender reporting due on day 15.
+
+From January to March I mapped 2,400 legacy accounts to the new 610-account chart, in workshops with the Controller's team and both plant controllers. From April to June I built the pack in Power BI in the test environment and ran the April, May and June closes through both systems, reconciling each plant's P&L to within $5K a line. I also redesigned the flash around numbers that were final by day 3.
+
+Go-live in July was rough. The first close took 11 business days for accounting and 14 for the pack, 1 day before the lender deadline. I had planned as if the pack would be ready on day 10 no matter what, with no buffer. In August a plant controller found $1.3M of inbound freight on the wrong product line, because I had mapped one cost center to the wrong line. My reconciliation had checked plants, where the error netted out, not product lines, where people made decisions. I added a product-line reconciliation and a monthly mapping check. I also kept a bridge spreadsheet from old accounts to new alive until December, and 2 people kept using it, so 2 versions of the numbers circulated for 5 months.
+
+By the Q4 2021 closes the flash was out on day 4 and the pack on day 6, with 9 manual steps instead of 46. The Controller's team cut the accounting close from day 6 to day 4, and the pack depends on that. The bridge was turned off in December. Nothing on my list was still open when I left Velloway in March 2022, and I don't know how the pack has changed since.
+
 ## What it was
 
 Velloway's private-equity owner required a new ERP. The company had run a heavily customized JD Edwards system for about 15 years. The CFO and IT chose SAP S/4HANA, with an outside implementation firm. The Controller led the finance workstream, and I was its FP&A member.

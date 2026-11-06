@@ -4,6 +4,18 @@
 
 Slatebird, January – December 2025. On my resume this is a single bullet: 3.7% of new paid accounts against a 10% goal, about 40% of them incremental, kept in maintenance mode. This file holds where the goal came from, how I measured incrementality, the fraud I didn't plan for, and why the reward didn't motivate the people it was meant for.
 
+## The full story
+
+In a late-2024 in-app survey, 41% of workspace admins said they were likely to recommend Slatebird to another agency. We had no referral program, and leadership wanted a channel that didn't depend on Google. I proposed one, with a goal of 10% of new paid accounts within 2 quarters. That goal came from the survey, and that was my first mistake.
+
+I made the case, wrote the test plan and the reward terms with finance, and wrote all the copy. Our designer did the entry points, and one engineer built the links, credits and discounts. The test ran from April 1 to September 30, 2025, with 10% of paid workspaces held out so I could measure what was really extra.
+
+I launched with no fraud rules. In the first 5 weeks, 11% of credits went to self-referrals. Rules went in during week 5, and we reversed $3,100 in credits. The readout fell well short of the goal: referrals made 3.7% of new paid accounts, not 10%, and only about 40% of those were extra. When I interviewed 14 admins who had referred someone, 2 mentioned the reward. The free month credited the company's bill, not the person doing the referring.
+
+I took the program out of the growth forecast and kept it live in maintenance mode. A test from October to December 2025 raised link shares by 38%, but paid referrals didn't move in a way I could measure. In 2026 it brings in about 50 paid accounts a month, still about 3.5% of the total.
+
+What's still open: my 10% holdout was too small, so the extra share sits somewhere between 10% and 70%, and I never narrowed it. And a reward that would motivate someone, such as a better start for the new team instead of a credit, is still untested.
+
 ## Why
 
 Agencies talk to other agencies. In a late-2024 in-app survey, 41% of workspace admins said they were likely to recommend Slatebird to another agency. Slatebird had no referral program, and leadership wanted a channel that didn't depend on Google. I proposed one, with a goal of 10% of new paid accounts within 2 quarters.

@@ -4,6 +4,18 @@
 
 Cairnwatch, Enterprise West region. Built from January to June 2024, run through 2025, still running. On my resume it's one bullet: median SE hours per RFP 35 to 13, turnaround 11 to 5 business days, about a quarter of RFPs now declined at triage. This file covers how it works, how each number is measured, and the parts that failed first.
 
+## The full story
+
+In 2023 our region answered all 43 RFPs it received, at a median of 35 SE hours each, mostly by copying answers out of old RFPs. At least 5 answers were wrong when we sent them, and one cost a pricing concession. We won 6.
+
+In January 2024 I proposed a program to my SE manager. I built the triage scorecard and the answer library, and I ran the program. Each SE still leads the RFPs for their own AEs, AEs own the commercial sections, and PMs sign off roadmap answers. The first library failed: I imported about 900 old answers, they contradicted each other, and within 2 months SEs were back to searching old RFPs. I cut it to 540 answers, each with an owner and a 6-month expiry, and usage came back. In the first quarter I also turned off the RFP tool's keyword auto-fill for technical sections, because it kept picking old answers.
+
+In Q2 2024 AEs overrode the triage 5 times, and all 5 lost. I took the hours they cost to our regional VP, and he made every override need his sign-off. In month 4 two RFPs went in late waiting on PMs, and product agreed a 48-hour turnaround. By June the program was built.
+
+In 2025 we declined 12 of 44 RFPs at triage, the median dropped to 13 hours and turnaround to 5 business days, and we won 9 of 32. Most of that win-rate jump is better choices, not better answers. The program is still running, and the other SEs run it without me.
+
+What's open: the library stays right only if owners do the quarterly sweep, and one wrong answer still got out in 2025. Security questionnaires stay outside the program, with our security team.
+
 ## Scope
 
 RFPs and technical questionnaires: architecture, ingest limits, data retention, integrations, deployment options, support terms. Security questionnaires are out of scope. They go to our security team, who have their own process.

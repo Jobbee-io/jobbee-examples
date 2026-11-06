@@ -51,3 +51,7 @@ I lead with 4.4%, not 3.5%. Patients who come to a visit are healthier and more 
 - Set up the comparison with the quality team at the start, with a concurrent group if the hospital allowed it, instead of building a historical cohort afterward.
 
 For an MSL role, the part I'd point to is the budget fight and the talk that followed: I've defended a number to people with every reason to doubt it, and I've learned to lead with the conservative one.
+
+## What's still open
+
+The size of the clinic's effect is still open. The 2-year comparison can't pin it down, and the concurrent comparison with the system's other 2 hospitals isn't funded yet; it's on the list for the next quality-improvement cycle. At the next renewal of the agreement I'd extend the clinic to those hospitals by video, if their physicians sign on, but only after that comparison is run.

@@ -4,6 +4,16 @@
 
 Mirrowood Electronics, November 2017 – February 2018, about 14 weeks alongside my normal buying. I was a buyer when it started and a senior buyer when it ended. On my resume it's one bullet: expedite fees and premium freight on my part numbers fell from $214K in 2017 to $78K in 2018. It's small, and it's the first time I fixed a cause instead of paying for a symptom.
 
+## The full story
+
+In October 2017, as a buyer, I added up the expedite fees and premium freight on my part numbers for the year so far: $161K. When I matched each charge to its purchase order, most came back to one cause. The planned lead times in our ERP were shorter than what suppliers had quoted, by a median of 4 weeks. MRP released orders late, and I paid to make up the time. Nobody owned that field.
+
+From November I worked on it alongside my normal buying. I took the 640 parts with demand in the next 26 weeks and asked 19 suppliers and distributors to confirm their lead times in writing. Getting every answer took 6 weeks. 410 values changed. My manager approved the changes, and I made them myself.
+
+The turning point was my own mistake. In January 2018 I loaded all 318 increases in one afternoon. The next MRP run created about $1.1M of past-due requisitions, raw material inventory rose about $600K over the quarter, and finance asked why before I had told them. It was back to normal by June.
+
+Expedite fees and premium freight fell from $214K in 2017 to $78K in 2018. Part of that overlaps with the bare-board consolidation I ran the same year, and I can't split it exactly. I set up a reconfirmation rule for lead times and kept it running until I left in April 2019. What was open when I left was the rule itself: it ran because I ran it, and nobody had owned the lead time field before me. I don't know whether it kept running.
+
 ## What I found
 
 In October 2017 I pulled every expedite fee and premium freight charge on my part numbers for the first 9 months of the year: $161K, on pace for about $215K. I matched each charge to its purchase order. On 71% of the expedited lines, the planned lead time in our ERP was shorter than the lead time the supplier had quoted when we placed the order. The median gap was 4 weeks. MRP released those orders 4 weeks late, and I paid to make up the time.

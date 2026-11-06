@@ -58,3 +58,7 @@ I'd make the same trade today: 4 ms and some table growth for a guarantee that c
 
 - The 5xx-on-unknown behavior should have been fixed before the incident. Separating "failed" from "unknown" is what made idempotency necessary, and it was visible in the code.
 - The dedupe set survived eleven months because our integration tests ran a single instance. The multi-replica integration job we added with the rebuild is the piece I'd keep if I could keep only one.
+
+## What's still open
+
+Nothing was open on this work when I left Cartway in August 2020. The old capture path had been deleted, key pruning was working, and reconciliation had found zero duplicate captures since launch.

@@ -4,6 +4,18 @@
 
 Personal project: nobody assigned it, graded it or paid me for it. Built over winter break 2023–24, in use since the March 2024 season. The users are my dad, my uncle (who runs the second crew) and my mom, who does the invoicing. It isn't on my one-page resume, but it's the only thing I've built where I chose the problem, the users weren't classmates or coworkers, and I've kept it running for three seasons.
 
+## The full story
+
+I worked my family's crews every summer from 2021 to 2023 and led a weekend crew by the last one. Every week I saw the same problems: a visit missed because a customer's text reached one crew lead and not my dad's paper calendar, quotes written by hand at night, and invoices waiting for my mom's free evenings. Nobody asked me to fix it. Over winter break 2023–24 I built the app myself, with tools I could maintain alone from a dorm room.
+
+It went live for the March 2024 season and broke on the first Monday: 46 customers got a 2 AM text, because I'd stored send times without a timezone. I fixed it that morning, and my mom wrote the apology. Six weeks in, a maintenance notice from the server provider showed me that everything lived in one file with no backup, so I added nightly backups and tested a restore. I also spent a weekend on route optimization nobody wanted. My dad still orders the day himself, and now I ask him before I build.
+
+The code is all mine. The business is theirs: my dad and my uncle run the crews from the day view, my mom invoices from the paid/unpaid board, and how they work decides what I build.
+
+By the end of the 2024 season, missed visits were down from about 5 a month to about 1, and payment came in about 9 days after a job instead of 23. The numbers in this file are from that season. The app is in its third season now, with about 140 recurring customers, used daily by both crews and by my mom.
+
+Still open: most of the visits we still miss come from gate codes nobody wrote down, which is a habit to fix, not code. And I'm the only person who can maintain the app, so I'll keep doing that remotely from wherever I work next.
+
 ## The problem
 
 I worked the crews every summer from 2021 to 2023 and led a weekend crew by 2023. The business ran on my dad's paper calendar and his phone.

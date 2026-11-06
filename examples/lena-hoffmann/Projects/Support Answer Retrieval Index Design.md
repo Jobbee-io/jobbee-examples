@@ -4,6 +4,18 @@
 
 Companion file to `Support Answer Retrieval.md`, the overview. This one covers the retrieval side I owned: what goes into the index, how articles are chunked and tagged, how a question becomes the chunks the model sees, the decline rule, how the index stays fresh, and what broke.
 
+## The full story
+
+When the production build started in October 2023, in-app help still ran keyword search over our articles, on the service I had built in 2021, and showed a list of links. The assistant needed more: the right passage of the right article, for the customer's plan and product version, or a decline. That retrieval side was mine. Ines R. led the team, and another ML engineer owned the prompt and generation.
+
+I had built the first ingestion and chunking on 20% time in 2023. In November 2023 I settled the basics with tests: chunks split on headings instead of fixed windows, the heading path at the start of each chunk, keyword and vector search together in the OpenSearch we already ran, and no separate vector database. Hybrid search reached 84% recall@8, and the reranker took it to 91% by launch. Support asked for its internal macros in the index; I said no, and Ines backed me.
+
+The pilot, from February to April 2024, found what I hadn't designed for. Starter customers got Enterprise answers, because plan availability lived only in article prose. Support operations tagged about 1,900 articles by hand, I parsed the rest, and the plan and version filter went inside the search. Release notes crowded out how-to articles, so older ones are now down-weighted. We launched to all customers in May 2024.
+
+Two later events changed the design. In August 2024 a stale article was cited in 212 answers; since September an article is re-indexed within 15 minutes of being published or unpublished. In February 2025 a new model version ignored the decline instruction in the prompt; since March 2025 the code declines on its own when retrieval is weak. And since October 2025 the number of chunks per answer follows the reranker's scores.
+
+Today about 19% of questions get a decline, and a weekly check flags about 15 stale articles for support to fix or retire. Still open: follow-up questions, answers that need 2 articles, and articles that lean on screenshots.
+
 ## What goes in
 
 - Only published, customer-facing help articles and release notes: 6,400 articles, about 38,000 chunks.

@@ -57,3 +57,7 @@ In March 2026 they closed Starter to existing customers and offered it to new cu
 - A post-implementation review goes into every statement of work I write. I put one into my next engagement (`Commercial Operating Model.md`) and ran it in June 2026.
 
 I only found out because I asked to go back. That's the plainest reason I want to work inside a company.
+
+## What's still open
+
+Whether the onboarding pilot fixes activation is still open: the COO told me in June 2026 that the early cohorts look better, but I haven't seen the data. I also don't know whether net ARR has recovered since March 2026, when Starter closed to existing customers.

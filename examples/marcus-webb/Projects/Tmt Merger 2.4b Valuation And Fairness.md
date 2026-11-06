@@ -4,6 +4,20 @@
 
 Companion to `Tmt Merger 2.4b.md`, which has the deal summary, timeline and retention work. This file is the financial-analysis lane I led: the models, the valuation ranges behind the fairness opinion, the ability-to-pay analysis, the synergy build and the fight over it, and the collar decision I'd handle differently.
 
+## The full story
+
+This lane ran the whole length of the deal. After Corrigan's board hired us in April 2018, I built the standalone model from the billing system's subscription records. Next to management's 17% growth case I ran a banker case at 13%, because Corrigan had missed its own plan in 2 of the previous 4 years.
+
+In July, Aldervane bid $2.2B in cash and stock. Corrigan's holders would be taking Aldervane shares, so I ran reverse diligence on Aldervane and built its side of the deal. My ability-to-pay analysis put their ceiling near $2.55B. The MDs negotiated price. My job was to give them that ceiling and the reasoning for each step toward it. Inside a clean team, I built the $95M synergy case from both companies' budgets.
+
+October was the hard month. In two sessions, Aldervane's bankers tried to cut $20M of synergies to move the exchange ratio. The sourcing held, and we gave only on phasing. Once price was agreed at $2.4B, we asked for a collar on the stock. That timing was my mistake. I had modeled the collar, and asking for it only after price was set meant asking when we had the least leverage. Aldervane refused, and our side spent its leverage on the reverse termination fee instead.
+
+In November I took the fairness analyses to the internal committee twice. It made me cut 3 precedents and defend a lower-half multiple with growth. The opinion went to Corrigan's board at signing.
+
+My analysts built the comps and precedents, and my associate drafted the debt schedule. I owned the structure of every model and checked every output before it went into a deck.
+
+Two things went wrong after signing, and each came back to a mistake of mine. Aldervane missed its Q1 2019 bookings guidance, and at close in June its stock was 11% down, about $150M off the stock half. With a collar, the shortfall would have been about $15M. The second mistake was my cross-sell attach rate. I learned later, from Aldervane's public updates, that realized synergies were about $84M two years after close, with cross-sell at about half of plan. My 8% attach rate was too high even after I'd cut it. Nothing in this lane is open now: the deal closed in June 2019, and the two-year synergy result is public. The two lessons, price protection in the first-round letter and a cross-sell haircut based on the buyer's own record, are how I run stock deals.
+
 ## The models I owned
 
 1. **Corrigan standalone.** Five years, with revenue built by product line and customer cohort from the billing system's subscription records, not from management's summary. Two cases ran through every analysis. Management's plan assumed 17% growth. Our banker case assumed 13%, because Corrigan had missed its own plan in 2 of the previous 4 years, by 2 to 4 points each time.

@@ -68,3 +68,7 @@ All 312 recovered: 289 by the hotfix's automatic retry sweep and 23 by support b
 - Staging fails differently from production, and the difference is in the timing and order of failures. My chaos cases now reproduce incident timing, not only error types.
 - Check what the downstream call guarantees before making an upstream safety decision.
 - After the bug I asked for a mid-internship feedback session. My mentor told me my PR descriptions assumed the reader had my context. I've been fixing that since.
+
+## What's still open
+
+Nothing on the state machine was open when my internship ended in August 2025: in-flight payments had moved onto the new states, and the six old branches were deleted in week 10.

@@ -30,3 +30,7 @@ The real failure: I checked against documentation instead of against the system.
 - "Announcement" is not an accuracy exemption. It's the genre practitioners build against first.
 - Count what a process change catches. A fix without a counter is a story, not a control.
 - The practitioner who caught the error became one of my most useful critics, because he watched the correction land the way a correction should. Trust after a well-handled failure can exceed trust with no failure. That only happens if the handling is fast, public, explained, and followed by a process change.
+
+## What's still open
+
+Nothing from the post is still open. The correction and the root-cause note are public, and the verification gate outlived my time at Orcadia: the team still runs it.

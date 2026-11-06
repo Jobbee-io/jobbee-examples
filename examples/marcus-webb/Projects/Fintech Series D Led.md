@@ -57,3 +57,7 @@ The 2022 repricing hit the category. Tollbrook's round was priced at the top but
 
 - Pull the precedents' public charters before the first term sheet arrives, not in response to it. We'd have opened with the market evidence instead of finding it under pressure.
 - Put every remaining open point on one page before the last session and agree in advance what we won't trade. Registration rights got traded because nobody had written them down as a line.
+
+## What's still open
+
+Nothing is open: Tollbrook was sold in 2024, so the round and the terms we fought over are closed.

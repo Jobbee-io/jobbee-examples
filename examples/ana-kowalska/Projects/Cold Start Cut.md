@@ -4,6 +4,18 @@
 
 Migiem, customer app, July to October 2024. One bullet on my resume.
 
+## The full story
+
+By June 2024 median cold start on the customer app was 2.7 seconds, up from 2.1 a year earlier. About half of that came from the Compose migration I had driven: the home screen moved to Compose in November 2023 without a Baseline Profile. The rest came from three new SDKs. Nobody had been watching startup, me included.
+
+In July I agreed the definitions with the team first: our own field trace to real content, Play's slow-cold-start figure reported separately, and a lab benchmark on a 3 GB phone. I lost my first week measuring on my own flagship phone, where nothing looked slow. On the lab phone the time went to 14 SDKs starting in `Application.onCreate`, the missing Baseline Profile and eager singletons. In the field, a remote config fetch held back the home feed.
+
+I made most of the changes myself. One engineer did the dependency-injection work, and our product analyst ran the A/B test. In August, deferring the install-attribution SDK lost attribution for about 6% of new installs for 2 days. Marketing caught it, not me. In September the cached-first home screen went through a 3-week A/B test. By the end of October p50 was 1.3 seconds and p90 2.9.
+
+In December a build-tool upgrade stopped packaging the Baseline Profile, and p50 crept to 1.6 seconds for 3 weeks before I noticed. We added a CI check for the profile and a nightly startup benchmark. A month later I moved to the courier app, so the customer app team now watches those guards.
+
+What's open: the A/B test showed fewer quick exits from the home screen, but no order lift I can claim. And the guards catch a startup regression after it lands, not before.
+
 ## Why it mattered, and why it had got worse
 
 Cold start is the first thing every customer sees, and most of our customers open the app when they're hungry or out of something. Median cold start had been 2.1s in the third quarter of 2023 and was 2.7s by June 2024. About half of that came from the Compose migration: the home screen moved to Compose in November 2023 without a Baseline Profile, so its code ran interpreted on first launch (`Incremental Compose Migration.md`). The rest came from three SDKs added in 2024. Nobody had been watching startup, me included.

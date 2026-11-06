@@ -4,6 +4,18 @@
 
 Cairnwatch, SE organization (34 SEs worldwide). Proposed in January 2023, in use by July 2023, handed to a rotating group of SEs in January 2024. On my resume it's one bullet: demos logged with an environment problem fell from 14% to 2%. It wasn't my job. I did it next to a full deal load.
 
+## The full story
+
+By the end of 2022 every Cairnwatch SE demoed from one shared tenant fed by synthetic data. Engineers in the audience could tell, and it broke: 14% of logged demos in Q4 2022 had an environment problem, two of them mine, in front of VPs. Fixing it wasn't my job. I proposed it anyway in January 2023 and did it next to a full deal load.
+
+I wrote the design and about 60% of the code for Pantrylane: a fictional grocery-delivery app of 22 services, a load generator, and 9 failure scenarios behind feature flags. Three SEs gave a day a week for 2 months, mostly on the Java and Node services and the scenario scripts. A platform engineer, lent to us for 6 weeks, built the cluster and the Terraform. SE leadership approved $6K a month for cloud costs.
+
+It was in use by July 2023, one copy per SE, reset every night. The reset rule was my first mistake: it wiped an SE's prepared copy the night before a large demo, and I added a pin flag. By the end of Q3, 29 of 34 SEs had used it with a customer, and in the second half of 2023 only 2% of logged demos had an environment problem.
+
+My second mistake was being the only maintainer. In December 2023 a dependency update broke the Node service build the week before quarter-end, and I fixed it on a weekend. In January 2024 I handed it to 4 SEs who rotate ownership each quarter, with a runbook. In 2024 I also retired 3 of the 9 scenarios, because 3 others carried about 80% of demos.
+
+What's open: it still runs on SEs' time next to their deals, and the prep-time gain is self-reported by 19 people, so I treat it as rough.
+
 ## What was wrong
 
 Every SE demoed from one shared demo tenant fed by a synthetic data generator. The data was too clean: metrics moved in perfect waves, traces had no real service calls behind them, and logs repeated every few minutes. Engineers in the audience noticed. It also broke. After each live demo, SEs fill in a short form, and one field is "environment problem": an empty view, stale data or a broken link during the demo. In Q4 2022 that box was checked on 61 of 436 logged demos, 14%. 2 of those were mine, in front of VPs, and one cost a second meeting.

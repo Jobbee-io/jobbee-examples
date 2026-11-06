@@ -4,6 +4,16 @@
 
 Brightlane Commerce, March to September 2023. An observational analysis of buyer-seller matching led to new matching weights, and the A/B test that followed measured **+6.2% in seller response rate to first contact**. On my resume it's one bullet. This file holds why an observational analysis earned a product change, what it found, how I handled confounding, and the test that confirmed it.
 
+## The full story
+
+When I started this in March 2023, Brightlane's matching weights had not been revisited since 2021. The matching PM had a three-page list of hypotheses and no evidence for any of them. A test of all six weights at once would have taken quarters, so I proposed an observational analysis first, to turn the list into one sharp hypothesis a single A/B test could confirm or kill.
+
+The analysis and the doc were mine. I worked through 14 months of request-seller exposures, about 9.4M pairs. Three findings held up: tenure was overweighted, price-band fit was non-linear, and unavailable sellers were still being matched. The obvious objection was confounding. I answered it in the doc itself, with conditional framing, a sensitivity analysis, and the line that the change would ship as an experiment or not at all. That line is what got the PM to spend experiment budget. The PM owned the decision to change the weights, and an ML engineer built the new scoring.
+
+The test ran four weeks in August 2023, pre-registered under the standard I was building at the same time. Seller response rate to first contact rose 6.2%, and every guardrail held. The one scare was new sellers: because we were demoting tenure, a dip in their early exposures mattered. We watched it for another cycle, and it washed out. The new weights rolled out in September.
+
+The weak spot was my own design. I split the test by request, so both arms shared the same sellers, and the lift may be somewhat overstated. I said so in the readout instead of claiming a clean number. Request resolution was up about 3% two quarters later, which suggests most of the lift was real. The shared-seller problem itself is still open, for this change and for most of Brightlane's tests.
+
 ## The surface
 
 Brightlane's marketplace connects buyers who post requests with sellers who can fulfill them. The first contact matters most. Seller response rate to a buyer's first message, within 24 hours, was the liquidity metric the marketplace ran on: a response leads to a conversation, which leads to a transaction.

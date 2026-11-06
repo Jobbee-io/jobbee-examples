@@ -4,6 +4,18 @@
 
 Cairnwatch, from mid-2021, when I was asked, through 2022, my first full year in presales. On my resume it's one bullet under the SE role. Every presales interview asks why I left engineering and whether I'd go back.
 
+## The full story
+
+The move started on the buyer's side. At Saltpine in 2018 I ran our observability evaluation, and the Cairnwatch SE rebuilt two of our dashboards overnight. I joined Cairnwatch in May 2019 on the ingest pipeline, and from 2020 SEs kept pulling me into prospect calls when ingest questions got deep: 14 of them by July 2021. In June 2021 Renata, the Enterprise West SE manager, asked if I'd move.
+
+The decision was mine, and I wrote it down before answering: a lower base, variable pay tied to a region I didn't control, more travel, and a list of skills I didn't have. I asked for three terms and got all three: a 2-quarter variable guarantee, a written 6-month return path, and a named mentor with a 90-day ramp plan. I moved in October 2021.
+
+I failed my first demo certification and passed the retake 2 weeks later. My first solo technical win came in March 2022. Year one had its mistakes: a features demo for a CIO who wanted cost, a "yes" about per-index retention I hadn't checked, and a deep technical conversation that slowed my AE's deal. In month 4 I found that nobody had defined "technical win"; Renata and I wrote the definition, and the region adopted it.
+
+2022 ended at 12 wins on 24 decided deals, and about $206K in cash against my old $165K base. I didn't use the return path. I was promoted to Senior SE in March 2024.
+
+What's still open is the trade I made. My variable still rides on a region's number I don't control, which is why I compare SE offers on base and expected cash, not on headline OTE.
+
 ## How it started
 
 At Saltpine Health in 2018 I ran our observability vendor evaluation from the buyer side. The Cairnwatch SE rebuilt 2 of our dashboards overnight so we could compare like with like. I joined Cairnwatch in May 2019 on the ingest pipeline. From 2020 I took the escalation rotation, 1 week in 6, and SEs pulled me into 14 prospect calls between early 2020 and July 2021 when ingest questions got deep. In June 2021 Renata, the Enterprise West SE manager, asked if I'd move.

@@ -55,3 +55,7 @@ For three weeks the old ledger ran in reverse shadow and the diff ran in the oth
 - Run the database-client audit two months before the parallel run. It took one afternoon. Doing it late cost the fraud team 2 days of extra reviews.
 - Do the production dry run a month earlier. The 4-minute stand-in step was the riskiest part of the night and we found it 10 days before.
 - Put the month-end vacuum work into the cutover plan. We knew month-end was the ledger's hardest day; we tested it under load in the parallel run but not under a full month of partition growth.
+
+## What's still open
+
+Nothing from the cutover is still open: the 4 extra readers moved before the old path went read-only, February's month-end ran at 61 ms p99, and the old database is archived under the 7-year retention policy. The open item for the ledger as a whole, the single-primary ceiling, is in `Ledger Core Rewrite.md`.

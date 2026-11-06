@@ -85,3 +85,7 @@ It changed two things permanently:
 - 18 months, not 12 or 24. The curve says 12 cuts off the accounts with the most at stake, and 24 would have paid the 31% tax for six more months with no sign of more migration.
 - A hard date with 410s, no brownouts, and no new exemptions. The trust cost of a forced migration is real. The trust cost of an API that never dies is worse.
 - Every tool in the program (the dashboard, the proxy, the codemods, the 410 test mode, the co-written whale plan) was there to make "yes" easier than "no". 94% voluntary migration came from that, not from a clever schedule.
+
+## What's still open
+
+Nothing is open: the last of the 36 extension accounts migrated in January 2025, so no customer is left on v1. The ongoing cost of running 3 or 4 dated versions belongs to the versioning policy, and it's in `Projects/Developer Api Platform.md`.

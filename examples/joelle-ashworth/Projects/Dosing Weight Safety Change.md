@@ -4,6 +4,16 @@
 
 Hollisbrook University Hospital, first on the cardiology units, then house-wide. The event was in late 2022; the changes went live in March 2023. On my resume this is one bullet. This file holds my part in the review, the process change, the first version that slowed treatment, and the numbers since. It holds nothing about the patient or the staff involved, and nothing from the review itself.
 
+## The full story
+
+In late 2022 a weight-based anticoagulant infusion on one of our cardiology units ran at more than twice the intended dose for several hours. A weight in pounds had gone into a field that expected kilograms. I joined the root cause analysis team as the unit's cardiology pharmacist. My first instinct was to ask who entered the weight. The facilitator turned the question to why the system let anyone do it.
+
+After the review the work was split. I owned the pharmacy changes: a weight check by the verifying pharmacist on every weight-based high-alert infusion, and heparin order sets that show the dose in units per kilogram. Nursing changed the bedside double-check. Epic analysts built the single dosing-weight field in kilograms. Pharmacy informatics and biomedical engineering put hard limits on the heparin pumps.
+
+The changes went live in March 2023, starting on the cardiology units. My first version blocked heparin until a measured weight was in the record, and in 3 weeks the median time to start went from 52 minutes to 81. Emergency and cardiology physicians raised it within days. We let heparin start on a stated weight, flagged, with a measured weight due within 4 hours, and the median came back to 55. In month 2 another question came up, which weight wins when two measured weights disagree, and we answered it case by case for too long.
+
+The check is now hospital policy. In 42 months it has caught 236 weight differences, 41 of them pounds for kilograms, and no error of that type has been reported reaching a patient. What stays open is how much that number proves. Event reporting is voluntary, so "none reported" isn't "none happened". The heparin start time is still reported every month, so a slowdown would show.
+
 ## The event, in the only terms I use
 
 A weight-based anticoagulant infusion on one of our cardiology units ran at more than twice the intended dose for several hours. A weight recorded in pounds had been entered in a field that expected kilograms. The error reached the patient, was found at the next scheduled lab check, and was corrected.

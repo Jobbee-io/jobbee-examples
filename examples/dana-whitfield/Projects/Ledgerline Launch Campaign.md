@@ -4,6 +4,16 @@
 
 Verity Cloud, January to September 2023. On my resume this is one bullet: "$8.2M influenced pipeline in two quarters, 340 design partners pre-GA, 71% of launch-page visitors reaching the docs." This file holds what's behind it: the plan, the people, the definitions behind each number, and what didn't work.
 
+## The full story
+
+Ledgerline was a tier-1 corporate launch: the CEO keynote slot, about 400 sellers to enable, and a $2.4M budget that finance approved only after seeing the measurement plan. I owned the narrative and the campaign plan and was accountable for the number, as one of three PMMs on the product. I managed none of the people the plan depended on, so in January I got each of them to sign the exit criteria, and I agreed the metric definitions with sales and finance before the first registration.
+
+The messaging test came first and changed the line. "The lakehouse for every cloud" broke in a day; "One copy of your data, three clouds, no nightly copy jobs" shipped. The design-partner stage beat its target, with 340 registered and 52 running real workloads. Field enablement didn't: 64% certified against a goal of 70%, and for the first two weeks after launch, two uncertified regions pitched the old line. Paid social underperformed, so I cut it in week three and moved about $190K into the content sequence: weekly deep-dives, each co-written with an engineer. A sponsored booth produced no pipeline at all.
+
+It ended at $8.2M of influenced pipeline in two quarters and 71% of launch-page visitors going on to the docs. The story outlived the campaign. It became the "modern platform" frame that I later tried, and failed, to pull Workflowline into.
+
+What I didn't solve here: certification stayed a goal instead of a launch gate; the "when Ledgerline is the wrong answer" page stayed in the sales kit; and I finished the launch without a paid channel that reached data engineers. That last gap is what the 2024 creator partnership tried to close.
+
 ## What it was
 
 Ledgerline was Verity's data-lakehouse product: an open table format with query engines on top, running in the customer's own cloud account. It was a tier-1 corporate launch. At Verity that means the CEO keynote slot, a press embargo, field enablement for about 400 sellers, and a budget large enough that finance asks for the measurement plan before approving it. Ours was $2.4M, not counting headcount.

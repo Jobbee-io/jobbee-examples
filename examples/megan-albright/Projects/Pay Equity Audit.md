@@ -4,6 +4,18 @@
 
 Orrinvale Health, September 2023 to April 2024. On my resume this is one bullet with the before and after. The audit was run at the direction of outside counsel, so the model details and the results by job stay with the company. This file holds the method, my role, my mistakes, and the aggregate numbers the company itself shared with all employees in May 2024. No individual's pay appears here, and no group smaller than 10.
 
+## The full story
+
+By mid-2023 the leveling framework had given every employee a job and a level, so for the first time we could compare like with like. On that year's engagement survey, "I believe I'm paid fairly compared to my peers" was our lowest item, at 49%. My director and I proposed an audit. The CHRO and general counsel approved it in August 2023, and outside counsel directed it.
+
+I built the dataset, which took 6 weeks, partly because I had to rebuild dates into level for about 300 employees from the company we acquired in 2021. I wrote the analysis plan and ran the models in R. Counsel's labor economist replicated my work and challenged it, and the turning point came from that challenge. My first model controlled for performance rating and put the gap at 1.4%. The economist asked whether the ratings themselves were unbiased. In 2 job families, women were rated "Exceeds" less often than men in the same jobs. With rating out of the main model, the adjusted gap was 2.3%. I should have asked that question myself. My director also caught a 7-person team in my first VP deck before it went out.
+
+I proposed the flag rule and the budget, and reviewed every flagged case with the VPs. My director decided the remediation with the CHRO and CFO: 168 employees adjusted, $574K a year, effective April 1, 2024. Managers heard only 2 days before the letters, and a few called the raise a "gender fix". It wasn't, and my manager script came too late. In May 2024 the company shared the results with all employees: an adjusted gender gap of 0.4%.
+
+Most of the cases that didn't come from the acquired company traced to promotions, which led to the promotion pay guideline. The model now reruns every merit cycle.
+
+What's still open: the audit took ratings out of the main model; it didn't examine the ratings themselves. And the gap doesn't stay closed by itself. Going into the 2025 cycle it was 0.5%, and the proposals brought it back to 0.4%. Neither number was significant, but the rerun is the reason I know.
+
 ## Why we did it
 
 Two reasons. The leveling framework (`Job Leveling Framework.md`) had just given every employee a job and a level, so for the first time we could compare like with like. And on the 2023 engagement survey, "I believe I'm paid fairly compared to my peers" was 49% favorable, the lowest item on the survey. My director and I proposed the audit; the CHRO and the general counsel approved it in August 2023.

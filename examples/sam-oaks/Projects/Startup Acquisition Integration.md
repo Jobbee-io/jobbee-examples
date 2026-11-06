@@ -4,6 +4,20 @@
 
 Grousemont Systems, February 2020 to March 2021. I led the engineering side of integrating Cinderpeak Labs, where I had been Head of Platform (45 engineers, a developer-tools product), into Grousemont, an enterprise software company of about 4,000 engineers. Keep, rewrite or sunset decisions for 60+ services, and 39 of 45 acquired engineers still at Grousemont 12 months after close. I'm prouder of that retention number than of any technical artifact from the year.
 
+## The full story
+
+Grousemont closed on Cinderpeak in February 2020. I had been Cinderpeak's Head of Platform, and I became the person between two sides: an acquirer that wanted to sell the product to its enterprise customers within a year, and 45 engineers who expected the usual pattern, where the product starves and the team leaves.
+
+In the first 90 days we inventoried 60+ services. Each got a recommendation doc, and Grousemont's division architects decided them with me in review. I put my own multi-tenant control plane through first: load tests showed it degrading past about 1,200 tenants, and I wrote the rewrite recommendation for it myself. In the end we kept 23, rewrote 9 and sunset 28. The acquired engineers did most of the compliance rewrites, by design. The sunsets caused three bugs, including double-charging on trial conversions, all caught in canary and fixed in the open.
+
+On the people side, I blocked Grousemont HR's plan to re-interview every acquired engineer, and we mapped titles and pay at close with the formula shown. The acquired team kept its own roadmap, and the product went live with Grousemont's enterprise customers in month 9.
+
+My mistake was one-way traffic. I spent the year bringing Cinderpeak habits into Grousemont and didn't teach our engineers Grousemont's release governance, support tiers and sales assistance. Three of the six who left in year one left over process nobody had explained to them. I proposed a two-way exchange in month 10; month 2 would have been right.
+
+By month 12 the estate was down to 32 services, and 39 of 45 engineers were still there. Early in 2021 I moved on to the division's build consolidation. By month 24, 35 of 45 were still at Grousemont.
+
+What stayed open: the exchange I proposed came too late to help the people who left in year one. The habits I brought took hold only where a respected local engineer sponsored them, and in teams without one they still hadn't taken hold when I moved to the build work.
+
 ## What each side wanted
 
 Grousemont had bought a product and a team, in that order of conviction. Its goals: sell Cinderpeak's product to its enterprise customers within a year, adopt whatever was good in the startup's engineering practice, and keep the people. The diligence report named retention targets.

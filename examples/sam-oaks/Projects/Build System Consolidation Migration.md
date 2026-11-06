@@ -4,6 +4,18 @@
 
 Companion to `Build System Consolidation.md`. This file covers April 2021 to February 2022: how 650 repos moved to Bazel, the gates each batch passed, the transpiler, what broke, the eight-month standoff over Kelvin, and how the old systems were shut down.
 
+## The full story
+
+The CTO's decision at the end of March 2021 left me with 650 repos to move and one round already lost: at the batch-plan review, Kelvin's author had blocked his 75 repos, and the division VP had sided with him.
+
+I wrote the first version of the transpiler in March and April. Two engineers from the core team of five made it a production tool, and the core team did most of the batch work. I designed the gates and ran the weekly batch review. From month 3 the golden-path templates put every new repo on Bazel, so the old pile stopped growing, and the first Maven A batch moved.
+
+Three things broke on the way. In month 4 Maven B's artifact names collided with tree A's; the parity gate caught it before production, and untangling it took two weeks. From month 5 the Gradle-B rewrite took 44 engineer-weeks against my budget of 18. I knew by week 3 and re-scoped in week 7. In November 2021 the remote cache filled its disks and slowed builds for 3 hours.
+
+Kelvin was my own delay. I drafted the fix in month 3 and sat on it for 7 months. In month 10 the CFO's cost review put Kelvin's $11K a month on screen. I took the offer to its author privately, he co-designed the deploy rule, and his repos moved in months 11 and 12. All 650 repos were on Bazel by the end of January 2022.
+
+When I left in March 2022, Maven A, Gradle A and Gradle B were deleted, and Kelvin was in its 60-day read-only hold; `big-daddy-2` was retired in April. What was still open: Maven B's frozen path, kept for two long-term-support release lines and due to retire when the last one ended in 2023, and Bazel knowledge that sat with 4 people.
+
 ## Batches by tree, not by team
 
 Repos moved in dependency-ordered batches of 15 to 25, one build tree at a time. Two reasons. Each tree needed one translation approach (transpiler for Maven, hand rewrite for Gradle B), so batching by tree let the core team get fast at one approach before switching. And most dependencies stayed inside a tree. For the about 70 that crossed trees, migrated repos kept publishing their artifacts to the same repository manager, so repos not yet migrated could still consume them.

@@ -35,3 +35,7 @@ The other follow-on decision, in 2014, was full pro rata on a smaller position. 
 ## What I carry into banking
 
 "Is this a good investment" and "is this a good investment for this fund" are different questions. On every sell-side process with sponsor bidders, I map each fund's size, vintage and room in its concentration limits before the first round. It explains bids that otherwise look irrational, and it tells me which bidder can actually stretch.
+
+## What's still open
+
+Nothing is open: the company sold to a strategic buyer in 2018, which closed out the position and settled what the partial pass cost.

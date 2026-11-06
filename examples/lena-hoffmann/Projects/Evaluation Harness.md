@@ -4,6 +4,18 @@
 
 Gablewright Software, Applied AI team. First version November 2023, a merge gate since March 2024, still running. On my resume it's one bullet. This file holds the options I weighed, how the golden set is built and versioned, how the judge is checked against people, the statistics behind the gate, the weekly human review, the regression it caught in February 2025, my mistakes building it, and what it still can't see.
 
+## The full story
+
+In the fall of 2023 we judged a prompt change by reading about 20 answers. People reading the same 20 disagreed, and nobody knew what a change did to the questions nobody read. In October I weighed more human reading, word-overlap scores and a hosted evaluation product, and chose to build our own.
+
+The first version ran in November 2023 on the 240 questions from my 20% time. The next months were mostly my own mistakes, found one by one. In December I copied 37 golden-set questions into the prompt as examples. In January the judge's first calibration reached only 81% agreement with the specialists; grading each required fact and forbidden claim separately brought it to 92%. In March 2024 the harness became a merge gate. In April a new overlap check found my 37 copied questions, which had inflated our scores by about 0.6 points for 4 months.
+
+The assistant launched in May 2024, with 640 questions in the set and a 3.4% wrong-answer rate, and the weekly review of production answers began. It soon showed that multi-step troubleshooting went wrong about twice as often as the set said, so in Q3 we rebalanced the set by ticket category. In February 2025 the harness caught a cheaper model version that would have taken wrong answers from 2.2% to 5.1%. Ines R. held the gate, I moved the decline rule into code, the engineer who owns generation rewrote the prompt, and we shipped it in March at 2.0%.
+
+I designed and built the harness and I own it, including the CI integration. Bettina L. and Andre P. write the reference answers and do the weekly review, on hours Rosa M. put into their schedules. Kofi A. checked my statistics. The rest of the team adds cases and runs it.
+
+It's still running: 1,180 questions, 2.3% wrong answers on a harder set, and 61 merges blocked. Still open: it can't judge conversations, it can't see an error the judge and the generator share, and it measures wrong answers, not unhelpful ones.
+
 ## Why
 
 Before the harness, a prompt change was judged by reading about 20 answers. Different people could read the same 20 and disagree, and nobody could say whether a change made things worse for the questions they hadn't read. I wanted every change to the prompt, the model, the index or the retrieval code to come with a number on a fixed set, with an error bar.

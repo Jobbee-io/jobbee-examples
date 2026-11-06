@@ -4,6 +4,18 @@
 
 Larkspan Software, July to December 2023, at about 40% of my time. On my resume it's one short bullet and the least exciting line on the page. It's also the work everything after it depends on: the Kubernetes upgrade and the region failover both assume that what's in code is what's running.
 
+## The full story
+
+When I became Senior SRE in April 2023, our production Terraform was stuck in a loop. One state held about 4,100 resources, plan took 14 minutes, and it showed 1,940 changes nobody had made in code. People stopped running plan and fixed things in the console during incidents, so the drift grew. Another 612 resources sat in no state at all. I proposed the cleanup, and from July to December 2023 I spent about 40% of my time on it.
+
+I planned it and did most of it. We froze non-urgent changes for two weeks in July so the diff stopped moving. I sorted every diff into noise, console changes to keep, and changes to revert, and service teams reviewed every change to their own resources. From August we imported 431 of the unmanaged resources and deleted 181. Then we split the one state into 38. For the last three months Shruti P. worked on it part time and owned the data-store states. Vikram S., our Head of Platform, backed the rule nobody liked: no more console changes in production.
+
+Three things went wrong. I called an access role an orphan after checking only 30 days of activity. It belonged to one customer's monthly file import, which failed in November, and their invoices arrived about 9 hours late. I restored the role within 3 hours of the ticket. Since then, nothing is deleted without being disabled for 45 days first. My first nightly drift job posted about 200 lines a night, and people muted the channel within a week. And the state split took 10 weeks, not the 4 I planned.
+
+By December drift was at 0, plan on the largest state took under 90 seconds, and CI did every production apply. The nightly check still runs.
+
+No task from the project is open. What isn't solved is drift itself: the nightly job still finds about 3 real drift items a week. The difference is that we now see each one within a day and close it in a median of 1.5 business days.
+
 ## What it was
 
 When I was promoted to Senior SRE in April 2023, our production Terraform was one root module with one state file of about 4,100 resources. `terraform plan` took 14 minutes and showed 1,940 resources with changes nobody had made in code. People had stopped running plan at all, because the output was unreadable. During incidents, fixes went in through the cloud console and never came back to code. The drift grew, the plan got worse, and fewer people ran it. A loop.

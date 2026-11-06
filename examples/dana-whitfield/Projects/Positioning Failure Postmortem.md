@@ -4,6 +4,18 @@
 
 Verity Cloud, January to August 2024. I tried to move Workflowline, Verity's legacy workflow product, into the "modern platform" story the Ledgerline launch had set up. Workflowline is a pipeline orchestrator from 2018 with 1,900 enterprise customers. Two quarters later the market had answered with silence, an analyst note calling the story "unearned," and $1.1M of spend with nothing to show. I keep this failure on the first page of my resume, because my one successful repositioning, at Halyard Tools in 2019, only means something next to it. This is the postmortem as I presented it internally, shortened.
 
+## The full story
+
+By late 2023 the Ledgerline launch had given Verity a "modern platform" story, and Workflowline sat outside it. The product had grown event triggers and a declarative config surface, but buyers still filed it as a legacy batch scheduler, and it had lost 7 of its last 10 evaluations. The product line's general manager asked for a repositioning. I agreed and I led it, so the call is mine.
+
+I built the plan: the new category frame, the launch arc, the refreshed demo, the analyst briefings and the customer program. The three-person Workflowline product-marketing team carried most of the execution, which is why the cost includes two quarters of their focus. The warning that mattered came from the Workflowline engineering lead during planning: the event triggers ran on a batch scheduler, and any latency test would show it. I heard it as a demo problem.
+
+We launched in Q1 2024. The briefings were polite, the content shipped, 40 accounts joined the customer program, and the loss write-ups didn't change. In Q2 we tightened the messaging and spent more. Pipeline came in 3% down, and *The Stackfield Report* called the story "unearned." In month 7 I wrote the recommendation to stop, and to position Workflowline as the dependable orchestration layer next to the modern platform, with an explicit modernization path. Evaluation losses stabilized within two quarters.
+
+What it cost: about $1.1M, a delayed compliance campaign, and a sentence buyers quoted back at other Verity products for the rest of the year. What came out of it is the gap test, which I've since used to kill two of my own repositioning proposals.
+
+What's still open is the product gap itself. Closing it is a product decision and a product investment, not a marketing one. Until it closes, the narrower story is the honest one.
+
 ## What I tried, and why it looked reasonable
 
 Workflowline's capabilities had grown: it now had event-driven triggers and a declarative config surface. Its perception hadn't moved. Buyers still filed it under "legacy batch orchestrator." The gap showed up in our own data. Workflowline lost 7 of its last 10 evaluations, and "felt like the previous decade" appeared word for word in 5 loss write-ups.

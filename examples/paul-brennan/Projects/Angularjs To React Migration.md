@@ -40,3 +40,7 @@ I co-led it with Gus H., the frontend tech lead. Gus owned the build: the move f
 - Two owners for one piece of state. For several months the selected day on the board lived in both an AngularJS service and the Redux store, kept in sync by the bridge. In November 2017 a sync bug sent 14 jobs to the wrong day for 3 customers before a dispatcher noticed, and 14 technicians drove to the wrong job. After that we had a rule: every piece of state has one owner, and the other framework only reads it.
 - The estimate. I said 12 months, and it took 31. The forms alone took 9 months, because I had ordered the work by visibility and left the parts with hidden business rules for last. Today I'd inventory the hidden rules first and order the work by risk.
 - The weekly report counted components converted. That number climbed fast and said nothing about risk. By mid-2017 we were "60% done" with most of the hard work still ahead. I switched the report to risk retired: the board, the forms and the router, each with its own status. I'd report risk retired from day one.
+
+## What's still open
+
+Nothing is open: AngularJS left the bundle in March 2019 with all 214 directives and components gone, three months before I left Crewloft.

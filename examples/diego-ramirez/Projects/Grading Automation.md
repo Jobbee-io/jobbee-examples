@@ -4,6 +4,16 @@
 
 Alder Ridge University, CS 2310 Databases. I TA'd the course in fall 2023 and spring 2024 and ended up owning the autograder, first as maintenance duty and then as a rebuild. About 400 students a semester. It's the least glamorous thing I've done, and interviewers find it the most interesting, because it's a systems story with a real failure in it.
 
+## The full story
+
+I started TA'ing CS 2310 in fall 2023, and the autograder came with the job as maintenance duty. Six years of TAs had built it up. In the hour before a deadline it took up to 45 minutes to grade, it marked correct answers wrong over formatting, and twice it corrupted scores when two submissions shared one database. I spent a full weekend each assignment cycle re-grading by hand.
+
+In spring 2024, at about 6 hours a week, I rebuilt it: a queue with 8 workers, results compared as relations instead of text, a fresh database per run, and feedback a student can read. Deadline grading fell to about 4 minutes and hand re-grades to about 3 a semester. The rebuild was my work. The professor ran the course, and later asked me to present the feedback format at a department teaching seminar.
+
+The turning point came in fall 2024, when I had moved on to TA CS 3440. In week 9 the new CS 2310 TAs called me in: the professor had flagged two submissions with identical output, and the grader had given both full marks, correctly. The old text diff had worked as a copy check by accident, and my rebuild had removed it without anyone deciding to. Over one reading week I built a review queue that puts suspicious pairs in front of the professor. It flagged 4 pairs that semester. 2 were coincidences, and the professor handled the 2 real ones through the university's process. The tool only flags; people decide.
+
+The rebuilt grader stayed in use after I left the course, and the CS 2310 TAs own it now. What's still open is mostly not mine to close: the few hand re-grades left come from unclear assignment text, and how the review queue gets used is the course staff's call.
+
 ## What I inherited
 
 A bash-and-Python system built up over about 6 years by successive TAs. Students submitted a ZIP to the course portal. Cron pulled submissions every 15 minutes. A container per student ran their SQL against a fixture database. Results were diffed against expected tables, and a CSV of scores fed the professor's spreadsheet script.

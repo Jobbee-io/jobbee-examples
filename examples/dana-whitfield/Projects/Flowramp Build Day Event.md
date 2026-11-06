@@ -4,6 +4,20 @@
 
 Halyard Tools, planned May to October 2021, held Thursday, October 14, 2021 in San Francisco and streamed live. Halyard had never run its own event; we sponsored other people's. I proposed it, owned the budget, and ran it from the first planning doc to the follow-up email. On my resume it's one line under Halyard Tools.
 
+## The full story
+
+By mid-2021 Flowramp had a year of GA behind it. The engineers who used it liked it, but expansion inside our biggest accounts was slow, because the platform leads who approve wider rollouts had never met us. Halyard had only ever sponsored other people's events. In May I pitched our own to the CEO and the VP of Marketing, and I wrote the goal down before we booked a venue: 150 qualified conversations, logged in the CRM the same day.
+
+From May to October I owned the goal, the $185K budget, the agenda, the speakers and the run of show. An events contractor handled the venue, catering, AV and the livestream vendor. Two PMMs on my team prepared the speakers. Six Halyard engineers staffed the build tables and ran a dry run the week before. Sales invited their target accounts and kept the conversation log. The agenda calls were mine: six of eight talks from customers, four build tables instead of a booth, a runnable example at the end of every talk, and our own roadmap segment cut from 30 minutes to 15.
+
+On October 14 the day started badly. The opening customer talk ran 22 minutes over, because I hadn't set hard stops or a timekeeper, and the first build-table slot shrank by half. During the second talk the livestream lost its audio for nine minutes. The build tables still carried the day: 212 qualified conversations from 61 target accounts, against the goal of 150.
+
+The mistake that cost the most came after. The registration list and the conversation log had no shared account field. Matching them by hand took a week, and the follow-up email went out six days late. Sellers told me two expansions slipped a quarter because of it.
+
+Within six weeks the talks became 9 docs tutorials and 2 case studies. I left Halyard in January 2022, so part of the $3.1M of influenced pipeline was counted after I'd gone, using the same definition as the launch work.
+
+What I left open: a smaller event run twice a year, and one account field agreed before the event, with the follow-up email written in advance. Both stayed recommendations; I wasn't there to test them.
+
 ## Why an event, and what "worked" had to mean
 
 By mid-2021 Flowramp had a year of GA behind it and a healthy self-serve funnel, but expansion inside our biggest accounts was slow. The engineers who used Flowramp liked it. Their platform leads, who approve wider rollouts, had never met us. My pitch to the CEO and the VP of Marketing: put the platform leads in a room with our engineers and our best customers, and let the customers do the selling.

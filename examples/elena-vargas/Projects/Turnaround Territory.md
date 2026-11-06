@@ -4,6 +4,20 @@
 
 Fennec Systems, April 2021 to December 2022. I joined Fennec in April 2021 into a carved-together territory that had produced **$1.1M closed the prior year against a $3.4M peer average**, bottom decile of an eight-AE org. In 2022 the same patch closed **$6.5M, 120% of a $5.4M plan**, and I was promoted to Principal AE in January 2023 on the result. This file is what I changed, what the numbers show, and the luck I'm not going to pretend wasn't there.
 
+## The full story
+
+I joined Fennec in April 2021 knowing the seat was a rebuild: six states stitched together from three departed AEs' books, and $1.1M closed the prior year against a $3.4M peer average. The first month's audit showed why. 41 of the 63 open opportunities were dead, and no account history went back more than 90 days.
+
+The first month set everything else up. In three weeks I rebuilt the territory by hand, from 400 accounts to 70 named targets. At the same time I closed out the 41 dead opportunities, about $3.6M of weighted pipeline, each with a written reason sent to my manager before I closed it. Two reps on the team thought I was insane. Then every new logo went through the same customer-owned pilot, with up to five running at once. Q2 2021 came in at 94% of segment quota while I cleaned up. The step came in Q3 and Q4, when the first four pilots converted, and I finished 2021 at 108%. 2022 was the first full year of the rebuild: $6.5M, 120% of plan. Part of that came from competitors who had mispriced their renewals into my territory, and I say so. I was promoted to Principal AE in January 2023.
+
+The coverage plan, the disqualification calls and the pilot design were mine. My manager saw every kill in writing before it happened. Fennec's SEs carried the technical side of the pilots, and the customers' own engineers wrote the go/no-go memos, which is why the pilots converted. The territory I was dealt and the competitors' pricing mistakes were outside my control.
+
+The plan kept paying after 2022. Harvestlane, a tier-1 target from that first coverage plan, signed in January 2023 and helped me to 109% that year.
+
+What I didn't fix was the pace. I did the audit and the coverage plan while carrying a live quota, and it cost me two weekends a month for a quarter. In a new seat I'd ask for a ramp quarter to do that work in daylight.
+
+When I left Fennec at the end of 2024, after the acquisition, what was still open in the territory was its live deals and the Harvestlane renewal, about a year away. I handed off every live deal with written notes.
+
 ## What I inherited
 
 - **A patch, not a territory.** Six states stitched together from three departed AEs' books. No account history in the CRM older than 90 days, no notes, two logins dead on arrival.

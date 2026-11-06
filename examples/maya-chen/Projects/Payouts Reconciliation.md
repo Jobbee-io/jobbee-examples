@@ -37,3 +37,7 @@ The whole feature: requirements, design doc, build, rollout and running it after
 ## What I'd do differently
 
 Both fixes above belonged in the first release: tolerance rules agreed in week 1, file checks and runbook shipped with the job. And I'd name one analyst as co-owner from the start; in practice one of them became that anyway.
+
+## What's still open
+
+Nothing was open on this when I left Cartway in August 2020. The job was in production, finance owned the tolerance rules, and the schema checks and runbook covered the kind of file-format change that stopped the parser in week 6.

@@ -54,3 +54,7 @@ What it changed, measured as security-review time (first contact with the securi
 ## What I'd still do differently
 
 The binder gaps were knowable in July 2022 from Fennec's own trust page, and I skipped the check because the deal felt won. The lesson isn't "process beats luck." It's that "feels won" is exactly when discipline is cheapest, and I have the ten months to prove it.
+
+## What's still open
+
+When I left Fennec at the end of 2024, Rivermont was halfway through the 3-year term it signed in June 2023, and its renewal, due in mid-2026, was still open. I don't know how the renewal went.

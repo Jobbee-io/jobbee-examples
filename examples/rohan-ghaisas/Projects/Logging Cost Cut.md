@@ -4,6 +4,20 @@
 
 Larkspan Software, March to August 2025, with the bill measured through September. One bullet on my resume.
 
+## The full story
+
+In January 2025 our hosted logging bill was $46K for the month, with ingest growing about 5% a month. The bill had passed our whole compute spend for one production region, and finance asked platform for a plan. Nobody could say which logs anyone read.
+
+I led the work from March. The first call was vendor or volume. I priced running our own stack, but every option charges by volume in the end, and we didn't know what our volume was for. So we kept the vendor, and I sampled one week of ingest by source and field before changing anything. Only about 30% of it was application logs people actually used.
+
+The cuts went in roughly from safest to riskiest. First the noise: health-check logs dropped at the collector, debug logs off by default, duplicate file shipping removed. Then the audit logs: our compliance lead set their 400-day retention, and Aditya K. built the routing to object storage. Then the cuts that touched logs people read: searchable retention from 30 days to 14, and 10% sampling on the 6 highest-volume services. Each team chose what to cut in its own logs. The per-team budgets came last, and they should have come first.
+
+Two of my changes hurt. My first sampling rule matched by service, not by log level. For 16 days it dropped 90% of the error lines from the vendor-payment file generator, and when a bank rejected one customer's payment file twice, we heard it from the customer. Errors and warnings are never sampled now, and CI tests the rules. And the 14-day retention cut off support, who use webhook delivery logs for up to 30 days. I had asked finance and engineering what to cut, not the people who read the logs. Three weeks later we put that stream back to 30 days.
+
+By September the bill was $19K a month and ingest was down from 4.6 to 1.5 TB a day. The saving, net of the new object storage, is about $26K a month.
+
+No task from the project is still open. The open risk is growth. The budgets open a ticket when a team runs over; they don't block anything. The number stays down only while teams act on those tickets, and if it climbs again, the vendor question comes back.
+
 ## Why
 
 In January 2025 our hosted logging vendor billed us $46K for the month. Ingest was about 4.6 TB a day and growing about 5% a month, with 30 days of searchable retention on everything. Finance asked platform for a plan after the bill passed our whole compute spend for one production region. Nobody could say which logs anyone actually read.

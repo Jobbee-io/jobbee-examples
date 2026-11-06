@@ -43,3 +43,7 @@ After full rollout, two quarters:
 Before the winning rollout, I sent the whole product org the hypothesis, the design, the result, and the sentence "my hypothesis was wrong in an interesting way." Two other PMs ran their pricing tests in the same pre-registered format that quarter, and it became the org's standard pricing-test format.
 
 What I check in any A/B I'm asked to bless, all from this test: a hypothesis and kill criteria written before launch; a segment read planned in advance, because the aggregate hid the composition problem; a guardrail on the failure mode we feared (revenue dilution), not only on the result we hoped for; and a stated limit on what the test duration can show.
+
+## What's still open
+
+Nothing is open: the new structure shipped, the $19 tier is gone, and the test format became the org's standard. The one thing the six-week test couldn't show, churn, was answered in week nine, when the churn signal confirmed the segment read.

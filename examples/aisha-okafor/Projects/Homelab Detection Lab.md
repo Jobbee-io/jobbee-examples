@@ -38,3 +38,7 @@ I built and run all of it alone. The outside help was public documentation and t
 - I lost the early 2020 rule history to a disk failure and rebuilt it from exports. Everything has been in version control since.
 
 None of this was assigned. It's why my SOC-era rules shipped with tests before that was normal at Lanternwatch.
+
+## What's still open
+
+Nothing in the lab is half-done. It has no finish line: it's practice space I keep running, and the 174 test cases still run after every change.

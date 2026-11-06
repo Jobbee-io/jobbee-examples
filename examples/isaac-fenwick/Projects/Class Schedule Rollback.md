@@ -40,3 +40,7 @@ In October and November I designed a compact list at the old density, about 9 cl
 ## What changed in how I work
 
 I start from the behavioral data (who books, how often, and how), recruit by segment, and time tasks on a full real schedule, not a 6-class mock-up. I ship to 10% first, with a stop rule in the test plan: if the primary metric is down more than 2% after one week, stop. The research habits became a team practice: `Thursday Usability Sessions.md`.
+
+## What's still open
+
+Nothing is open: the cards were rolled back on August 30, 2023, and the compact list that replaced them shipped in December 2023 with the instructor photos studios had asked for.

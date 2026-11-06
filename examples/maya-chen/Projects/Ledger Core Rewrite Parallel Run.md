@@ -85,3 +85,7 @@ Daily diff summaries, the mismatch-class log with sign-offs, the nightly balance
 - Decide on commit-order replay before building anything. The 2 weeks on the tee approach were spent learning what a whiteboard could have shown.
 - Build the diff for month-end volume from the start, keyed the way the data is hot, not the way it's convenient.
 - Bring the controller's office into triage on day 1, not week 2. The rounding question sat for 4 days waiting for the right person.
+
+## What's still open
+
+Nothing from the parallel run is still open: every mismatch class got a root cause and a sign-off, and the diff lives on in a smaller form as a pre-deploy regression check. The open item for the ledger as a whole, the single-primary ceiling, is in `Ledger Core Rewrite.md`.

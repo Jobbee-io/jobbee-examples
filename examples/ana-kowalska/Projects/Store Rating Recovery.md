@@ -4,6 +4,16 @@
 
 Migiem, customer app, March to June 2024. I was the release captain for version 8.12, the worst release we've had, and I led the recovery afterwards. One bullet on my resume.
 
+## The full story
+
+I was release captain for 8.12. It moved session tokens to encrypted storage, and tokens created before an April 2022 format change failed to parse. It went to 20% on 5 March 2024, and I approved 100% the next day, because crashes and ANRs looked normal. A logout isn't a crash. Support saw it first. The hotfix reached 100% 31 hours later, but by then about 140,000 users had been logged out, and for about 6 hours our SMS provider's rate limit stopped roughly 30% of the login codes they needed from arriving.
+
+The 28-day average of new ratings fell to 3.1. I owned the hotfix, the new release process and how we measured the recovery, and I ran the review replies with our support lead. Our product manager owned the review-prompt change, and a backend engineer fixed the SMS limit with the provider. Our first reply template was corporate, and few reviewers updated their rating; plain replies worked much better. The fix alone took the average to 4.3 by the end of April. By the end of June it was 4.6, and I keep that step separate: most of it came from the prompt change in May, asking at a better moment, not from a better app.
+
+The public rating was back at 4.5 by mid-June, and the staged-rollout gates have run on every release of both apps since April 2024.
+
+What's open: the gates only watch what we chose to measure. The login gate exists because 8.12 got past gates that only watched crashes and ANRs. The next bad release could fail in a way none of the four gates sees.
+
 ## What happened
 
 Version 8.12 moved session tokens into encrypted storage. Tokens created before a format change in April 2022 failed to parse in the new code, and the app treated those users as logged out. About 22% of our Android users still had an old token, because our sessions were long-lived. They had to log in again with an SMS code, and at that volume our SMS provider rate-limited us: for about 6 hours on 7 March, roughly 30% of login codes didn't arrive.

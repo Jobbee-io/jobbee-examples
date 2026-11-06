@@ -56,3 +56,7 @@ At week 10, run 2 missed the quality bar by almost 2 points and the cost bar by 
 
 - Run the cheapest comparison first: the base open-weights model with our retrieval, in week 1.
 - Put the first decision point at week 3, not week 10.
+
+## What's still open
+
+Nothing is open: we stopped the project in week 11, in August 2025, and the cost goal it was meant to reach was met without it by February 2026. I haven't run another fine-tune since.

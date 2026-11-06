@@ -4,6 +4,18 @@
 
 Slatebird, October 2024 – March 2025. On my resume this is one bullet under Slatebird and the first line under failures. I ran a test, read +7.5 points of activation, shipped it and announced it. Two months later I found that the treatment was creating part of its own result. The real effect was +0.8 points, not significant. This file holds the test, how the bug was found, the retraction, and what changed in how I run tests.
 
+## The full story
+
+In fall 2024 the empty schedule was our biggest drop-off: 52% of new workspaces never added a single assignment. I designed a test that let new workspaces start from an industry template with 3 sample assignments. Our designer made the templates, and our growth PM owned the build. It ran for 4 weeks in October.
+
+I read +7.5 points of activation and sent the readout the day after the test ended. The templates shipped to everyone on November 5, and the result went into the Q4 board update.
+
+Then the numbers stopped agreeing. Our Google Ads bidding learns from activated trials. After November 5 it saw 31% more of them while paid accounts stayed flat, and non-brand CAC climbed. I flagged it in early December. On December 27 the test's 60-day trial-to-paid came in flat. On January 6, 2025 the analyst and I found the cause: the sample assignments fired the same event as real ones, so the templates were creating part of their own result. The real effect was +0.8 points, not significant.
+
+On January 10 I sent a retraction to the same people who got the original readout, and our CEO corrected the board slide. The analyst and I rewrote the activation definition, the event now records who created each assignment, and bidding moved to the new definition. Non-brand CAC was back to about $1,390 by March 2025. The templates stayed, logged as flat.
+
+What's still open is the problem I started with. Templates didn't move real activation, so they didn't fix the blank schedule, and this test doesn't tell me what will.
+
 ## The test
 
 New workspaces opened on an empty schedule, and our funnel data showed the empty state was the biggest drop-off: 52% of new workspaces never added a single assignment.

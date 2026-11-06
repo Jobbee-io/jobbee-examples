@@ -4,6 +4,18 @@
 
 Northwind Labs, data platform. September 2021 to April 2022. I ran the evaluation, recommended against the thing I was asked to evaluate, and led what we built instead. The shipment-tracking product had two large EU enterprise customers and a US federal-adjacent customer with a data-residency requirement, and "multi-region active-active Postgres" was assumed to be the answer.
 
+## The full story
+
+In September 2021 I was asked to make our database multi-region, with one quarter to reach a recommendation. I was told plainly that the exec team expected active-active. The pressure behind the request came from customers: two large EU enterprise customers, and a US customer with a data-residency requirement.
+
+Two engineers and I tested the options on a staging copy of the real workload. For the first three weeks I championed active-active myself. Then the proof of concept turned up 14 conflict scenarios. In 11 of them, last-write-wins produced a shipment state our own validator rejected. I still spent four more weeks finishing the proof of concept, to earn the right to kill it. Along the way I added an option nobody had asked for: keep each tenant in its home region, with a synchronous replica and automated failover inside that region.
+
+At the end of the quarter I recommended against what I'd been asked to build. My first exec readout put that on slide 14 and nearly lost the room. The second version opened with it, and the execs accepted it.
+
+I led what we built instead, and it was in place by April 2022. It met the residency requirement, which turned out to be the real driver all along. Quarterly drills verified a 90-second recovery, and the one real failover, in September 2022, took 74 seconds with no data loss.
+
+One limit stayed open on purpose. A full region loss falls back to the warm standby in the other region, which can lose a few seconds of data. That number is written in the design doc, and it was still the accepted trade when I left Northwind.
+
 ## The assignment
 
 "Make the database multi-region so EU customers get EU latency and a region loss doesn't take the product down." One quarter to a recommendation. I was told directly that the exec team expected active-active. Recommending against your mandate is a career decision, and I'd make it again.

@@ -4,6 +4,18 @@
 
 Halcyon Insurance, 2020, about 11 weeks of work. My policy-renewal churn model scored 0.84 AUC offline and was killed in final review for label leakage, two weeks before its pilot. I wrote the postmortem myself: the mechanism, where I should have caught it, and what I changed.
 
+## The full story
+
+In 2020 Halcyon's save team chose which renewing policies to call using a crude rule-based flag. I set out to build a model that ranked policies by churn risk, so the calls went to the highest-risk policies first. It was to be tested in a pilot randomized inside the flagged population.
+
+The model was my own work, over about 11 weeks. In week 2 I added "prior save-team contact" as a feature, noted that it might encode treatment, and moved on. Each time I enriched the contact features the score went up, and I read that as signal. By week 9 the model scored 0.84 AUC against 0.68 for the flag, and I demoed it widely without an ablation.
+
+In week 11, two weeks before the pilot, a risk-and-compliance reviewer from outside my team asked how contact related to my label. The old flag chose who got called, and the calls caused renewals. The model had learned whom the save team touches. It died in 20 minutes, and about 3 months of work produced nothing for production.
+
+I wrote the postmortem myself and changed how I work: a leakage checklist, ablations by feature family, treatment-aware methods where a process shapes the label, and that reviewer in my design reviews from then on.
+
+The problem the model was meant to solve is still open, as far as I know. The save team stayed on the rule-based flag. Targeting the policies a call would actually save needs a randomized test of the calls first, then an uplift model on top. I never built it; my next year went to pricing work.
+
 ## What it was for
 
 Halcyon's save team called policies flagged as likely to lapse. The flag was rule-based (payment behavior plus tenure bands) and known to be crude. The model would rank policies by renewal risk so the team's calls went to the highest-risk ones first. Agreed success metric: saved policies at fixed call capacity against the rule-based flag, in a pilot randomized within the flagged population.

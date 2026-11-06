@@ -52,3 +52,7 @@ In the loss call, their platform director said that if we had told him in week 2
 ## Results since
 
 From October 2024 to September 2026, the worksheet flagged 7 deals past a tested limit. 2 were qualified out before a POC, which saved an estimated 300 SE hours, using the Sandvane POC as the yardstick. 4 were scoped down to what fit, and 3 of those 4 won. 1 went to a POC on a regional VP override and lost. The worksheet also runs on deals that fit: on Halverd in 2025 every line came in under a limit, and that let me spend the POC on trust instead of fit (`Halverd Competitive Poc.md`).
+
+## What's still open
+
+The product gap Sandvane exposed is still open: the tested limit is now 25M active series, and a fleet like Sandvane's needs about 38M. And a fit note doesn't stop a POC on its own: of the 7 deals the worksheet flagged, 1 still went to a POC on a regional VP override, and it lost.

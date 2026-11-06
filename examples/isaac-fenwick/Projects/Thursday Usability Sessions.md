@@ -4,6 +4,18 @@
 
 Rosterwell, January 2024 to now. On my resume this is a single bullet under Rosterwell, and it isn't in my portfolio at all. It's still the project I'd most want a Staff interview to ask about, because it's a practice that now runs without me. I co-own it with Tessa, our UX researcher, and this file says which parts are hers.
 
+## The full story
+
+In 2023 research at Rosterwell was a queue: one researcher for 12 designers, a median wait of 24 days, and testing before build for only 9 of the 41 features that had design work. In August 2023 my class schedule redesign lost an A/B test, partly because I had tested it with the wrong people. That was the push: teams needed to put a prototype in front of the right users without waiting weeks.
+
+I started with a mistake. In November 2023 I pitched a weekly testing slot to the whole design team before I had talked to Tessa, our researcher, and she heard about a research program in her own field secondhand. I apologized, we rewrote the proposal together, and she has co-owned it since. The first Thursday ran in January 2024.
+
+The first months were mostly fixing what we hadn't foreseen. No-shows ran at 24% for six weeks, until we added text reminders and a standby participant. About a third of the slots brought finished designs just to say they'd been tested, so from April 2024 a team needs one open decision to claim a slot. By month 5 some participants were on their third session, so we capped it at one per quarter. Enterprise admins were too hard to recruit weekly and got one Thursday a month.
+
+I ran the logistics for those first six months. Tessa owned the method: the protocol, consent, how recordings are kept, and training 6 designers as moderators. Since July 2024 a rotating designer runs the logistics each quarter, and since June 2025 our second researcher manages the panel. I still moderate, about 90 sessions so far.
+
+Through October 2026: 128 Thursdays and 343 sessions, and 81% of features tested before build in 2025, against 22% in 2023. The practice no longer depends on me. What's still open is proof. Fewer launches were rolled back or redesigned in 2025 than in 2023, but the team also got more experienced, so I can't show the sessions made the product better.
+
 ## Why it was needed
 
 In 2023 Rosterwell had 12 product designers and one researcher. Research worked as a queue. The median wait from a request to a first session was 24 days, so most teams didn't ask. Going back through 2023's release notes, I could find usability testing before build for 9 of the 41 features that had design work: 22%. Then my class schedule redesign lost in an A/B test (`Class Schedule Rollback.md`), partly because the little testing I did was with the wrong people. That was the push.

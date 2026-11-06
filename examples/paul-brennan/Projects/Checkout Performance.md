@@ -4,6 +4,20 @@
 
 Shelfwright, Web Platform team working with the Checkout team, April 2023 to March 2024. One bullet on my resume.
 
+## The full story
+
+In early 2023 checkout was the slowest part of the platform on the phones most shoppers use. Field data put mobile p75 LCP at 4.1 seconds, and retailers were attaching speed reports to their renewal questions. The Checkout team's backlog was full, and Web Platform owns frontend performance, so I took it on in April 2023, with two Checkout engineers at about half time.
+
+I lost the first 5 weeks to lab scores. Lighthouse went from 48 to 87 on my laptop while field LCP barely moved. From then on we reported only field numbers and tested on real mid-range Android phones.
+
+Third-party scripts came next, and that's where most of the trouble was. I deferred the fraud-detection script, and for 6 days the risk team's manual review rate climbed until they traced it to my change. I reverted it the day they found it. It now loads early, with their sign-off, and I list every script's owner before touching anything. Moving merchant scripts to the confirmation page took 7 weeks, not the 2 I planned, because 6 merchants pushed back. Checkout's product manager owned those merchant decisions, and marketing operations owned their own tags. We ended at 9 tags, down from 27.
+
+Alongside that, I built the server-rendered shell and the CI size budgets, and we split and trimmed the JavaScript. In October 2023 we added INP to our field data. It showed a problem FID had hidden: cart recalculation on every keystroke. We moved it off the keystroke path.
+
+In February 2024 a 4-week holdout, which I designed with the data team, showed mobile completion up 1.4%, with a 95% interval of +0.5% to +2.3%. Desktop showed no change we could measure. By March 2024: LCP 2.3s, INP 170ms, CLS 0.03.
+
+The Checkout team now reviews the field numbers weekly, and the budgets run in CI. What stays open is the 9 tags. Each has an owner and a reason, and keeping the count from creeping back up depends on that weekly review, not on me.
+
 ## Why
 
 Checkout was the slowest part of the platform on the devices most shoppers use. Our field data (the web-vitals library reporting from every checkout page) showed mobile p75 LCP at 4.1 seconds and CLS at 0.19. Retailers were attaching speed reports to their renewal questions. The Checkout team had a full feature backlog, and Web Platform owns frontend performance, so I took it.

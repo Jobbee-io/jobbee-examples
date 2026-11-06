@@ -37,3 +37,7 @@ Every promotion since, mid-market to enterprise and enterprise to principal, has
 - The textbook summer taught me rejection tolerance and nothing else that transferred.
 - I didn't invent mentoring at Corvidale. Two senior AEs, Tasha R. and Boyle, volunteered the first sessions before there was a program. First Call is a container I built around generosity that already existed, and I credit them by name every time I tell this.
 - My move to AE required leaving. A ladder you designed still has rungs other people control.
+
+## What's still open
+
+Nothing was left open when I left Corvidale in December 2015: First Call already had its charter, its calendar block and its AE volunteer rotation, and it ran at least two more cohorts without me. I don't know whether Corvidale still runs it.

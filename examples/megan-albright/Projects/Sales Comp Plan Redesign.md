@@ -4,6 +4,18 @@
 
 Brandvold Controls, April to December 2020, live January 1, 2021. I was a senior compensation analyst. On my resume this is one bullet. This file holds the design, the model, who decided what, and the 3 things that went wrong in the first year. All figures are aggregates; no individual rep's pay appears here.
 
+## The full story
+
+By 2019 Brandvold's sales plan paid reps to discount. Commission was 1.9% of invoiced revenue, and reps could give up to 25% off list without approval. Average discount had climbed from 14.6% in 2016 to 19.4%, and margin on rep-sold orders had fallen. The VP of Sales and the CFO agreed the plan had to change and asked compensation for a design.
+
+I had just become a senior compensation analyst. From April 2020 I was the lead analyst and plan designer. My manager was accountable and presented to the executive team, the VP of Sales decided, and finance owned the margin data. I designed a plan that paid mostly on gross margin dollars and kept the 70/30 pay mix. I back-tested it on 2 years of orders so each rep could see what they would have earned, and ran 11 sessions with reps and regional managers. It went live on January 1, 2021, with 2 quarters in which each rep got the higher of the old and new formulas.
+
+The first quarter was rough. Finance's margin definition included rebates and freight that reps couldn't see, and statements for 27 reps changed after rebates posted. In April we switched to invoice margin. My Excel crediting double-counted split orders and overpaid 14 reps about $38K. The VP chose not to claw it back; I fixed the logic and wrote the requirements for a proper incentive comp system. And 3 of the top 20 reps left during 2021, against about 1 a year before. Two quarters of transition wasn't enough for books built on discounting.
+
+In 2021 the average discount was 15.8%, incentive cost as a share of margin dollars dipped from 7.9% to 7.6%, and 57% of reps were at or above target, inside the range I designed for.
+
+What's still open: margin on rep-sold orders rose from 30.8% to 32.9%, but 2021 price increases ran ahead of cost and I can't separate the two. I left Brandvold in July 2022, 18 months after launch, so I can't say how the plan has held up since.
+
 ## What it was and why
 
 Brandvold sold commercial HVAC and refrigeration controls through 120 quota carriers: 104 field territory managers selling to distributors and equipment makers, and 16 inside sales reps. The old plan paid 70% base and 30% variable, and the variable was a 1.9% commission on invoiced revenue, uncapped, paid monthly. Reps could discount up to 25% off list without approval.

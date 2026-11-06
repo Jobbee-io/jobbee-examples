@@ -4,6 +4,18 @@
 
 Fernbrook Systems, Platform & Developer Experience. Built May 2022 to September 2023; I've owned it since. I built the blameless postmortem practice: from almost no postmortems to a doc for about 90% of Sev-1 and Sev-2 incidents, with 94% of action items completed. It started with an incident, survived resistance from the most respected engineer in the building, and the version that stuck is much smaller than the one I first proposed.
 
+## The full story
+
+I was six weeks into the Fernbrook platform job in May 2022 when a config service pushed a malformed rule set to 60% of production and degraded checkout for 2 hours 40 minutes. I wasn't on call. What I found afterwards was the bigger problem: four postmortem docs in the whole company, one of which blamed an engineer by name. The same failure class had caused two Sev-2s in the nine months before. That pattern is what convinced the CTO.
+
+My first proposal was a full program, and my VP sent it back. What shipped was small: a two-page template, a writing rule that keeps people out of contributing factors, action items with owners and dates in team sprints, a 30-minute review, and links between recurring factors. I reviewed the first ten docs myself and sent two back for blaming people. The no-executives rule came from the first review, where a VP's questions silenced two engineers.
+
+Then came the resistance. The company's most respected senior staff engineer refused to write one for his Sev-2; he was the engineer named in the old doc. I wrote his incident up myself in blameless form and asked him to mark it up. He did, hard, and wrote the next one himself. An exec wanted names in docs; we kept names on action items only. Platform took on the timeline work, so authors spent about 90 minutes, not days.
+
+The config-push fix shipped in October 2022, and there has been no config-propagation Sev-1 since. At month 14 I stopped reviewing every doc, and the numbers held. Today about 90% of Sev-1 and Sev-2 incidents get a doc within 10 business days, and 94% of action items close within 60 days. Two rotating senior engineers and the author run the reviews; I still own the program.
+
+What's open: the last 10% of docs, missed mostly when a team is short-staffed, which I report rather than hide. And one cause did repeat, because its fix had an owner but no verification step. Verification is now a required field, and the next year of repeat-cause numbers will show whether that was enough.
+
 ## The incident that started it (May 2022)
 
 An internal config service pushed a malformed rule set to 60% of production services over 22 minutes. Checkout, the company's largest revenue path, was degraded for 2 hours 40 minutes: about $180K of direct revenue impact, 3,100 support tickets, and a customer escalation that reached the board.

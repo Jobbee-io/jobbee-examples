@@ -4,6 +4,18 @@
 
 Quillfield Pet Foods, July – October 2025. On my resume this is one bullet and the first entry under failures. This is the full account: the number, what I had in front of me when I made it, and what I changed.
 
+## The full story
+
+The weeks-of-supply driver went into the forecast model in March 2023, after our largest retailer cut its inventory during the parallel run. In 2025 the same retailer did it again. This time the model saw it, and I went with the account team instead.
+
+I locked the Q3 2025 outlook on July 8. Over the 6 weeks before, the point-of-sale feed had shown that retailer's on-hand inventory falling from 5.5 weeks to 4.9. The account manager said the buyer had told him in May that their policy hadn't changed. I kept 5.5 in the base case and gave a single number. By mid-July the data showed 4.7. I mentioned it to my director as something to watch, and did nothing more. The retailer went down to 4.0 in August and September. The CFO first heard about it with the August flash in early September.
+
+Revenue came in at $161.3M against my $166.5M outlook, and $4.5M of the gap was that inventory cut. I wrote the variance memo within 3 business days, with my own call in the first paragraph, and went through it with my director and the CFO. I proposed ranges, 6 weekly tripwires and an assumptions log. The CFO made them the team standard, and the Q4 outlook went out as a low, base and high case.
+
+Since then the average quarterly error has been 1.1%, and actuals landed inside the range in 3 of 4 quarters. The FY2027 plan's low case is built from the same tripwires.
+
+Two things are still open. Bonuses are still set on a single plan number while the forecast runs on ranges. I proposed a payout band around plan, and the CFO kept the single number. And ranges don't make a forecast right: Q1 2026 still came in 0.4% below the low end, after a winter storm closed our Texas plant for 4 days.
+
 ## The miss
 
 At the start of each quarter I lock a quarterly outlook. The CFO uses it in the board update and in our monthly reporting to the lender. I locked Q3 2025 on July 8.

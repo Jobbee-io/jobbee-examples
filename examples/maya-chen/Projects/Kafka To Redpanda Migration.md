@@ -4,6 +4,16 @@
 
 Northwind Labs, data platform. January 2022 to September 2022. I planned it, drove the cutover and owned the follow-up. 96 topics, 12 consumer groups, peak 40K events per second, about 28 TB of event data a month.
 
+## The full story
+
+At the start of 2022 our Kafka cluster cost $214K a year, and the money wasn't the worst of it. Patching and partition reassignments took about 1.5 engineers of my team's time, and one rebalance storm had taken consumer groups down for 40 minutes. I took the problem on around the time I took over leading the data workstream.
+
+In January we ran a 3-week proof of concept of Redpanda against two weeks of recorded traffic. In February I wrote the decision doc. It took a month because I made us cost "stay on Kafka" honestly. March and April went to a prerequisite: every consumer group had to handle duplicates before we wrote to two clusters. Three groups couldn't, including shipment-status, and their owning teams spent two months fixing them.
+
+The cutover ran from May to early August in four stages. I wrote the stage plan and made the call on each producer flip. Engineers on my team ran the new brokers and MirrorMaker 2. To keep the schedule, I put shadow consumers on only the five tolerant groups. On day 2 of the flips, the main telemetry-raw group, which had no shadow, built up 4.1M messages of lag. We traced it to a fetch-behavior difference, tuned the fetch settings and raised the group's parallelism, and the lag drained in 40 minutes. In the second week, two groups with old heartbeat settings started rebalancing. The flip stage took 6 weeks instead of 4. No data was lost, because both clusters held full copies the whole time.
+
+The old cluster was decommissioned in August. In September I measured the results: produce p95 at 11 ms, $131K a year, and broker toil close to zero. Nothing from the migration is open. What I kept is the rule I broke: shadow every consumer group before any producer flips.
+
 ## Why we moved
 
 The 18-broker Kafka 2.8 cluster, self-managed on the same VM fleet as everything else, was expensive three ways:

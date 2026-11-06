@@ -4,6 +4,14 @@
 
 Verdillo Power Systems, August 2022 – September 2024. The most expensive decision of my career, about $1.9M. On my resume it appears only under failures, not as an experience bullet, because it isn't an accomplishment. This file holds the decision, what I knew when I made it, the cost against a stated baseline, and the rules it produced.
 
+## The full story
+
+In August 2022 I was the commodity manager for electronic components, and the microcontroller shortage was still fresh. Lead times on our 2 IGBT power modules were 50 weeks, and the price had gone from $168 to $212. The manufacturer offered to secure our 2023 supply, but only against a 12-month non-cancellable order. I recommended ordering 100% of sales' 2023 forecast: 52,000 modules, $11.0M. My memo had one scenario, the shortage continuing. My director and the CFO approved it. The recommendation, the quantity and the terms were mine. Sales owned the forecast and I didn't question it. Planning wasn't asked.
+
+In the first quarter of 2023, 2 large storage projects slipped to 2024. We shipped 4,300 PCS units instead of 6,500, and by mid-2023 lead times were down to 16 weeks and new quotes averaged $186. I negotiated a deferral: 9,000 of the excess modules moved into 2024, in exchange for an extra 2024 order. The other 8,600 sat in our warehouse. When our 2024 redesign moved to a new module, 1,400 old-variant modules were written off, and the rest were used by September 2024. Measured against buying each module in the quarter we used it, the order cost about $1.9M.
+
+It changed how I commit. Any NCNR or buffer commitment over $1M now needs a demand range from planning and the cost of the low case. I commit in layers, with quantity flex by default. Nothing from the order itself is still open. What isn't proven is the fix: the flexible terms have handled a demand drop, in 2025, but not yet a real shortage.
+
 ## The decision
 
 In August 2022 I was still the commodity manager for electronic components, and the microcontroller shortage (`Microcontroller Dual Sourcing.md`) was fresh. Our PCS used 2 IGBT power module part numbers from one manufacturer, Manufacturer C, 8 modules per unit. Lead time was 50 weeks. The price had gone from $168 in 2021 to $212.

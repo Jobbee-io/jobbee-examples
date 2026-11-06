@@ -4,6 +4,16 @@
 
 October 2021, while I was at Meridian Grid. Most conference talks produce a good week of traffic and nothing else. This one changed an install curve. On my resume it's one line with two numbers. This file holds how it was built, why I think it worked, and what I got wrong.
 
+## The full story
+
+By mid-2021 Tessergate was two and a half years old. It had a breaking-change policy and regular releases, but it was still small: about 190 installs a week. I was at Meridian Grid, and in June I submitted a ClusterCamp proposal about guardrails for teams without a platform team. My clever title nearly put the talk in a culture track. A program committee member who had just hit the same namespace problem kept it in the right one.
+
+After acceptance I had six weeks. The talk was my own work about my own project, but Meridian colleagues made it better: four platform engineers I expected to be hostile sat through a dry run and cut 8 minutes of background. I built the demo to fail on purpose and recover with the tool's own output. In October 2021 I gave the talk, and said from the stage that Tessergate was my personal project, not Meridian strategy.
+
+The planned failure became the most-clipped part of the recording. Weekly installs went from 190 to 890 within a month and have stayed above 500 since. Besides the title, two things went wrong. I had no capture link, so people had to find the repo cold. And I answered only about a third of the 60+ questions under the recording before I dropped them. Some became posts two years later, and every talk since has had one link on the last slide.
+
+The talk's job is done. The limit I named on stage is still open: admission-time enforcement is the project's most requested feature, and my answer is still no.
+
 ## The talk
 
 "Guardrails Without Gatekeepers" stated the namespace-guardrails problem from the pager side. Teams without platform-engineering headcount still need resource-limit discipline. Heavy policy tooling is the right answer for platform teams and the wrong first answer for everyone else. Guardrails-as-code fills the gap. I used Tessergate, my personal project, and said so from the stage.

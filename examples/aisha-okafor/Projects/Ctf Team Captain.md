@@ -39,3 +39,7 @@ During an event:
 - A newcomer in 2022 spent a whole event alone on a challenge nobody helped with, and didn't come back. New members now pair with a regular for their first two events.
 
 Nobody on this team reports to me or is paid to be there. Triage, deciding who works on what, getting people to write things down, and noticing when the pace is wrong are the same skills I use running the review program at work.
+
+## What's still open
+
+The team is still running, so this isn't finished. What stays open every year is load: we choose the season's 6 events together in January, and I ask about load every quarter so 2023 doesn't repeat.

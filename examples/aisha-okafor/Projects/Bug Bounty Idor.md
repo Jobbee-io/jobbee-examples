@@ -41,3 +41,7 @@ Keyvane rated it High, not Critical. I asked once for a review, with one argumen
 ## Why it matters for the job I want
 
 The family rule is how I review code at work: when I find a missing ownership check, I look for its siblings before I file anything. Seven months after this report, our own pentest at Tillgrove found the same class of bug in an internal admin API (`Secure Review Program.md`).
+
+## What's still open
+
+Nothing is open on my side: my bug was fixed, re-tested and paid, and the writeup is published. The sibling bug on the payments route was another researcher's report, so its follow-up was theirs and Keyvane's.

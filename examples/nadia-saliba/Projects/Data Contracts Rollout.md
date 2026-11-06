@@ -4,6 +4,18 @@
 
 Pennacott Home, June 2025 to February 2026. I proposed it, designed it and ran it. It was unfinished when I was laid off: 31 of 40 planned contracts in place. On my resume it's one bullet. It's also my real answer to "how do you handle upstream changes you don't control?". This file holds what a contract meant for us, how the checks work, how teams adopted it, what the numbers mean, and where I went wrong.
 
+## The full story
+
+In 2024 we had 23 data incidents caused by changes upstream. Usually the alarm was an analyst noticing, days later, that a number looked wrong. The streaming pipeline had already shown me the fix: agree the shape of the data with the team that produces it, before the change ships. In June 2025 I proposed doing that with every team that produces our data. A staff engineer on the platform team sponsored it with engineering leadership.
+
+I wrote version 1 of the contract format alone, and the first two producer teams turned it down. It asked for every column. Version 2, built from what downstream actually used, took me another 3 weeks. Then I went team by team, starting with the order service team, one 90-minute session each. Each team merged its own contract in its own repo. The first breaking change was blocked in producer CI in August.
+
+On our side, the analytics engineering lead and I owned the generated dbt tests. I switched on all 1,400 at once, the alert channel filled up, and analysts muted it within a week. We agreed three tiers and pruned to 520.
+
+The pricing team said no to a contract, and I let it go. Their promo price field went null twice in Q4 2025, and I escalated only after the second time.
+
+By February 2026 there were 31 contracts across 9 teams, 12 breaking changes had been blocked, and upstream incidents were down from 7 in Q1 2025 to 2 in Q4. The layoff in March stopped it with 9 contracts still to write. The CI checks still run. As far as I know, nobody owns the program now.
+
 ## Why
 
 In 2024 we had 23 data incidents caused by changes upstream. A service team changed something in their database or their events, and a model or dashboard downstream broke or, worse, kept running with wrong numbers. Three examples from my proposal:

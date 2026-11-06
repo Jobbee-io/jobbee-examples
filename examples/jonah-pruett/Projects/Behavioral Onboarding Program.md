@@ -4,6 +4,18 @@
 
 Dispatchwell, March – December 2021. My first project after moving from paid acquisition into lifecycle. On my resume this is one bullet under Dispatchwell with 3 numbers. This file holds where the trials were stalling, the hypothesis, the test design, the result, what went wrong in week 1, and what shipped.
 
+## The full story
+
+In March 2021 I moved from paid acquisition into lifecycle at Dispatchwell. Every trial got the same 7 emails, written by an agency in 2018, whatever the account had done. I pulled 3 months of trials and found that 85% of the stalled ones stopped at one of 2 steps: they never scheduled a real job, or never got one onto a technician's phone.
+
+I wrote the hypothesis and the test plan, wrote 9 emails in 3 branches by crew size, and built them in HubSpot. An engineer added the 4 product events I needed. I had guessed 3 days; it took 2 sprints, so the test started 3 weeks late, on April 12. A designer made the template, and the inside-sales lead reviewed the branch for crews of 6 or more.
+
+Week 1 went wrong. Crew size was optional at signup, I had sent the blanks to the 2-to-5 branch, and one-person businesses got emails asking them to add their technicians. In week 2 we made crew size a required one-click question in both arms.
+
+Enrollment closed on June 6. Activation rose from 19.2% to 23.1%, and trial-to-paid from 11.0% to 12.4%. The program went to 95% of trials in June. Our VP asked whether the lift would last, so I kept 5% on the old drip for 6 months. That holdout wasn't in my plan, and it should have been. The gap held through December.
+
+The test closed when the holdout ended. One question stayed open: the in-app setup checklist that product tested in October came in at +1.1 points, not significant, and shipped anyway, so its effect was never shown. I left Dispatchwell in July 2022 and can't speak to how the program has done since.
+
 ## Why
 
 Dispatchwell sells scheduling, dispatch and invoicing software to small trades businesses: HVAC, plumbing and electrical, 1 to 20 technicians. The trial was 14 days, no card, about 4,800 signups a month. Every trial got the same 7 emails on days 0, 1, 3, 5, 7, 10 and 13, written by an agency in 2018. The day 3 email was about invoicing, whether or not the account had scheduled anything.

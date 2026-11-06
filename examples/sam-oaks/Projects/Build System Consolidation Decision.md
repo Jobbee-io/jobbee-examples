@@ -4,6 +4,12 @@
 
 Companion to `Build System Consolidation.md`. This file covers February and March 2021: how the division chose one build system, the options doc I wrote, the scoring, and the two escalation rounds it took to make the choice stick. Wanting one build system was easy. Getting 800 engineers to accept a specific one was the real work, so I made the decision process the deliverable.
 
+## The full story
+
+In February 2021 the division had five build systems, and 62% of engineers said they'd lost at least a day to build problems in the last quarter. Everyone wanted one system. Nobody agreed on which. I spent three weeks writing the options doc alone: an inventory of all 650 repos, production numbers for Maven, Gradle and Bazel from inside Grousemont, and the two counter-proposals in their authors' own words. I also scored all three options myself, and that was my mistake. Round 1 with the division VP, in mid-March, became an argument about my scores, and he sent the doc to the CTO's review instead of deciding. I added the sensitivity analysis after that round. At the end of March the CTO accepted Bazel in front of both counter-proposal authors, with three conditions.
+
+What the decision left open went straight into the migration. My Bazel estimate leaned on a transpiler I hadn't built yet, and on Gradle B behaving like the other trees, which it didn't. The learning-curve objection stayed live until the six-month check in September showed the "lost a day" number down to 38%. And at the batch-plan review at the end of March, Kelvin's author, whose deploy-step objection this doc never addressed, blocked his 75 repos. Both stories are in `Build System Consolidation Migration.md`. One part of the learning curve was still open when I left in March 2022: Bazel knowledge sat with 4 people, and anything off the common path still went to them.
+
 ## What went into the doc
 
 - An inventory of all 650 repos: build tool and version, plugins used, build times from CI telemetry, and the dependency graph between repos (about 70 dependencies crossed from one tree to another).

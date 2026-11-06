@@ -4,6 +4,18 @@
 
 Gablewright Software, Applied AI team. September 2025 to February 2026. On my resume this is one bullet with 3 numbers. This file holds where the money and the time went, what each change saved, how we kept quality from sliding, the 2 changes that broke, and a readout I had to correct.
 
+## The full story
+
+The fine-tune I stopped in August 2025 (`Fine Tune That Lost.md`) had been meant partly as the answer to our LLM bill. The bill was still there: $41,000 a month, after growing about 6% a month all summer. Answers were also slow, and slowest on the technicians' mobile app. So in September I took on cost and latency with the system we already had. Before changing anything, Ines R., Rosa M. and I agreed that the project could raise the wrong-answer rate by at most 0.5 points.
+
+I started badly. The first trace showed that every turn sent about 8,400 tokens of context, and I still spent 2 weeks designing caches, because caches were more interesting. The boring lever shipped first and did the most: fewer chunks per answer, with no change in quality. Prompt-prefix caching followed in October. So did a cache that matched similar questions; I ran it for 2 days at 5% of traffic and turned it off the day a review found it answering "how do I deactivate a technician" with the steps to delete one. An exact-match cache replaced it in November. Routing between 2 model sizes came in December and was the one change that cost quality, 2.0% to 2.3% wrong answers, inside the budget. In January 2026 a new feature showed that the router misjudges questions it has never seen, and we added a rule for new articles.
+
+I owned the project: the breakdown, the design, most of the code and every rollout. Yusuf K. from the platform team built the reranker batching that cut its GPUs from 4 to 2. Kofi A. and I did the routing analysis together.
+
+By February 2026 a conversation cost $0.11 instead of $0.30, and p95 time to first token was 1.2s instead of 3.1s. My first readout quoted server latency only, and I corrected it with numbers measured on the phone. In April the holdout re-run showed deflection had held.
+
+Still open: the router learns only from past questions, so the new-article rule is a guard, not a cure. On the mobile app, most of the remaining wait is the network on job sites. And no cache that matches similar questions goes back on unless it passes the 40 near-duplicate pairs we added after mine failed.
+
 ## Where we started (August 2025)
 
 - About 96,000 assistant conversations a month, at about 2.1 turns each, in the web app and, since February 2025, the technicians' mobile app. On top of that, reply drafts for about 55,000 human-handled conversations a month.

@@ -6,6 +6,18 @@ Companion to `Anticoagulation Transitions Clinic.md`, the overview.
 
 I wrote the protocol and the agreement. They're described here in general clinical terms, with no patient details and nothing copied from a patient record.
 
+## The full story
+
+When I proposed the clinic in September 2021, the hard question wasn't what happens at a visit. It was what the pharmacist could change on their own. In my residency project at Larkhaven, 17% of DOAC discharges had a dose that didn't match the label. A clinic that could only recommend a fix would send each one back to a busy prescriber. So I wrote 2 documents: a protocol for the visit, and a collaborative practice agreement for what the pharmacist may change.
+
+I drew the line at the label. Under the agreement the pharmacist may bring a DOAC dose to the label dose, order labs, write the plan for a procedure, and renew a prescription for up to 30 days. Anything that needs a physician's judgment goes back to the prescriber the same day. The cardiology division chief and the hospitalist section chief signed it. The medical staff office reviewed it, and the P&T committee approved it before the first visit in February 2022.
+
+Two parts of version 1 didn't work. The booking was my design, built around what was easy for us, not for the patient. Patients were called after discharge to schedule, and from February to September 2022, 31% of booked visits were no-shows. Since October 2022 the visit is booked before the patient leaves, and video is offered. The visit note was a full consult note. In 2023 two cardiologists told me it was too long to use, and it was replaced by a one-screen handoff template.
+
+The first renewal, in spring 2024, added patients switched from one anticoagulant to another. The physicians asked for it, because a switch carries the same dosing risk as a new start. It's part of why referrals passed 30 a month in 2024 and a second pharmacist took a half-day.
+
+The line still holds. The 12% of out-of-label doses that aren't corrected at the visit are the cases the agreement keeps for a physician. Two changes are open for the next renewal: reaching the system's other 2 hospitals by video, and a standard second-visit check for patients whose dose changed. Before the first one, I'd want the concurrent comparison run, because extending the clinic would remove the only concurrent comparison group the system has.
+
 ## Who is referred
 
 Included:

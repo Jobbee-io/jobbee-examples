@@ -4,6 +4,14 @@
 
 Fernbrook Systems, release tooling. March to April 2025: about 7 weeks at roughly 2 days a week, while I was leading 12 engineers. On my resume it's half a line ("wrote the release-tooling queue service (Go) that now handles ~2,400 deploys/week"). It's here because Staff loops ask what I've built with my own hands lately, and this is the answer.
 
+## The full story
+
+By February 2025 our deploy lock was a lock file in object storage, and at about 1,600 deploys a week it was failing in plain sight: stuck locks cleared by hand about 9 times a week, about 120 duplicate deploys a week, hotfixes waiting behind routine work, and a 34-minute p90 wait for production. I was leading 12 engineers at the time, and I took this one myself, at about 2 days a week for 7 weeks in March and April. I picked a small Go service on our existing Postgres over the CI system's concurrency groups and a Redis lock, and built it with leases, a hotfix lane and deduplication. One release-tooling engineer reviewed every PR.
+
+Two things went wrong at launch. On day 3 a monorepo's deploy bot enqueued 40 deploys and held the staging lane for 50 minutes, so I added round-robin between teams. In week 1 the release-tooling on-call paged me twice because there was no runbook; I wrote it that week and made their on-call primary, with me as secondary. By May and June the production wait p90 was 6 minutes, and nobody was clearing stuck locks by hand.
+
+Nothing is open beyond the small fixes I still ship. It handles about 2,400 deploys a week, and the engineer who reviewed every PR co-maintains it.
+
 ## The problem
 
 Deploys to our 4 shared pre-production lanes and production were serialized by a lock: a CI job wrote a lock file to object storage and deleted it when done. In February 2025, at about 1,600 deploys a week:

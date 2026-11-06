@@ -35,3 +35,7 @@ What carried over without effort: owning a service in production (timeouts, retr
 - The 3-point claim above: I presented a result before I knew how to check it.
 
 In 2025 I mentored a backend engineer through the same transfer, with 4 rules taken from mine: ship something the ML team lacks before you ask, get the trial criteria in writing, ask for statistics help on day 1, and make your backfill a condition. He moved in 4 months; it took me 6.
+
+## What's still open
+
+Nothing about the move itself is open: the search team hired my replacement in January 2024, and I was re-leveled in October 2024. What's still open is one gap I named in my proposal: my PyTorch is working level, not expert.

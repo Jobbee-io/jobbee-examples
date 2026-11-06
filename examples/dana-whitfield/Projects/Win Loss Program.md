@@ -4,6 +4,18 @@
 
 Halyard Tools, September 2019 to January 2022. I built Halyard's win/loss program from zero: no budget line at the start, no tool, a spreadsheet and an interview guide. In its first two years it produced 94 interviews (58 losses, 36 wins). It changed two roadmap decisions and retired one pricing model. This file holds the program design, the three decisions, and the mistakes.
 
+## The full story
+
+When I started the program in September 2019, Halyard knew its win rate, 54%, and every team had a theory for the losses that put the cause somewhere else. There was no budget and no tool, just a spreadsheet, an interview guide and the habit from my 2016 loss calls at Quillon.
+
+I ran the interviews myself, on deals above $50K ACV, and coded each one against the same frame. For the first two quarters I interviewed only losses. That was a mistake: leaving out the wins hid the onboarding pattern for two extra quarters. In 2020 it was plain anyway. 22 of the first 40 coded losses said, in different words, that they couldn't get it running inside the trial window. Product re-prioritized the quickstart path and setup automation, and the win rate reached 61% over the next three quarters. The change was product's and engineering's; the evidence and the argument for it were mine.
+
+In year two a part-time contract researcher took about half the interviews, after we both coded the same 10 to check we agreed. I got the buyer decline rate from about 50% down to about 30%, later than I should have. The program helped pull drift remediation forward to Q1 2021, and in 2021 the pricing team retired usage credits once the pattern showed up across more than 30 interviews. Along the way, one trimmed verbatim cost a customer success manager an awkward week, and I changed my rule on editing verbatims.
+
+In its first two years the program produced 94 interviews, two roadmap changes and one retired pricing model. I left Halyard in January 2022 and handed the guide, the coding frame and the interview log to the product-marketing team.
+
+What was still open when I left: a 30% decline rate still meant a biased sample, and half the interviews depended on one contractor. I can't speak for how the program ran after that.
+
 ## What existed before
 
 Halyard knew its win rate, 54%, and had a folk theory for every loss: "price," "the incumbent," "the demo went sideways." Each team's theory put the loss outside that team's control. Sales lost on price; product lost on features. Nobody ever lost on their own onboarding. The reps on each lost deal had the raw material, but it was unrecorded, and unrecorded knowledge drifts toward whatever flatters the person holding it.

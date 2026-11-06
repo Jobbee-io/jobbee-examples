@@ -4,6 +4,18 @@
 
 Hollisbrook University Hospital, September 2022 to now. On my resume this is a single bullet: "72 drug-information teaching sessions for physicians and nurses since September 2022." The two larger talks it led to are listed separately under presentations. It's the project closest to the scientific-communication part of an MSL's job.
 
+## The full story
+
+By 2022 I was answering the same drug questions on rounds week after week, to the few people standing there, and every new group of residents brought them back. In September 2022 the chief residents gave me a 20-minute monthly slot at the noon conference, and the hospitalist director let me repeat it at the hospitalists' meeting. I started nursing in-services on high-alert cardiac drugs at the same time, on the cardiac step-down unit and the cardiac ICU. The nurse educators there schedule them, and we wrote the nursing quiz together.
+
+The start was rough. My first 4 physician sessions had 30-plus slides in 20 minutes, and residents left before the end. I cut each one to a single clinical question and 5 slides, and attendance held after that. The nursing sessions left out night shift for 8 months, until two night nurses pointed out that high-alert infusions run at 3 a.m. too. The recorded 12-minute versions came from that conversation.
+
+From January 2023 I logged every drug question clinicians paged me with. The log now picks the topics: when a category grows, it becomes a session. Two PGY1 residents a year each present one session, after I go through it with them. The series led to Department of Medicine grand rounds in March 2025 and an invited talk at the Northeast Cardiovascular Pharmacotherapy Symposium in October 2025.
+
+By September 2026 it was 72 sessions and about 1,500 people in the room. Across 410 paired nursing quizzes, the mean score went from 61% before a session to 87% after.
+
+What's still open is whether any of it changes practice. On the one unit where we repeated the quiz 3 months later, the score had dropped to 74%. I tried to show fewer heparin dosing errors after a run of in-services, but the dosing-weight changes went live in the same period, and I can't separate the two. So I don't claim it. The series is still running.
+
 ## What it is
 
 - Cardiology Drug Update: a 20-minute monthly session at the noon conference for cardiology fellows and medicine residents, repeated at the hospitalists' meeting. One clinical question, the evidence, and three things to do differently on Monday. 38 sessions through September 2026.

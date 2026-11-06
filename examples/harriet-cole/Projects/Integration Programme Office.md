@@ -49,3 +49,7 @@ The handover. The client hired a permanent integration manager in May 2024 and w
 - Agree what "green" means for each checklist item, with its evidence, before anyone marks one.
 - Hand the operating rhythm to the client's own manager halfway through the overlap, not at the end.
 - Put revenue synergies on their own line from week 1, not from month 4.
+
+## What's still open
+
+When I handed over at the end of July 2024, £4.8m of the £16m cost target was still to be realised, revenue synergy was £0.9m against £5m, and customer migration onto the client's platform was still ahead. The month-18 summary, the last figures I have, showed cost at £15.1m and revenue at £1.8m, with 6 months left to the month-24 target. I don't know how either target ended, or where the migration stands now.

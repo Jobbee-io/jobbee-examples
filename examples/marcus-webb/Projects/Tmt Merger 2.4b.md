@@ -62,3 +62,7 @@ The merger model and every number in the board decks. The bottom-up synergy buil
 - Start the market-definition work at signing, not when the second request arrived. The overlap was obvious, and we spent the first three weeks after the request building data that had sat in both companies' CRMs all along.
 - Ask for price protection on the stock before price was agreed. Aldervane's shares were down 11% at close, so the stock portion was worth about $150M less than announced. I modeled a collar; we asked for it after price was set, when we had the least leverage. Detail in the valuation companion.
 - Put the reporting line in the retention model from day one, not after the departure that taught me to.
+
+## What's still open
+
+Nothing is open: the deal closed in June 2019 with no divestiture conditions, and the working-capital peg settled at $8.2M on the final weekend. What came of the synergies two years later is in the valuation companion.

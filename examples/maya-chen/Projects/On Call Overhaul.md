@@ -4,6 +4,18 @@
 
 Bluepeak Systems, Payments Platform org, and org-wide by the end. February 2024 to August 2024. Not a code project: a project about how the org carried its pager, and I led it.
 
+## The full story
+
+At the start of 2024 the org's pager was broken: about 900 pages a month, 11 a week for the median engineer, and two people asking to leave their rotation. In January, while I was leading the ledger cutover, I pulled three months of page data and proposed an overhaul.
+
+We started in February, in the Payments Platform org. I wrote four principles before touching any alert. At the kickoff a senior engineer called it make-work. Instead of arguing, I asked him to move his own service, the noisiest in the org, to burn-rate alerts. Its pages later fell from 31 a month to 2, and he became our loudest supporter.
+
+The 6-week audit came first. I ran the audit sessions, and in each one the owning team's alert owners made their own keep, demote or delete calls. Then burn-rate alerts replaced about 40 resource alerts on the top 12 services. Over 8 weeks the alert owners and their partners wrote 61 runbooks, and I added the CI check that blocks a pageable alert without one. Our SRE lead and I cut the rotations from 7 to 4.
+
+Three teams opted out at first. I published the pilot teams' numbers with team names on them. Two joined within a month, and the third after a bad quarter of its own. In the following year, two deleted alerts turned out to be needed; the page review caught both, and they were back within a day.
+
+Twelve months on, pages were down to about 65 a month and MTTR to 19 minutes, with the customer-impact rate unchanged. The project is closed. The upkeep isn't: the monthly page review and the CI check have to keep running, or the alerts grow back.
+
 ## Starting state, measured
 
 - About 900 pages a month across 7 rotations and 46 services. The median engineer got 11 pages a week.

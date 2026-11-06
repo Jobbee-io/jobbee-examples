@@ -42,3 +42,7 @@ At the poster session, an attending from another hospital asked within a minute 
 - Write the analysis plan and pilot the abstraction manual on 20 charts before the first real chart.
 - Plan for outside events. Guideline updates are predictable, and a concurrent comparison group would have handled this one better than a before/after design.
 - Submit with the sensitivity analysis in the first version, not because a reviewer asked for it.
+
+## What's still open
+
+Whether the checklist lowers readmissions is still open. This study wasn't sized to show it, and I haven't run one that is.

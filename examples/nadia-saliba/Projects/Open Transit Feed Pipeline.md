@@ -4,6 +4,20 @@
 
 Personal project, May 2026 to now, built during the gap after my layoff, alone and on my own money. In my base resume it sits under the career break. The data is a mid-sized US city's open transit feed. I don't name the city, because the project is about the pipeline, not about grading anyone's buses. The code is at github.com/example/nadiasaliba-transit (poller, dbt models, Airflow DAGs).
 
+## The full story
+
+I was laid off in March 2026 and took April off on purpose. In May I started this, alone and on my own money. My work code had stayed with my employer, and I wanted something I could show. I also wanted a source I can't talk to. At Pennacott I could always sit with the team that produced the data. Here nobody answers.
+
+The poller started on June 8, 2026. It saves every raw response unchanged, and that choice is what let me fix my first mistake. For the first 3 weeks I counted stale snapshots as real data, which made bunching look worse by about 1.5 percentage points. When I caught it, I added the header-timestamp check, rebuilt everything from the raw files, and restated the numbers in the weekly summary with a note.
+
+In mid-July the static feed changed its trip IDs, and my joins broke for a day. Only then did I start storing each schedule version and joining on the one active that day. In August the VM's disk filled with logs, and the poller stopped for 31 hours. I found out the next morning. Log rotation and an alert for missing files came after.
+
+Every part of it is mine: the poller, the tables, the dbt models, the Airflow 3 DAGs, and the mistakes. Nobody reviews it, which is why the weekly summary says what changed and why.
+
+By October 31 it had 146 days of data, about 147M vehicle positions and 98.9% of expected polls usable, for about $16 a month. On the 10 most frequent routes, 7.8% of scheduled headways had a bunching event, worst between 3 and 6 p.m.
+
+It's still running, and two things are open. The feed can still change without notice, and my checks find a change after it lands, not before. And the poller is one process on one small VM. The alert makes an outage shorter, but a missed poll is data I can't get back.
+
 ## Why I built it
 
 My work code stayed with my employer, and I wanted to keep my hands on the tools in a way I can show. I also wanted a data source I can't talk to. At Pennacott I could sit with the team that produced the data. A public feed changes without notice, and nobody answers email about it: a fair test of data contracts when the other side never signs.
